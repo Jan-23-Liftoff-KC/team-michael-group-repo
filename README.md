@@ -1,10 +1,4 @@
 # Family Tree Project Outline
-For this assignment, you will submit a high-level outline of your project. This can, and likely will, change over time. In particular, your mentor will provide direction and feedback to help sharpen your ideas. So don't worry if you feel unsure about some aspects of the outline or if you have to change some things later.
-
-## Assignment Description
-[Project Outline Assignment](https://education.launchcode.org/liftoff/modules/assignments/project-outline)
-
-## Submission Instructions
 
 ### Overview
 Understanding family heritage is important, but often the history of a family is saved between different family members, various documents, or family artifacts. Rarely are these separate sources archived correctly or saved in a way that lives on past the members of the family. 
