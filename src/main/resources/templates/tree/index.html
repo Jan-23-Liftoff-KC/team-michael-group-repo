@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+<body>
+
+    <nav th:replace = "fragments :: navbar"></nav>
+
+    <br />
+
+    <nav>
+        <a href = "../person">ABOUT ME</a>
+        <a href = "../tree">TREE</a>
+        <a href = "../search">FIND</a>
+        <a href = "../forum">RECENT UPDATES</a>
+        <a href = "../notifications">MY UPDATES</a>
+    </nav>
+
+    <p>TREE TOOLS</p>
+
+    <h1>Tree goes here</h1>
+
+    <p>Add person?</p>
+
+    <nav th:replace = "fragments :: footer"></nav>
+
+</body>
+</html>
