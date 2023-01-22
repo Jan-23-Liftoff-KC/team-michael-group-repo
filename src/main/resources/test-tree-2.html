@@ -6,8 +6,8 @@
     <style>
       rect
       {
-        fill: none;
-        stroke: silver;
+        fill: white;
+        stroke: brown;
         width: 80px;
         height:40px;
         stroke-width: 2;
@@ -16,6 +16,7 @@
       {
         fill: none;
         stroke: brown;
+        stroke-width: 2;
       }
       text
       {
@@ -61,24 +62,19 @@
       console.log(information.descendants());
       console.log(information.links());
 
-      // Circles will become Person cards
+      // Elbow Connectors
+      var connections = svg.append("g").selectAll("path").data(information.links());
+      connections.enter().append("path")
+                          .attr("d", function (d) {
+                            return "M" + d.source.x + "," + d.source.y + " v 50 H" +
+                            d.target.x + " V" + d.target.y;
+                          });
+
+      // Rectangles will become Person cards (Name, age, picture, etc.)
       var rectangles = svg.append("g").selectAll("rect").data(information.descendants());
       rectangles.enter().append("rect")
         .attr("x", function(d){return d.x - 40})
         .attr("y", function(d){return d.y - 20});
-
-      // Change to squarer shapes later
-      // Using Bezier curves: 
-      // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#bézier_curves
-      var connections = svg.append("g").selectAll("path")
-                            .data(information.links());
-      connections.enter().append("path")
-                          .attr("d", function (d) {
-                            return "M" + d.source.x + "," + d.source.y + " C " + 
-                            d.source.x + "," + (d.source.y + d.target.y)/2 + " " + 
-                            d.target.x + "," + (d.source.y + d.target.y)/2 + " " +
-                            d.target.x + "," + d.target.y;
-                          });
 
       var names = svg.append("g").selectAll("text")
                                 .data(information.descendants());
