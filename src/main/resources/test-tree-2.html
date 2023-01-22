@@ -4,9 +4,13 @@
     <title>Tree Layout 2</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-      circle
+      rect
       {
-        fill: green;
+        fill: none;
+        stroke: silver;
+        width: 80px;
+        height:40px;
+        stroke-width: 2;
       }
       path
       {
@@ -16,6 +20,8 @@
       text
       {
         fill: green;
+        dominant-baseline: middle;
+        text-anchor: middle;
       }
     </style>
   </head>
@@ -24,7 +30,7 @@
       var svg = d3
         .select("body")
         .append("svg")
-        .attr("width", 600)
+        .attr("width", 900)
         .attr("height", 600)
         .append("g")
         .attr("transform", "translate(50,50)");
@@ -50,17 +56,16 @@
                             .parentId(function(d){return d.parent;})
                             (data);
 
-      var treeStructure = d3.tree().size([500,300]);
+      var treeStructure = d3.tree().size([650,300]);
       var information = treeStructure(dataStructure);
       console.log(information.descendants());
       console.log(information.links());
 
       // Circles will become Person cards
-      var circles = svg.append("g").selectAll("circle").data(information.descendants());
-      circles.enter().append("circle")
-        .attr("cx", function(d){return d.x})
-        .attr("cy", function(d){return d.y})
-        .attr("r", 5);
+      var rectangles = svg.append("g").selectAll("rect").data(information.descendants());
+      rectangles.enter().append("rect")
+        .attr("x", function(d){return d.x - 40})
+        .attr("y", function(d){return d.y - 20});
 
       // Change to squarer shapes later
       // Using Bezier curves: 
@@ -79,8 +84,8 @@
                                 .data(information.descendants());
       names.enter().append("text")
                    .text(function(d){return d.data.child;})
-                   .attr("x", function(d){return d.x + 7;})
-                   .attr("y", function(d){return d.y + 4;})
+                   .attr("x", function(d){return d.x;})
+                   .attr("y", function(d){return d.y;})
     </script>
   </body>
 </html>
