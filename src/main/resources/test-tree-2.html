@@ -8,8 +8,8 @@
       {
         fill: white;
         stroke: brown;
-        width: 80px;
-        height:40px;
+        width: 120px;
+        height: 45px;
         stroke-width: 2;
       }
       path
@@ -23,6 +23,11 @@
         fill: green;
         dominant-baseline: middle;
         text-anchor: middle;
+      }
+      image
+      {
+        width: 60px;
+        height: 40px;
       }
     </style>
   </head>
@@ -39,17 +44,16 @@
       // Data, as parsed from csv (change later)
       // Add ids
       var data = [
-        { child: "John", parent: "" },
-        { child: "Aaron", parent: "Kevin" },
-        { child: "Kevin", parent: "John" },
-        { child: "Hannah", parent: "Ann" },
-        { child: "Rose", parent: "Sarah" },
-        { child: "Ann", parent: "John" },
-        { child: "Sarah", parent: "Kevin" },
-        { child: "Mark", parent: "Ann" },
-        { child: "Angel", parent: "Sarah" },
-        { child: "Tom", parent: "Hannah" },
-        { child: "Bill", parent: "Sarah" }
+        { child: "John", parent: "", "icon":"test-tree-data/person-icon.png" },
+        { child: "Aaron", parent: "Kevin", "icon":"test-tree-data/person-icon.png" },
+        { child: "Kevin", parent: "John", "icon":"test-tree-data/person-icon.png" },
+        { child: "Hannah", parent: "Ann", "icon":"test-tree-data/person-icon.png" },
+        { child: "Rose", parent: "Sarah", "icon":"test-tree-data/person-icon.png" },
+        { child: "Ann", parent: "John", "icon":"test-tree-data/person-icon.png" },
+        { child: "Sarah", parent: "Kevin", "icon":"test-tree-data/person-icon.png" },
+        { child: "Mark", parent: "Ann", "icon":"test-tree-data/person-icon.png" },
+        { child: "Angel", parent: "Sarah", "icon":"test-tree-data/person-icon.png" },
+        { child: "Tom", parent: "Hannah", "icon":"test-tree-data/person-icon.png" }
       ];
 
       var dataStructure = d3.stratify()
@@ -57,7 +61,11 @@
                             .parentId(function(d){return d.parent;})
                             (data);
 
-      var treeStructure = d3.tree().size([650,300]);
+      var treeStructure = d3.tree()
+                            .separation(function(a,b){
+                              return a.parent === b.parent ? 2:2;
+                            })
+                            .size([650,300]);
       var information = treeStructure(dataStructure);
       console.log(information.descendants());
       console.log(information.links());
@@ -73,15 +81,21 @@
       // Rectangles will become Person cards (Name, age, picture, etc.)
       var rectangles = svg.append("g").selectAll("rect").data(information.descendants());
       rectangles.enter().append("rect")
-        .attr("x", function(d){return d.x - 40})
+        .attr("x", function(d){return d.x - 60})
         .attr("y", function(d){return d.y - 20});
 
+      var pictures = svg.append("g").selectAll("image").data(information.descendants());
+      pictures.enter().append("image")
+                      .attr("href", function(d) {return d.data.icon;})
+                      .attr("x", function(d) {return d.x-65;})
+                      .attr("y", function(d) {return d.y-17;});
+                      
       var names = svg.append("g").selectAll("text")
                                 .data(information.descendants());
       names.enter().append("text")
                    .text(function(d){return d.data.child;})
-                   .attr("x", function(d){return d.x;})
-                   .attr("y", function(d){return d.y;})
+                   .attr("x", function(d){return d.x+20;})
+                   .attr("y", function(d){return d.y+5;})
     </script>
   </body>
 </html>
