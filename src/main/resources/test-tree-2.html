@@ -32,9 +32,12 @@
     </style>
   </head>
   <body>
+    <div id="treeArea">
+
+    </div>
     <script>
       var svg = d3
-        .select("body")
+        .select("#treeArea")
         .append("svg")
         .attr("width", 900)
         .attr("height", 600)
@@ -83,14 +86,16 @@
       var rectangles = svg.append("g").selectAll("rect").data(information.descendants());
       rectangles.enter().append("rect")
         .attr("x", function(d){return d.x - 60})
-        .attr("y", function(d){return d.y - 20});
+        .attr("y", function(d){return d.y - 60/3.236}); //or -20
 
+      // Pictures
       var pictures = svg.append("g").selectAll("image").data(information.descendants());
       pictures.enter().append("image")
                       .attr("href", function(d) {return d.data.icon;})
                       .attr("x", function(d) {return d.x-65;})
                       .attr("y", function(d) {return d.y-17;});
-                      
+      
+      // Name text
       var names = svg.append("g").selectAll("text")
                                 .data(information.descendants());
       names.enter().append("text")
