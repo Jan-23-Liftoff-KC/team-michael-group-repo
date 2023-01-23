@@ -42,6 +42,8 @@
     </style>
   </head>
   <body>
+    <button onclick="resetZoom()">Reset zoom</button>
+    <button onclick="center()">Center</button>
     <div id="treeArea">
 
     </div>
@@ -156,6 +158,19 @@
                           .attr("height", height)
                           .attr("pointer-events", "all")
                           .call(zoom);
+
+      // Reset Zoom
+      function resetZoom() {
+	      d3.select('svg g')
+		      .transition()
+		      .call(zoom.scaleTo, 1);
+      }
+
+      function center() {
+	      d3.select('svg')
+		      .transition()
+		      .call(zoom.translateTo, 0.5 * width, 0.5 * height);
+      }
              
     </script>
   </body>
