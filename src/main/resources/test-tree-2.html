@@ -4,7 +4,12 @@
     <title>Tree Layout 2</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-      rect
+      #toZoom
+      {
+        fill: none;
+        stroke: none;
+      }
+      .shape
       {
         fill: white;
         stroke: brown;
@@ -33,6 +38,7 @@
       {
         visibility: hidden;
       }
+
     </style>
   </head>
   <body>
@@ -40,17 +46,20 @@
 
     </div>
     <script>
-      var svg = d3
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let svg = d3
         .select("#treeArea")
         .append("svg")
-        .attr("width", 900)
-        .attr("height", 600)
+        .attr("width", width)
+        .attr("height", height);
+      let gContainer = svg
         .append("g")
         .attr("transform", "translate(50,50)");
 
       // Data, as parsed from csv (change later)
       // Add ids!
-      var data = [
+      let data = [
         { child: "John", parent: "", "icon":"test-tree-data/person-icon.png", "spouse":"Isabella" },
         { child: "Kevin", parent: "John", "icon":"test-tree-data/person-icon.png", "spouse":"Emma" },
         { child: "Aaron", parent: "Kevin", "icon":"test-tree-data/person-icon.png" },
@@ -64,25 +73,37 @@
         { child: "Amy", parent: "Hannah", "icon":"test-tree-data/person-icon.png" }
       ];
 
-      var dataStructure = d3.stratify()
+      // Zoom capability
+      function handleZoom(e) {
+        d3.select("svg g")
+          .attr("transform", e.transform);
+      }
+      
+      let zoom = d3.zoom()
+        .scaleExtent([0.25, 30])
+        .on("zoom", handleZoom);
+
+
+      // Data
+      let dataStructure = d3.stratify()
                             .id(function(d){return d.child;})
                             .parentId(function(d){return d.parent;})
                             (data);
 
-      var treeStructure = d3.tree()
+      let treeStructure = d3.tree()
                             .separation(function(a,b){
                               return a.parent === b.parent ? 2:2;
                             })
                             .size([650,300]);
-      var information = treeStructure(dataStructure);
+      let information = treeStructure(dataStructure);
       console.log(information.descendants());
       console.log(information.links());
 
-      // For adjusting person cards in the x
-      var personCardLocation = 0;
+      // For quickly adjusting person cards in the x
+      let personCardLocation = 0;
 
       // Elbow Connectors
-      var connections = svg.append("g").selectAll("path").data(information.links());
+      let connections = gContainer.append("g").selectAll("path").data(information.links());
       connections.enter().append("path")
                           .attr("d", function (d) {
                             return "M" + (d.source.x - personCardLocation) + "," + d.source.y + " v 50 H" +
@@ -90,13 +111,19 @@
                           });
 
       // Rectangles will become Person cards (Name, age, picture, etc.)
-      var rectangles = svg.append("g").selectAll("rect").data(information.descendants());
-      rectangles.enter().append("rect")
+      let rectangles = gContainer
+                        .append("g")
+                        .selectAll("rect")
+                        .data(information.descendants());
+      rectangles
+        .enter()
+        .append("rect")
+        .classed("shape", true)
         .attr("x", function(d){return d.x - 60 - personCardLocation})
         .attr("y", function(d){return d.y - 20}); //or y - x/3.236
 
       // Spouses
-      // var spouseRectangles = svg.append("g").selectAll("rect").data(information.descendants());
+      // let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
       // spouseRectangles.enter().append("rect")
       //   .attr("x", function(d){return d.x + 60 - personCardLocation})
       //   .attr("y", function(d){return d.y - 20}) //or y - x/3.236
@@ -108,19 +135,28 @@
       //   });
 
       // Pictures
-      var pictures = svg.append("g").selectAll("image").data(information.descendants());
+      let pictures = gContainer.append("g").selectAll("image").data(information.descendants());
       pictures.enter().append("image")
                       .attr("href", function(d) {return d.data.icon;})
                       .attr("x", function(d) {return d.x-65-personCardLocation;})
                       .attr("y", function(d) {return d.y-17;});
       
       // Name text
-      var names = svg.append("g").selectAll("text")
+      let names = gContainer.append("g").selectAll("text")
                                 .data(information.descendants());
       names.enter().append("text")
                    .text(function(d){return d.data.child;})
                    .attr("x", function(d){return d.x+20-personCardLocation;})
                    .attr("y", function(d){return d.y+5;})
+
+      // Zoom
+      let rectangle = svg.append("rect")
+                          .attr("id", "toZoom")
+                          .attr("width", width)
+                          .attr("height", height)
+                          .attr("pointer-events", "all")
+                          .call(zoom);
+             
     </script>
   </body>
 </html>
