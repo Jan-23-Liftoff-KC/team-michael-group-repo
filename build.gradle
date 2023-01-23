@@ -13,7 +13,7 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "2022.0.0")
+	set('springCloudVersion', "2022.0.0") //can we drop this?
 }
 
 dependencies {
@@ -27,7 +27,7 @@ dependencies {
 
 dependencyManagement {
 	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" //can we drop this too?
 	}
 }
 

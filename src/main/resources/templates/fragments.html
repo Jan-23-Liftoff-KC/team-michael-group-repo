@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment = "head">
+    <meta charset="UTF-8"/>
+    <title th:text = "${title}">Roots to Crown</title>
+
+    <link rel="stylesheet" th:href="@{css/styles.css}" />
+    <script type = "text/javascript" th:src="@{js/script.js}"></script>
+</head>
+<body>
+
+    <nav th:fragment = "navbar">
+        <a href = "/">HOME</a>
+        <a href = "/tree">FAMILY TREE</a>
+        <a href = "/search">SEARCH</a>
+        <a href = "/forum">FORUM</a>
+        <a href = "/notifications">NOTIFICATIONS</a>
+    </nav>
+
+    <nav th:fragment = "footer">
+        <a href = "/about">ABOUT</a>
+        <a href = "/privacy">PRIVACY POLICY</a>
+        <p>COPYRIGHT 2023</p>
+    </nav>
+
+</body>
+</html>
