@@ -29,6 +29,10 @@
         width: 60px;
         height: 40px;
       }
+      .hide
+      {
+        visibility: hidden;
+      }
     </style>
   </head>
   <body>
@@ -45,16 +49,16 @@
         .attr("transform", "translate(50,50)");
 
       // Data, as parsed from csv (change later)
-      // Add ids
+      // Add ids!
       var data = [
-        { child: "John (Me)", parent: "", "icon":"test-tree-data/person-icon.png" },
-        { child: "Kevin (Dad)", parent: "John (Me)", "icon":"test-tree-data/person-icon.png" },
-        { child: "Aaron", parent: "Kevin (Dad)", "icon":"test-tree-data/person-icon.png" },
-        { child: "Hannah", parent: "Ann (Mom)", "icon":"test-tree-data/person-icon.png" },
+        { child: "John", parent: "", "icon":"test-tree-data/person-icon.png", "spouse":"Isabella" },
+        { child: "Kevin", parent: "John", "icon":"test-tree-data/person-icon.png", "spouse":"Emma" },
+        { child: "Aaron", parent: "Kevin", "icon":"test-tree-data/person-icon.png" },
+        { child: "Hannah", parent: "Ann", "icon":"test-tree-data/person-icon.png", "spouse":"William" },
         { child: "Rose", parent: "Sarah", "icon":"test-tree-data/person-icon.png" },
-        { child: "Ann (Mom)", parent: "John (Me)", "icon":"test-tree-data/person-icon.png" },
-        { child: "Sarah", parent: "Kevin (Dad)", "icon":"test-tree-data/person-icon.png" },
-        { child: "Mark", parent: "Ann (Mom)", "icon":"test-tree-data/person-icon.png" },
+        { child: "Ann", parent: "John", "icon":"test-tree-data/person-icon.png", "spouse":"George" },
+        { child: "Sarah", parent: "Kevin", "icon":"test-tree-data/person-icon.png", "spouse":"James" },
+        { child: "Mark", parent: "Ann", "icon":"test-tree-data/person-icon.png" },
         { child: "Angel", parent: "Sarah", "icon":"test-tree-data/person-icon.png" },
         { child: "Tom", parent: "Hannah", "icon":"test-tree-data/person-icon.png" },
         { child: "Amy", parent: "Hannah", "icon":"test-tree-data/person-icon.png" }
@@ -74,25 +78,40 @@
       console.log(information.descendants());
       console.log(information.links());
 
+      // For adjusting person cards in the x
+      var personCardLocation = 0;
+
       // Elbow Connectors
       var connections = svg.append("g").selectAll("path").data(information.links());
       connections.enter().append("path")
                           .attr("d", function (d) {
-                            return "M" + d.source.x + "," + d.source.y + " v 50 H" +
+                            return "M" + (d.source.x - personCardLocation) + "," + d.source.y + " v 50 H" +
                             d.target.x + " V" + d.target.y;
                           });
 
       // Rectangles will become Person cards (Name, age, picture, etc.)
       var rectangles = svg.append("g").selectAll("rect").data(information.descendants());
       rectangles.enter().append("rect")
-        .attr("x", function(d){return d.x - 60})
-        .attr("y", function(d){return d.y - 60/3.236}); //or -20
+        .attr("x", function(d){return d.x - 60 - personCardLocation})
+        .attr("y", function(d){return d.y - 20}); //or y - x/3.236
+
+      // Spouses
+      // var spouseRectangles = svg.append("g").selectAll("rect").data(information.descendants());
+      // spouseRectangles.enter().append("rect")
+      //   .attr("x", function(d){return d.x + 60 - personCardLocation})
+      //   .attr("y", function(d){return d.y - 20}) //or y - x/3.236
+      //   .classed("hide", function (d) {
+      //     if(d.data.spouse == undefined)
+      //       return true;
+      //     else
+      //       return false;
+      //   });
 
       // Pictures
       var pictures = svg.append("g").selectAll("image").data(information.descendants());
       pictures.enter().append("image")
                       .attr("href", function(d) {return d.data.icon;})
-                      .attr("x", function(d) {return d.x-65;})
+                      .attr("x", function(d) {return d.x-65-personCardLocation;})
                       .attr("y", function(d) {return d.y-17;});
       
       // Name text
@@ -100,7 +119,7 @@
                                 .data(information.descendants());
       names.enter().append("text")
                    .text(function(d){return d.data.child;})
-                   .attr("x", function(d){return d.x+20;})
+                   .attr("x", function(d){return d.x+20-personCardLocation;})
                    .attr("y", function(d){return d.y+5;})
     </script>
   </body>
