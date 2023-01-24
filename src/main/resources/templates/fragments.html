@@ -38,10 +38,26 @@
         </div>
     </nav>
 
-    <footer th:fragment = "footer">
-        <p><a href = "/about">ABOUT</a></p>
-        <p><a href = "/privacy">PRIVACY POLICY</a></p>
-        <p>COPYRIGHT 2023</p>
+    <footer th:fragment = "footer" class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <a href ="#" class ="position-absolute bottom-0 end-0 p-5">
+                <i class="bi bi-arros-up-circle h1"></i>
+            </a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href = "#" class="nav-link">BACK TO THE TOP</a>
+                </li>
+                <li class="nav-item">
+                    <a href = "/about" class="nav-link">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a href = "/privacy" class="nav-link">PRIVACY POLICY</a>
+                </li>
+                <li class="nav-item">
+                    <p>Copyright &copy; 2023 The Saplings</p>
+                </li>
+            </ul>
+        </div>
     </footer>
 
 </body>
