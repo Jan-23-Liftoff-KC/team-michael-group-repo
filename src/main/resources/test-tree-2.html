@@ -42,10 +42,11 @@
     <button onclick="panLeft()">Pan left</button>
     <button onclick="panRight()">Pan right</button>
     <button onclick="center()">Center</button>
+
     <div id="treeArea"></div>
     <script>
-      let width = window.innerWidth;
-      let height = window.innerHeight;
+      let width = 800; //window.innerWidth;
+      let height = 400; //window.innerHeight;
       let svg = d3
         .select("#treeArea")
         .append("svg")
@@ -117,13 +118,6 @@
           icon: "test-tree-data/person-icon.png",
         },
       ];
-
-      // Zoom capability
-      function handleZoom(e) {
-        d3.select("svg g").attr("transform", e.transform);
-      }
-
-      let zoom = d3.zoom().scaleExtent([0.25, 30]).on("zoom", handleZoom);
 
       // Data
       let dataStructure = d3
@@ -234,15 +228,8 @@
         });
 
       // Zoom
-      let rectangle = svg
-        .append("rect")
-        .attr("id", "toZoom")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("pointer-events", "all")
-        .call(zoom);
+      let zoom = d3.zoom().scaleExtent([0.25, 5]).on("zoom", handleZoom);
 
-      // Nav button functions
       function initZoom() {
         d3.select("svg").call(zoom);
       }
@@ -266,7 +253,16 @@
       function center() {
         d3.select("svg")
           .transition()
-          .call(zoom.translateTo, 0.5 * width, 0.5 * height);
+          .call(zoom.translateTo, 0.5 * width - 50, 0.5 * height - 50);
+      }
+
+      // Places the tree without a transition
+      function centerStart() {
+        d3.select("svg").call(
+          zoom.translateTo,
+          0.5 * width - 50,
+          0.5 * height - 50
+        );
       }
 
       function panLeft() {
@@ -276,6 +272,9 @@
       function panRight() {
         d3.select("svg").transition().call(zoom.translateBy, 50, 0);
       }
+
+      initZoom();
+      centerStart();
     </script>
   </body>
 </html>
