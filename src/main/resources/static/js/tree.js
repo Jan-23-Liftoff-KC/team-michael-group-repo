@@ -13,62 +13,62 @@ let data = [
   {
     child: "John",
     parent: "",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
     spouse: "Isabella",
   },
   {
     child: "Kevin",
     parent: "John",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
     spouse: "Emma",
   },
   {
     child: "Aaron",
     parent: "Kevin",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
   },
   {
     child: "Hannah",
     parent: "Ann",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
     spouse: "William",
   },
   {
     child: "Rose",
     parent: "Sarah",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
   },
   {
     child: "Ann",
     parent: "John",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
     spouse: "George",
   },
   {
     child: "Sarah",
     parent: "Kevin",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
     spouse: "James",
   },
   {
     child: "Mark",
     parent: "Ann",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
   },
   {
     child: "Angel",
     parent: "Sarah",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
   },
   {
     child: "Tom",
     parent: "Hannah",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
   },
   {
     child: "Amy",
     parent: "Hannah",
-    icon: "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    icon: "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true",
   },
 ];
 
