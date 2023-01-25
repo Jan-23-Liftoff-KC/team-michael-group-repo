@@ -1,0 +1,62 @@
+[
+  {
+    "child": "John",
+    "parent": "",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    "spouse": "Isabella"
+  },
+  {
+    "child": "Kevin",
+    "parent": "John",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    "spouse": "Emma"
+  },
+  {
+    "child": "Aaron",
+    "parent": "Kevin",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg"
+  },
+  {
+    "child": "Hannah",
+    "parent": "Ann",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    "spouse": "William"
+  },
+  {
+    "child": "Rose",
+    "parent": "Sarah",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg"
+  },
+  {
+    "child": "Ann",
+    "parent": "John",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    "spouse": "George"
+  },
+  {
+    "child": "Sarah",
+    "parent": "Kevin",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg",
+    "spouse": "James"
+  },
+  {
+    "child": "Mark",
+    "parent": "Ann",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg"
+  },
+  {
+    "child": "Angel",
+    "parent": "Sarah",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg"
+  },
+  {
+    "child": "Tom",
+    "parent": "Hannah",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg"
+  },
+  {
+    "child": "Amy",
+    "parent": "Hannah",
+    "icon": "https://brandeps.com/icon-download/P/Person-icon-vector-07.svg"
+  }
+]
