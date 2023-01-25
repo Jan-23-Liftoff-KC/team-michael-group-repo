@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace = "fragments :: head"></head>
-<body>
-
-    <nav th:replace = "fragments :: navbar"></nav>
+  <head th:replace="fragments :: head"></head>
+  <link rel="stylesheet" type="text/css" href="/css/tree.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <body>
+    <nav th:replace="fragments :: navbar"></nav>
 
     <br />
 
     <nav>
-        <a href = "../person">ABOUT ME</a>
-        <a href = "../tree">TREE</a>
-        <a href = "../search">FIND</a>
-        <a href = "../forum">RECENT UPDATES</a>
-        <a href = "../notifications">MY UPDATES</a>
+      <a href="../person">ABOUT ME</a>
+      <a href="../tree">TREE</a>
+      <a href="../search">FIND</a>
+      <a href="../forum">RECENT UPDATES</a>
+      <a href="../notifications">MY UPDATES</a>
     </nav>
 
-    <p>TREE TOOLS</p>
+    <br />
+    <div id="treeArea"></div>
+    <br />
 
-    <h1>Tree goes here</h1>
+    <div id="treeControlsArea">
+      <button onclick="zoomIn()">Zoom in</button>
+      <button onclick="zoomOut()">Zoom out</button>
+      <button onclick="resetZoom()">Reset zoom</button>
+      <button onclick="panLeft()">Pan left</button>
+      <button onclick="panRight()">Pan right</button>
+      <button onclick="center()">Center</button>
+    </div>
 
     <p>Add person?</p>
 
-    <footer th:replace = "fragments :: footer"></footer>
+    <footer th:replace="fragments :: footer"></footer>
 
-</body>
+    <script src="/js/tree.js"></script>
+  </body>
 </html>

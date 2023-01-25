@@ -1,0 +1,37 @@
+#toZoom {
+  fill: none;
+  stroke: black;
+  stroke-width: 5;
+}
+#treeArea {
+  display: flex;
+  justify-content: center;
+}
+#treeControlsArea {
+  display: flex;
+  justify-content: center;
+}
+.shape {
+  fill: white;
+  stroke: brown;
+  width: 120px;
+  height: 45px;
+  stroke-width: 2;
+}
+path {
+  fill: none;
+  stroke: brown;
+  stroke-width: 2;
+}
+text {
+  fill: green;
+  /* dominant-baseline: middle; */
+  text-anchor: middle;
+}
+image {
+  width: 60px;
+  height: 40px;
+}
+.hide {
+  visibility: hidden;
+}
