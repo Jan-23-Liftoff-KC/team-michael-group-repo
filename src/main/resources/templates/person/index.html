@@ -5,37 +5,56 @@
 
 <nav th:replace = "fragments :: navbar"></nav>
 
-<section class="bg-dark text-light p-5 text-center text-sm-start">
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Person Name</h5>
-                <p class="card-text text-dark">Person brief bio. Person brief bio. Person brief bio. Person brief bio. Person brief bio. Person brief bio.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<section class="p-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md">
+                <div class="card bg-dark text-light">
+                    <div class="card-body text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="370" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <h2 class="card-title mb-3">
+                            First LastName
+                        </h2>
+                        <a href="#" class="btn btn-primary">Uploads</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h1 class="title">Biography and Life Events</h1>
+                <p class="lead my-4 text-start">
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                    Here is a lot of information about this person.
+                </p>
+            </div>
+            <div class="col-md">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Important Dates
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Birthday: March 15, 1980</li>
+                        <li class="list-group-item">Anniversary: June 26, 2010</li>
+                        <li class="list-group-item">Graduation: May 17, 2008</li>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-start py-3 gap-3">
+                  <button class="btn btn-primary btn">Edit</button>
+                  <button class="btn btn-primary btn">Update</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--    <div class="d-flex flex-row mb-3">-->
-<!--        <div class="p-2">Name</div>-->
-<!--        <div class="p-2">Uploads</div>-->
-<!--    </div>-->
-    <div class="d-flex flex-row mb-3 justify-content-evenly" >
-        <h3 class="p-2">Bio</h3>
-        <h3 class="p-2">Family Members</h3>
-    </div>
-    <button class="btn btn-primary btn-sm">
-        Edit
-    </button>
-    <button class="btn btn-primary btn-sm">
-        Update
-    </button>
-<!--<p>Important Dates</p>-->
-<!--<p>Latest Changes</p>-->
+
 </section>
 
 <footer th:replace = "fragments :: footer"></footer>
