@@ -1,18 +1,38 @@
 package org.launchcode.familytree.controllers;
 
+import org.launchcode.familytree.models.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value="person")
 public class PersonController {
 
-    @RequestMapping(value = "")
+    public static List<Person> persons = new ArrayList<>();
+    @GetMapping
     public String index(Model model) {
-        model.addAttribute("title", "About Me");
+        model.addAttribute("title", "Person");
+        model.addAttribute("persons", persons);
         return "person/index";
     }
 
+    @GetMapping("add")
+    public String renderAddPersonForm(Model model){
+        model.addAttribute("title", "Add Person");
+        return "person/add";
+    }
+
+    @PostMapping("add")
+    public String addPerson(@RequestParam String personName, @RequestParam String personBio){
+        persons.add(new Person(personName, personBio));
+        return "redirect:";
+    }
 
 }

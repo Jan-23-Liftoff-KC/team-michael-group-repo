@@ -1,5 +1,7 @@
 package org.launchcode.familytree.models;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.awt.*;
@@ -12,13 +14,11 @@ public class Person {
     private String name;
     private String bio;
     private Image photo;
-    private ArrayList<String> familyMembers = new ArrayList<>();
+    private ArrayList<Person> familyMembers = new ArrayList<>();
 
-    public Person(String name, String bio, Image photo, ArrayList<String> familyMembers) {
+    public Person(String name, String bio) {
         this.name = name;
         this.bio = bio;
-        this.photo = photo;
-        this.familyMembers = familyMembers;
     }
 
     public int getId() {
@@ -49,11 +49,11 @@ public class Person {
         this.photo = photo;
     }
 
-    public ArrayList<String> getFamilyMembers() {
+    public ArrayList<Person> getFamilyMembers() {
         return familyMembers;
     }
 
-    public void setFamilyMembers(ArrayList<String> familyMembers) {
+    public void setFamilyMembers(ArrayList<Person> familyMembers) {
         this.familyMembers = familyMembers;
     }
 }
