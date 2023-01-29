@@ -33,10 +33,6 @@ public class User extends AbstractEntity {
         return username;
     }
 
-    public static String getPasswordHash() {
-        return passwordHash;
-    }
-
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, passwordHash);
     }
