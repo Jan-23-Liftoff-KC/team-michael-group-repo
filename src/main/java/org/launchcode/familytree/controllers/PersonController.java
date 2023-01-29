@@ -3,10 +3,7 @@ package org.launchcode.familytree.controllers;
 import org.launchcode.familytree.models.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,4 +32,9 @@ public class PersonController {
         return "redirect:";
     }
 
+//    @PostMapping("add")
+//    public String addPerson(@ModelAttribute Person newPerson){
+//        persons.add(new Person);
+//        return "redirect:";
+//    }
 }

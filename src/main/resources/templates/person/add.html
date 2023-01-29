@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace = "fragments :: head"></head>
 
-<body>
+<body class="container">
 <nav th:replace = "fragments :: navbar"></nav>
 <h1>Add Person</h1>
-
+<!--Match field names in person class when refactored-->
 <form method="post" action="/person/add">
     <div class="form-group mb-3 px-5">
         <label class="form-label">Name
