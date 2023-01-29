@@ -1,6 +1,8 @@
 package org.launchcode.familytree.controllers;
 
+import org.launchcode.familytree.data.PersonRepository;
 import org.launchcode.familytree.models.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +14,12 @@ import java.util.List;
 @RequestMapping(value="person")
 public class PersonController {
 
-    public static List<Person> persons = new ArrayList<>();
+    @Autowired
+    private PersonRepository personRepository;
     @GetMapping
     public String index(Model model) {
         model.addAttribute("title", "Person");
-        model.addAttribute("persons", persons);
+        model.addAttribute("persons", personRepository.findAll());
         return "person/index";
     }
 
@@ -27,14 +30,8 @@ public class PersonController {
     }
 
     @PostMapping("add")
-    public String addPerson(@RequestParam String personName, @RequestParam String personBio){
-        persons.add(new Person(personName, personBio));
+    public String addPerson(@ModelAttribute Person newPerson){
+        personRepository.save(newPerson);
         return "redirect:";
     }
-
-//    @PostMapping("add")
-//    public String addPerson(@ModelAttribute Person newPerson){
-//        persons.add(new Person);
-//        return "redirect:";
-//    }
 }
