@@ -39,19 +39,6 @@
                     <li class="nav-item">
                         <button type="button" class="btn btn-secondary">LOGIN/REGISTER</button>
                     </li>
-                    <!-- to be unlocked with authentication implementation
-                    <li th:if="${#authorization.expression('!isAuthenticated()')}">
-                        <a href="/signin" th:href="@{/signin}">
-                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
-                        </a>
-                    </li>
-                    <li th:if="${#authorization.expression('isAuthenticated()')}">
-                        <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
-                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
-                        </a>
-                        <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
-                    </li>
-                    -->
                 </ul>
             </div>
         </div>
@@ -64,10 +51,10 @@
             <div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href = "/about" class="nav-link">ABOUT</a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal" class="nav-link">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a href = "/policy" class="nav-link">PRIVACY POLICY</a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#policyModal" class="nav-link">PRIVACY POLICY</a>
                     </li>
                     <li class="nav-item">
                         <a href ="" class="nav-link">COPYRIGHT &copy; 2023 THE SAPLINGS</a>
