@@ -1,13 +1,10 @@
 package org.launchcode.familytree.models;
 
-import org.springframework.lang.Nullable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
