@@ -1,24 +1,31 @@
 package org.launchcode.familytree.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.awt.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Objects;
 
+@Entity
 public class Person {
     @Id
     @GeneratedValue
     private int id;
+    @NotBlank
+    @Size(min = 3, max = 100)
     private String name;
+    @Size(max = 2000)
     private String bio;
-    private Image photo;
-    private ArrayList<String> familyMembers = new ArrayList<>();
+//    private Image photo;
+    private ArrayList<Person> familyMembers = new ArrayList<>();
 
-    public Person(String name, String bio, Image photo, ArrayList<String> familyMembers) {
+    public Person(){}
+
+    public Person(String name, String bio) {
         this.name = name;
         this.bio = bio;
-        this.photo = photo;
-        this.familyMembers = familyMembers;
     }
 
     public int getId() {
@@ -41,19 +48,32 @@ public class Person {
         this.bio = bio;
     }
 
-    public Image getPhoto() {
-        return photo;
-    }
+//    public Image getPhoto() {
+//        return photo;
+//    }
+//
+//    public void setPhoto(Image photo) {
+//        this.photo = photo;
+//    }
 
-    public void setPhoto(Image photo) {
-        this.photo = photo;
-    }
-
-    public ArrayList<String> getFamilyMembers() {
+    public ArrayList<Person> getFamilyMembers() {
         return familyMembers;
     }
 
-    public void setFamilyMembers(ArrayList<String> familyMembers) {
+    public void setFamilyMembers(ArrayList<Person> familyMembers) {
         this.familyMembers = familyMembers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
