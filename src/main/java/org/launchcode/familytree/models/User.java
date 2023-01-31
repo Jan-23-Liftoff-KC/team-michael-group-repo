@@ -13,12 +13,12 @@ public class User extends AbstractEntity {
 
     @NotBlank
     @Size(min = 3, max = 50)
-    private static String username;
+    private String username;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     @Size(min = 8, max = 50)
-    private static String passwordHash;
+    private String passwordHash;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
