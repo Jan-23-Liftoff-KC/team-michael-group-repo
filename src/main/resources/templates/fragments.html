@@ -16,7 +16,7 @@
 <!-- NAVBAR FRAGMENT -->
     <nav th:fragment = "navbar" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a href="#" class="navbar-brand">From Root to Crown</a>
+            <a id="top">From Root to Crown</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
@@ -57,7 +57,12 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#policyModal" class="nav-link">PRIVACY POLICY</a>
                     </li>
                     <li class="nav-item">
-                        <a href ="" class="nav-link">COPYRIGHT &copy; 2023 THE SAPLINGS</a>
+                        <a class="nav-link">COPYRIGHT &copy; 2023 THE SAPLINGS</a>
+                    </li>
+                    <li>
+                        <a href="#top" class="p-5"> <!--position-absolute bottom-0 end-0 -->
+                            <i class="bi bi-arrow-up-circle h2" style="color: #6c757d;"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
