@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+
+<body class="container">
+<nav th:replace = "fragments :: navbar"></nav>
+<h1>Add Person</h1>
+<form method="post" action="/person/add">
+    <div class="form-group mb-3 px-5">
+        <label class="form-label">Name
+            <input type="text" name="name" class="form-control">
+        </label>
+    </div>
+    <div class="form-group mb-3 px-5">
+        <label class="form-label">Biography</label>
+        <textarea class="form-control" name="bio" rows="3"></textarea>
+    </div>
+    <div class="form-group px-5">
+        <input type="submit" value="Add Person" class="btn btn-primary">
+    </div>
+</form>
+
+
+
+</body>
+<footer th:replace = "fragments :: footer"></footer>
+</html>
