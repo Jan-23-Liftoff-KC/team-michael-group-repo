@@ -83,6 +83,8 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
+        System.out.println("made it here");
+
         return "redirect:";
     }
 
