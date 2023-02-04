@@ -3,7 +3,8 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<header th:replace="fragments :: header"></header>
+<nav th:replace = "fragments :: navbar"></nav>
+<!--<header th:replace="fragments :: header"></header>-->
 
 <form method="post">
     <div class="form-group">
@@ -23,6 +24,8 @@
 </form>
 
 <p>Don't have an account? <a href="/register">Register for one.</a></p>
+
+<footer th:replace = "fragments :: footer"></footer>
 
 </body>
 </html>
