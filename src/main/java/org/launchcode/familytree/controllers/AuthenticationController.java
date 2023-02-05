@@ -80,10 +80,8 @@ public class AuthenticationController {
         }
 
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
-        userRepository.save(newUser);
+        this.userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
-
-        System.out.println("made it here");
 
         return "redirect:";
     }
