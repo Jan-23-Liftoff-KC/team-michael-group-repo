@@ -21,11 +21,14 @@ public class Person {
 //    private Image photo;
     private ArrayList<Person> familyMembers = new ArrayList<>();
 
+    private String birthday;
+
     public Person(){}
 
-    public Person(String name, String bio) {
+    public Person(String name, String bio, String birthday) {
         this.name = name;
         this.bio = bio;
+        this.birthday = birthday;
     }
 
     public int getId() {
@@ -62,6 +65,14 @@ public class Person {
 
     public void setFamilyMembers(ArrayList<Person> familyMembers) {
         this.familyMembers = familyMembers;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     @Override
