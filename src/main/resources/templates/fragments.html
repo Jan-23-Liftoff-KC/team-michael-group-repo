@@ -16,7 +16,7 @@
 <!-- NAVBAR FRAGMENT -->
     <nav th:fragment = "navbar" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <img id="top" style="width: auto; height: 80px;" class="float-start" src="../static/images/Famliy-Tree-Logo-V1.jpg" th:src="@{images/Famliy-Tree-Logo-V1.jpg}"/>
+            <img id="top" style="width: auto; height: 80px;" class="float-start" src="https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg" th:src="@{https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg}"/>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
@@ -36,13 +36,15 @@
                         <a href = "/notifications" class="nav-link">NOTIFICATIONS</a>
                     </li>
                 </ul>
-<!--                <ul class="nav navbar-nav navbar-right">-->
-<!--                    <li class="nav-item">-->
-<!--                        <button type="button" class="btn btn-secondary">LOGIN/REGISTER</button>-->
-<!--                    </li>-->
-<!--                </ul>-->
-                <ul class="nav" style="float:right;">
-                    <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
+                <ul th:if="${user == null}" class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-secondary" href="/login">LOGIN</button>
+                    </li>
+                </ul>
+                <ul th:unless="${user != null}" class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-secondary" href="/logout">LOG OUT</button>
+                    </li>
                 </ul>
             </div>
         </div>
