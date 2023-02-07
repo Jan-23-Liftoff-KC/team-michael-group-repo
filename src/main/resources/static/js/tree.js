@@ -21,6 +21,18 @@ d3.json("https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test
   .catch(function(error) {
     // Do some error handling
     console.log("Error in data request.");
+
+                var rectangleOutline = svg
+                  .append("text")
+                  .text("Error requesting tree information :(")
+                                .attr("x", function (d) {
+                                  return "50%";
+                                })
+                                .attr("y", function (d) {
+                                  return "50%";
+                                });
+
+
   });
 
   // Build tree
