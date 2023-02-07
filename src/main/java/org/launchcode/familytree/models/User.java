@@ -4,20 +4,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
 @Entity
 public class User extends AbstractEntity {
 
-    @NotBlank
-    @Size(min = 3, max = 50)
+    @NotNull
     private String username;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email. Try again.")
-    @Size(min = 8, max = 50)
+    @NotNull
     private String passwordHash;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
