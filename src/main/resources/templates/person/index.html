@@ -8,7 +8,7 @@
     <h2>People in My Family Tree</h2>
     <ul>
         <li th:each="person : ${persons}">
-            <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.name}"></a>
+            <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.lastName}"></a>
         </li>
     </ul>
     <a th:href="@{'/person/add'}">Add Person</a>
