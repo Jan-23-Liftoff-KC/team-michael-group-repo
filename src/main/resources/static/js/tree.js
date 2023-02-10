@@ -5,6 +5,8 @@ let svg = d3
   .append("svg")
   .attr("width", width)
   .attr("height", height);
+
+// gContainer contains all the elements that make up the tree
 let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 
 // Load data, currently a json file from github
@@ -51,22 +53,25 @@ function buildTree(data) {
     })(data);
 
   // Define the tree structure
+  let treeWidth = 650;
+  let treeHeight = 300;
+
   let treeStructure = d3
     .tree()
     .separation(function (a, b) {
       return a.parent === b.parent ? 2 : 2;
     })
-    .size([650, 300]);
+    .size([treeWidth, treeHeight]);
 
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
 
-  console.log("information");
-  console.log(information);
-  console.log("descendants");
-  console.log(information.descendants());
-  console.log("links");
-  console.log(information.links());
+//  console.log("information");
+//  console.log(information);
+//  console.log("descendants");
+//  console.log(information.descendants());
+//  console.log("links");
+//  console.log(information.links());
 
   // For quickly adjusting person cards in the x
   let personCardLocation = 0;
@@ -91,11 +96,11 @@ function buildTree(data) {
         "M" +
         (d.source.x - personCardLocation) +
         "," +
-        d.source.y +
-        " v 50 H" +
+        (treeHeight - d.source.y) +
+        " v -50 H" +
         d.target.x +
         " V" +
-        d.target.y
+        (treeHeight - d.target.y)
       );
     });
 
@@ -112,7 +117,7 @@ function buildTree(data) {
       return d.x - 60 - personCardLocation;
     })
     .attr("y", function (d) {
-      return d.y - 20;
+      return treeHeight - d.y - 20;
     }); //or y - x/3.236
 
   // Spouses
@@ -142,7 +147,7 @@ function buildTree(data) {
       return d.x - 65 - personCardLocation;
     })
     .attr("y", function (d) {
-      return d.y - 17;
+      return treeHeight - d.y - 17;
     });
 
   // Name text
@@ -160,7 +165,7 @@ function buildTree(data) {
       return d.x + 20 - personCardLocation;
     })
     .attr("y", function (d) {
-      return d.y + 5;
+      return treeHeight - d.y + 5;
     });
 }
 
