@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value="person")
@@ -16,9 +17,9 @@ public class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
-    @GetMapping
+    @RequestMapping("")
     public String index(Model model) {
-        model.addAttribute("title", "Person");
+        model.addAttribute("title", "My Family");
         model.addAttribute("persons", personRepository.findAll());
         return "person/index";
     }
@@ -26,6 +27,7 @@ public class PersonController {
     @GetMapping("add")
     public String renderAddPersonForm(Model model){
         model.addAttribute("title", "Add Person");
+        model.addAttribute(new Person());
         return "person/add";
     }
 
@@ -33,5 +35,20 @@ public class PersonController {
     public String addPerson(@ModelAttribute Person newPerson){
         personRepository.save(newPerson);
         return "redirect:";
+    }
+
+    @GetMapping("view/{personId}")
+    public String displayPerson(Model model, @PathVariable int personId) {
+        Optional<Person> optPerson = personRepository.findById(personId);
+        Person person = optPerson.get();
+//        if(optPerson.isPresent()){
+//            Person person = optPerson.get();
+//            model.addAttribute("person", person);
+//            return "person/index";
+//        } else {
+//            return "redirect:../";
+//        }
+        model.addAttribute("person", person);
+        return "person/view";
     }
 }

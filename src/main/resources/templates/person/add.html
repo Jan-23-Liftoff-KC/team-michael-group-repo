@@ -7,8 +7,28 @@
 <h1>Add Person</h1>
 <form method="post" action="/person/add">
     <div class="form-group mb-3 px-5">
-        <label class="form-label">Name
-            <input type="text" name="name" class="form-control">
+        <label class="form-label">First Name
+            <input type="text" name="firstName" class="form-control">
+        </label>
+        <label class="form-label">Middle Name
+            <input type="text" name="middleName" class="form-control">
+        </label>
+        <label class="form-label">Last Name
+            <input type="text" name="lastName" class="form-control">
+        </label>
+    </div>
+    <div class="form-group mb-3 px-5">
+        <label class="form-label">Birthday
+            <input type="date" th:field="${person.birthday}" name="birthday" class="form-control">
+        </label>
+        <label class="form-label">Graduation
+            <input type="date" th:field="${person.graduation}" name="graduation" class="form-control">
+        </label>
+        <label class="form-label">Union Date
+            <input type="date" th:field="${person.unionDate}" name="unionDate" class="form-control">
+        </label>
+        <label class="form-label">Death Date
+            <input type="date" th:field="${person.deathDate}" name="deathDate" class="form-control">
         </label>
     </div>
     <div class="form-group mb-3 px-5">
