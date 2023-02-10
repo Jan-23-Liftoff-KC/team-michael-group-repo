@@ -7,6 +7,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Person {
@@ -15,29 +17,63 @@ public class Person {
     private int id;
     @NotBlank
     @Size(min = 3, max = 100)
-    private String name;
+    private String firstName;
+    private String middleName;
+    @NotBlank
+    @Size(min = 3, max = 100)
+    private String lastName;
     @Size(max = 2000)
     private String bio;
 //    private Image photo;
     private ArrayList<Person> familyMembers = new ArrayList<>();
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date unionDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date graduation;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date deathDate;
+
     public Person(){}
 
-    public Person(String name, String bio) {
-        this.name = name;
+    public Person(String firstName, String lastName, String bio, Date birthday) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.bio = bio;
+        this.birthday = birthday;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getBio() {
@@ -62,6 +98,38 @@ public class Person {
 
     public void setFamilyMembers(ArrayList<Person> familyMembers) {
         this.familyMembers = familyMembers;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Date getUnionDate() {
+        return unionDate;
+    }
+
+    public void setUnionDate(Date unionDate) {
+        this.unionDate = unionDate;
+    }
+
+    public Date getGraduation() {
+        return graduation;
+    }
+
+    public void setGraduation(Date graduation) {
+        this.graduation = graduation;
+    }
+
+    public Date getDeathDate() {
+        return deathDate;
+    }
+
+    public void setDeathDate(Date deathDate) {
+        this.deathDate = deathDate;
     }
 
     @Override
