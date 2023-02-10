@@ -193,10 +193,12 @@ function center() {
     .call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
 }
 
-// Places the tree without a transition
-// Note the manual width and height adjustment of 80, 50
-function centerStart() {
-  d3.select("svg").call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
+function resetView() {
+    d3.select("svg")
+        .transition()
+        .call(zoom.scaleTo, 1)
+        .transition()
+        .call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
 }
 
 function panLeft() {
@@ -205,6 +207,20 @@ function panLeft() {
 
 function panRight() {
   d3.select("svg").transition().call(zoom.translateBy, 50, 0);
+}
+
+function panUp() {
+  d3.select("svg").transition().call(zoom.translateBy, 0, -50);
+}
+
+function panDown() {
+  d3.select("svg").transition().call(zoom.translateBy, 0, 50);
+}
+
+// Places the tree without a transition
+// Note the manual width and height adjustment of 80, 50
+function centerStart() {
+  d3.select("svg").call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
 }
 
 initZoom();
