@@ -15,8 +15,16 @@ let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 // d3.json(get_tree.php).then( ... );
 // Another PHP script will grab individual Person information (id)
 // d3.json(get_person.php).then( ... );
+
+// Test data sets:
+// https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/
+// test-data-fifteen-person.json
+// test-data-thirteen-person.json
+// test-data-eleven-person.json
+// test-data-four-person.json
+
 d3.json(
-  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data.json"
+  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-eleven-person.json"
 )
   .then(function (data) {
     // If data is fetched, draw the tree svg
@@ -68,8 +76,8 @@ function buildTree(data) {
 
 //  console.log("information");
 //  console.log(information);
-//  console.log("descendants");
-//  console.log(information.descendants());
+  console.log("information.descendants");
+  console.log(information.descendants());
 //  console.log("links");
 //  console.log(information.links());
 
@@ -105,14 +113,20 @@ function buildTree(data) {
     });
 
   // Rectangles will become Person cards (Name, age, picture, etc.)
+  //
   let rectangles = gContainer
     .append("g")
-    .selectAll("rect")
+    .selectAll("a, rect")
     .data(information.descendants());
+
   rectangles
     .enter()
+    .append("a")
+    .attr("href", function (d) {
+        return "/person/view/" + d.data.id;
+    })
     .append("rect")
-    .classed("shape", true)
+    .classed("card", true)
     .attr("x", function (d) {
       return d.x - 60 - personCardLocation;
     })
@@ -149,6 +163,25 @@ function buildTree(data) {
     .attr("y", function (d) {
       return treeHeight - d.y - 17;
     });
+
+//  // Name link text, with link to Person page
+//    let names = gContainer
+//      .append("g")
+//      .selectAll("text")
+//      .data(information.descendants());
+//    names
+//      .enter()
+//      .append("text")
+//      .text(function (d) {
+//        return d.data.child;
+//      })
+//      .attr("x", function (d) {
+//        return d.x + 20 - personCardLocation;
+//      })
+//      .attr("y", function (d) {
+//        return treeHeight - d.y + 5;
+//      });
+
 
   // Name text
   let names = gContainer
