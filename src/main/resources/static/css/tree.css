@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
 }
-.shape {
+.card {
   fill: white;
   stroke: brown;
   width: 120px;
