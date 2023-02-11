@@ -27,6 +27,7 @@ public class PersonController {
     @GetMapping("add")
     public String renderAddPersonForm(Model model){
         model.addAttribute("title", "Add Person");
+        model.addAttribute("persons", personRepository.findAll());
         model.addAttribute(new Person());
         return "person/add";
     }
