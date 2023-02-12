@@ -39,6 +39,9 @@ public class Person {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date deathDate;
 
+    private int parentId;
+    private int spouseId;
+
     public Person(){}
 
     public Person(String firstName, String lastName, String bio, Date birthday) {
@@ -130,6 +133,22 @@ public class Person {
 
     public void setDeathDate(Date deathDate) {
         this.deathDate = deathDate;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public int getSpouseId() {
+        return spouseId;
+    }
+
+    public void setSpouseId(int spouseId) {
+        this.spouseId = spouseId;
     }
 
     @Override
