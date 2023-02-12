@@ -1,5 +1,9 @@
-let width = 800; //window.innerWidth;
-let height = 400; //window.innerHeight;
+// TODO Add appropriate constants here
+const width = 800;
+const height = 400;
+
+
+
 let svg = d3
   .select("#treeArea")
   .append("svg")
@@ -7,6 +11,7 @@ let svg = d3
   .attr("height", height);
 
 // gContainer contains all the elements that make up the tree
+// TODO remove translate
 let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 
 // Load data, currently a json file from github
@@ -20,11 +25,11 @@ let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 // https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/
 // test-data-fifteen-person.json
 // test-data-thirteen-person.json
-// test-data-eleven-person.json
+// test-data-eleven-person.json *
 // test-data-four-person.json
 
 d3.json(
-  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-eleven-person.json"
+  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-four-person.json"
 )
   .then(function (data) {
     // If data is fetched, draw the tree svg
@@ -34,7 +39,7 @@ d3.json(
     // Do some error handling
     console.log("Error in data request.");
 
-    var rectangleOutline = svg
+    var treeDataError = svg
       .append("text")
       .text("Error requesting tree information :(")
       .attr("x", function (d) {
@@ -61,9 +66,11 @@ function buildTree(data) {
     })(data);
 
   // Define the tree structure
+  // TODO Make tree structure dynamic
   let treeWidth = 650;
   let treeHeight = 300;
 
+  // TODO Add node sizes and node margins
   let treeStructure = d3
     .tree()
     .separation(function (a, b) {
@@ -74,24 +81,26 @@ function buildTree(data) {
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
 
-//  console.log("information");
-//  console.log(information);
+  console.log("information");
+  console.log(information);
   console.log("information.descendants");
   console.log(information.descendants());
-//  console.log("links");
-//  console.log(information.links());
+  console.log("links");
+  console.log(information.links());
 
   // For quickly adjusting person cards in the x
+  // TODO Delete personCardLocation
   let personCardLocation = 0;
 
   // Container of Family Tree
-  var rectangleOutline = svg
+  var viewBox = svg
     .append("rect")
     .attr("id", "toZoom")
     .attr("width", width)
     .attr("height", height);
 
   // Elbow Connectors
+  // TODO Remove hardcoded paths from elbow connectors
   let connections = gContainer
     .append("g")
     .selectAll("path")
@@ -151,6 +160,7 @@ function buildTree(data) {
     .append("g")
     .selectAll("image")
     .data(information.descendants());
+
   pictures
     .enter()
     .append("image")
@@ -188,6 +198,7 @@ function buildTree(data) {
     .append("g")
     .selectAll("text")
     .data(information.descendants());
+
   names
     .enter()
     .append("text")
