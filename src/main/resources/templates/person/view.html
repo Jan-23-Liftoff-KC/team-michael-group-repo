@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+<body class="container">
+
+<nav th:replace = "fragments :: navbar"></nav>
+
+<section class="p-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md">
+                <div class="card bg-dark text-light">
+                    <div class="card-body text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="370" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <h2 class="card-title mb-3" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}">
+                            Default Title
+                        </h2>
+                        <a href="#" class="btn btn-primary">Uploads</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h1 class="title">Biography and Life Events</h1>
+                <p class="lead my-4 text-start" th:text="${person.bio}">
+                </p>
+            </div>
+            <div class="col-md">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Important Dates
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:text="'Birthday: ' + ${#dates.format(person.birthday, 'dd/MM/yyyy')}"></li>
+                        <li class="list-group-item" th:text="'Graduation: ' + ${#dates.format(person.graduation, 'dd/MM/yyyy')}"></li>
+                        <li class="list-group-item" th:text="'Union Date: ' + ${#dates.format(person.unionDate, 'dd/MM/yyyy')}"></li>
+                        <li class="list-group-item" th:text="'Birthdate: ' + ${#dates.format(person.deathDate, 'dd/MM/yyyy')}"></li>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-start py-3 gap-3">
+                    <button class="btn btn-primary btn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<footer th:replace = "fragments :: footer"></footer>
+
+</body>
+</html>
