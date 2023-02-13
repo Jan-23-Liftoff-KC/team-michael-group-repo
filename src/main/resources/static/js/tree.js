@@ -1,15 +1,16 @@
 // TODO Add appropriate constants here
-const width = 800;
-const height = 400;
-
 const viewBoxWidth = 800;
 const viewBoxHeight = 400;
+
 const personIconWidth = 60;
 const personIconHeight = 40;
+
 const dx = 600;
-const dy = width / 6;
+const dy = viewBoxWidth / 6;
+
 const margin = ({top: 10, right: 120, bottom: 10, left: 40});
-const memberBox = {
+
+const personCard = {
     width: 205,
     height: 65,
     marginHeight: 180,
@@ -19,8 +20,8 @@ const memberBox = {
 let svg = d3
   .select("#treeArea")
   .append("svg")
-  .attr("width", width)
-  .attr("height", height);
+  .attr("width", viewBoxWidth)
+  .attr("height", viewBoxHeight);
 
 // gContainer contains all the elements that make up the tree
 // TODO remove translate
@@ -108,8 +109,8 @@ function buildTree(data) {
   var viewBox = svg
     .append("rect")
     .attr("id", "toZoom")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", viewBoxWidth)
+    .attr("height", viewBoxHeight);
 
   // Elbow Connectors
   // TODO Remove hardcoded paths from elbow connectors
@@ -287,7 +288,7 @@ function panDown() {
 // Places the tree without a transition
 // Note the manual width and height adjustment of 80, 50
 function centerStart() {
-  d3.select("svg").call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
+  d3.select("svg").call(zoom.translateTo, 0.5 * viewBoxWidth - 80, 0.5 * viewBoxHeight - 50);
 }
 
 initZoom();
