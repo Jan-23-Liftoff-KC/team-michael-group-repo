@@ -2,7 +2,19 @@
 const width = 800;
 const height = 400;
 
-
+const viewBoxWidth = 800;
+const viewBoxHeight = 400;
+const personIconWidth = 60;
+const personIconHeight = 40;
+const dx = 600;
+const dy = width / 6;
+const margin = ({top: 10, right: 120, bottom: 10, left: 40});
+const memberBox = {
+    width: 205,
+    height: 65,
+    marginHeight: 180,
+    marginWidth: 50
+};
 
 let svg = d3
   .select("#treeArea")
@@ -156,14 +168,19 @@ function buildTree(data) {
   //   });
 
   // Pictures
-  let pictures = gContainer
+  // TODO change "image" tag to "img"
+  let personIcons = gContainer
     .append("g")
     .selectAll("image")
     .data(information.descendants());
 
-  pictures
+  personIcons
     .enter()
     .append("image")
+    .classed("personIcon", true)
+    .attr("alt", function (d) {
+      return d.data.child + " icon"
+    })
     .attr("href", function (d) {
       return d.data.icon;
     })
@@ -172,7 +189,9 @@ function buildTree(data) {
     })
     .attr("y", function (d) {
       return treeHeight - d.y - 17;
-    });
+    })
+    .attr("width", personIconWidth)
+    .attr("height", personIconHeight);
 
 //  // Name link text, with link to Person page
 //    let names = gContainer
@@ -191,7 +210,6 @@ function buildTree(data) {
 //      .attr("y", function (d) {
 //        return treeHeight - d.y + 5;
 //      });
-
 
   // Name text
   let names = gContainer
