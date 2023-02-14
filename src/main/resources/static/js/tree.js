@@ -11,11 +11,14 @@ const dy = viewBoxWidth / 6;
 const margin = ({top: 10, right: 120, bottom: 10, left: 40});
 
 const personCard = {
-    width: 205,
-    height: 65,
+    width: 120,
+    height: 45,
     marginHeight: 180,
     marginWidth: 50
 };
+
+const personCardWidth = 120;
+const personCardHeight = 45;
 
 let svg = d3
   .select("#treeArea")
@@ -42,7 +45,7 @@ let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 // test-data-four-person.json
 
 d3.json(
-  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-four-person.json"
+  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-eleven-person.json"
 )
   .then(function (data) {
     // If data is fetched, draw the tree svg
@@ -136,6 +139,7 @@ function buildTree(data) {
 
   // Rectangles will become Person cards (Name, age, picture, etc.)
   //
+
   let rectangles = gContainer
     .append("g")
     .selectAll("a, rect")
@@ -153,8 +157,12 @@ function buildTree(data) {
       return d.x - 60 - personCardLocation;
     })
     .attr("y", function (d) {
-      return treeHeight - d.y - 20;
-    }); //or y - x/3.236
+      return treeHeight - d.y - 20; //or y - x/3.236
+    });
+
+    // TODO Figure out why width and height attrs don't work for card
+    //.attr("width", 120)
+    //.attr("height", 45);
 
   // Spouses
   // let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
