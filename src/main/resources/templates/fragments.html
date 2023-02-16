@@ -37,12 +37,12 @@
                         <a href = "/notifications" class="nav-link">NOTIFICATIONS</a>
                     </li>
                 </ul>
-                <ul th:if="${session.isValid}" class="nav navbar-nav navbar-right"> <!-- session.isValid or user == null ? -->
+                <ul th:if="${session.isEmpty()}" class="nav navbar-nav navbar-right">
                     <li class="nav-item">
                         <a href="/login" class="btn btn-secondary">LOG IN</a>
                     </li>
                 </ul>
-                <ul th:unless="${user != null}" class="nav navbar-nav navbar-right">
+                <ul th:unless="${session.isEmpty()}" class="nav navbar-nav navbar-right">
                     <li class="nav-item">
                         <a href="/logout" class="btn btn-secondary">LOG OUT</a>
                     </li>
