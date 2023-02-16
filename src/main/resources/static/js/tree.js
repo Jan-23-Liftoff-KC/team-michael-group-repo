@@ -145,20 +145,60 @@ function buildTree(data) {
     .selectAll("a, rect")
     .data(information.descendants());
 
-  rectangles
-    .enter()
-    .append("a")
-    .attr("href", function (d) {
-        return "/person/view/" + d.data.id;
-    })
-    .append("rect")
-    .classed("card", true)
-    .attr("x", function (d) {
-      return d.x - 60 - personCardLocation;
-    })
-    .attr("y", function (d) {
-      return treeHeight - d.y - 20; //or y - x/3.236
-    });
+    rectangles
+      .enter()
+      .append("a")
+      .attr("href", function (d) {
+          return "/person/view/" + d.data.id;
+      })
+      .append("rect")
+      .classed("card", true)
+      .attr("x", function (d) {
+        return d.x - 60 - personCardLocation;
+      })
+      .attr("y", function (d) {
+        return treeHeight - d.y - 20; //or y - x/3.236
+      })
+      .append("div").attr("class", "card mb-3").attr("style", "max-width: 350px;")
+              .append("div").attr("class", "row align-items-center g-0")
+                .append("div").attr("class", "col-md-4")
+                  .append("img").attr("src", "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true").attr("class", "img-fluid rounded-start img-thumbnail d-block").attr("alt", "...").attr("style","width: 100px")
+                  .insert("div").attr("class", "col-md-8")
+                    .append("div").attr("class", "card-body")
+                      .append("h5").attr("class", "card-title").text("ALongFirstName")
+                      .insert("h5").attr("class", "card-title").text("ALongerLastName")
+                      .insert("p").attr("class", "card-text").text("A short bio?")
+                      .insert("p").attr("class", "card-text").text("Some more text");
+
+
+// TODO d3 bootstrap card is here
+card = d3.select("#tree-Area")
+      .append("div").attr("class", "card mb-3").attr("style", "max-width: 350px;")
+        .append("div").attr("class", "row align-items-center g-0")
+          .append("div").attr("class", "col-md-4")
+            .append("img").attr("src", "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true").attr("class", "img-fluid rounded-start img-thumbnail d-block").attr("alt", "...").attr("style","width: 100px")
+            .insert("div").attr("class", "col-md-8")
+              .append("div").attr("class", "card-body")
+                .append("h5").attr("class", "card-title").text("ALongFirstName")
+                .insert("h5").attr("class", "card-title").text("ALongerLastName")
+                .insert("p").attr("class", "card-text").text("A short bio?")
+                .insert("p").attr("class", "card-text").text("Some more text");
+
+// Backup rect
+//  rectangles
+//    .enter()
+//    .append("a")
+//    .attr("href", function (d) {
+//        return "/person/view/" + d.data.id;
+//    })
+//    .append("rect")
+//    .classed("card", true)
+//    .attr("x", function (d) {
+//      return d.x - 60 - personCardLocation;
+//    })
+//    .attr("y", function (d) {
+//      return treeHeight - d.y - 20; //or y - x/3.236
+//    });
 
     // TODO Figure out why width and height attrs don't work for card
     //.attr("width", 120)

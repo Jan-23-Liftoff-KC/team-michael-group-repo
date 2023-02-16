@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
 }
+
 .card {
   fill: white;
   stroke: brown;
@@ -18,11 +19,13 @@
   height: 45px;
   stroke-width: 2;
 }
+
 path {
   fill: none;
   stroke: brown;
   stroke-width: 2;
 }
+
 text {
   fill: green;
   /* dominant-baseline: middle; */
