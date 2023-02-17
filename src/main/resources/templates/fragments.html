@@ -37,14 +37,14 @@
                         <a href = "/notifications" class="nav-link">NOTIFICATIONS</a>
                     </li>
                 </ul>
-                <ul th:if="${user == null}" class="nav navbar-nav navbar-right">
+                <ul th:if="${session.isEmpty()}" class="nav navbar-nav navbar-right">
                     <li class="nav-item">
-                        <button type="button" class="btn btn-secondary" href="/login">LOGIN</button>
+                        <a href="/login" class="btn btn-secondary">LOG IN</a>
                     </li>
                 </ul>
-                <ul th:unless="${user != null}" class="nav navbar-nav navbar-right">
+                <ul th:unless="${session.isEmpty()}" class="nav navbar-nav navbar-right">
                     <li class="nav-item">
-                        <button type="button" class="btn btn-secondary" href="/logout">LOG OUT</button>
+                        <a href="/logout" class="btn btn-secondary">LOG OUT</a>
                     </li>
                 </ul>
             </div>
