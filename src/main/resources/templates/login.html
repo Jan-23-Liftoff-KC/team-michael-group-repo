@@ -4,26 +4,34 @@
 <body class="container">
 
 <nav th:replace = "fragments :: navbar"></nav>
-<!--<header th:replace="fragments :: header"></header>-->
 
-<form method="post">
-    <div class="form-group">
-        <label th:for="username">Username
-            <input class="form-control" th:field="${loginFormDTO.username}">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.username}"></p>
+<section class="p-5">
+    <div class="container">
+        <div class="row text-center">
+                <div class="card bg-tertiary" style="margin-top:30px;">
+                    <div class="card-body text-center">
+                        <form method="post">
+                            <div class="form-group">
+                                <label th:for="username">Username
+                                    <input class="form-control" th:field="${loginFormDTO.username}">
+                                </label>
+                                <p class="error" th:errors="${loginFormDTO.username}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Password
+                                    <input class="form-control" th:field="${loginFormDTO.password}" type="password">
+                                </label>
+                                <p class="error" th:errors="${loginFormDTO.password}"></p>
+                            </div>
+
+                            <input type="submit" class="btn btn-secondary my-2" value="LOG IN" />
+                        </form>
+                       <span>Don't have an account?</span> <span><a href = "/register" class="btn btn-secondary">REGISTER</a></span>
+                    </div>
+                </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Password
-            <input class="form-control" th:field="${loginFormDTO.password}" type="password">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.password}"></p>
-    </div>
-
-    <input type="submit" class="btn btn-primary" value="Log In" />
-</form>
-
-<p>Don't have an account? <a href="/register">Register for one.</a></p>
+</section>
 
 <footer th:replace = "fragments :: footer"></footer>
 
