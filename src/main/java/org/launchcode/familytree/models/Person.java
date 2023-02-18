@@ -41,18 +41,37 @@ public class Person {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date deathDate;
 
+//    @NotBlank(message = "Please select at least one parent.")
     private int parentId;
+    private int parentIdTwo;
     private int spouseId;
 
+    private Gender gender;
 
     public Person(){}
 
-    public Person(String firstName, String lastName, String bio, Date birthday) {
+    public Person(String firstName, String middleName, String lastName, String bio, ArrayList<Person> familyMembers, Date birthday, Date unionDate, Date graduation, Date deathDate, int parentId, int parentIdTwo, int spouseId, Gender gender) {
         this.firstName = firstName;
+        this.middleName = middleName;
         this.lastName = lastName;
         this.bio = bio;
+        this.familyMembers = familyMembers;
         this.birthday = birthday;
+        this.unionDate = unionDate;
+        this.graduation = graduation;
+        this.deathDate = deathDate;
+        this.parentId = parentId;
+        this.parentIdTwo = parentIdTwo;
+        this.spouseId = spouseId;
+        this.gender = gender;
     }
+
+//    public Person(String firstName, String lastName, String bio, Date birthday) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.bio = bio;
+//        this.birthday = birthday;
+//    }
 
     public int getId() {
         return id;
@@ -146,12 +165,28 @@ public class Person {
         this.parentId = parentId;
     }
 
+    public int getParentIdTwo() {
+        return parentIdTwo;
+    }
+
+    public void setParentIdTwo(int parentIdTwo) {
+        this.parentIdTwo = parentIdTwo;
+    }
+
     public int getSpouseId() {
         return spouseId;
     }
 
     public void setSpouseId(int spouseId) {
         this.spouseId = spouseId;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     @Override
