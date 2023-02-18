@@ -3,18 +3,10 @@
   <head th:replace="fragments :: head"></head>
   <link rel="stylesheet" type="text/css" href="/css/tree.css" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <body>
+  <body class="container">
     <nav th:replace="fragments :: navbar"></nav>
 
     <br />
-
-    <nav>
-      <a href="../person">ABOUT ME</a>
-      <a href="../tree">TREE</a>
-      <a href="../search">FIND</a>
-      <a href="../forum">RECENT UPDATES</a>
-      <a href="../notifications">MY UPDATES</a>
-    </nav>
 
     <br />
     <div id="treeArea"></div>
@@ -28,8 +20,6 @@
       <button onclick="panRight()">Pan right</button>
       <button onclick="center()">Center</button>
     </div>
-
-    <p>Add person?</p>
 
     <footer th:replace="fragments :: footer"></footer>
 

@@ -20,7 +20,7 @@
             <img id="top" style="width: auto; height: 80px;" class="float-start" src="https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg" th:src="@{https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg}"/>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav ms-auto">
+                <ul th:unless="${session.isEmpty()}" class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a href = "/" class="nav-link">HOME</a>
                     </li>
@@ -31,26 +31,29 @@
                         <a href = "/search" class="nav-link">SEARCH</a>
                     </li>
                     <li class="nav-item">
+                        <a href = "person" class="nav-link">ABOUT ME</a>
+                    </li>
+                    <!-- FUTURE FEATURES
+                    <li class="nav-item">
                         <a href = "/forum" class="nav-link">FORUM</a>
                     </li>
                     <li class="nav-item">
                         <a href = "/notifications" class="nav-link">NOTIFICATIONS</a>
-                    </li>
+                    </li> -->
                 </ul>
-                <ul th:if="${session.isEmpty()}" class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
+                <ul th:if="${session.isEmpty()}" class="nav navbar-nav ms-auto">
+                    <li class="nav-item px-2">
                         <a href="/login" class="btn btn-secondary">LOG IN</a>
                     </li>
                 </ul>
-                <ul th:unless="${session.isEmpty()}" class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
+                <ul th:unless="${session.isEmpty()}" class="nav navbar-nav">
+                    <li class="nav-item px-2">
                         <a href="/logout" class="btn btn-secondary">LOG OUT</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
 
 <!-- FOOTER FRAGMENT -->
     <footer th:fragment = "footer" class="navbar navbar-expand-lg bg-body-tertiary">
