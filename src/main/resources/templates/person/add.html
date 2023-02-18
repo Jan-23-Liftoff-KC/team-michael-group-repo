@@ -11,27 +11,30 @@
 <form method="post" action="/person/add">
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">First Name
-            <input type="text" name="firstName" class="form-control" required>
+            <input th:field="${person.firstName}" class="form-control" required>
         </label>
+        <p class="fs-6 text-danger" th:errors="${person.firstName}"></p>
         <label class="form-label mx-2">Middle Name
-            <input type="text" name="middleName" class="form-control">
+            <input th:field="${person.middleName}" class="form-control">
         </label>
         <label class="form-label mx-2">Last Name
-            <input type="text" name="lastName" class="form-control" required>
+            <input th:field="${person.lastName}" class="form-control" required>
         </label>
+        <p class="fs-6 text-danger" th:errors="${person.lastName}"></p>
     </div>
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">Birthday
-            <input type="date" th:field="${person.birthday}" name="birthday" class="form-control">
+            <input type="date" th:field="${person.birthday}" class="form-control">
         </label>
+        <p class="fs-6 text-danger" th:errors="${person.birthday}"></p>
         <label class="form-label mx-2">Graduation
-            <input type="date" th:field="${person.graduation}" name="graduation" class="form-control">
+            <input type="date" th:field="${person.graduation}" class="form-control">
         </label>
         <label class="form-label mx-2">Union Date
-            <input type="date" th:field="${person.unionDate}" name="unionDate" class="form-control">
+            <input type="date" th:field="${person.unionDate}" class="form-control">
         </label>
         <label class="form-label mx-2">Death Date
-            <input type="date" th:field="${person.deathDate}" name="deathDate" class="form-control">
+            <input type="date" th:field="${person.deathDate}" class="form-control">
         </label>
     </div>
     <div class="form-group mb-3 px-5">
@@ -48,7 +51,8 @@
     </div>
     <div class="form-group mb-3 px-5">
         <label class="form-label">Biography</label>
-        <textarea class="form-control" name="bio" rows="3"></textarea>
+        <textarea class="form-control" th:field="${person.bio}" name="bio" rows="3"></textarea>
+        <p class="fs-6 text-danger" th:errors="${person.bio}"></p>
     </div>
     <div class="form-group mb-3 px-5">
         <label>Choose a profile picture
@@ -62,7 +66,11 @@
         <input type="submit" value="Add Person" class="btn btn-primary">
     </div>
 </form>
-
+<script>
+    function dateRequired() {
+        document.getElementById("birthday").required = true;
+    }
+</script>
 
 
 </body>

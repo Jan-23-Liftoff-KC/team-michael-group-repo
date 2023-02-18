@@ -5,10 +5,10 @@ import org.launchcode.familytree.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -33,7 +33,11 @@ public class PersonController {
     }
 
     @PostMapping("add")
-    public String addPerson(@ModelAttribute Person newPerson){
+    public String addPerson(@ModelAttribute @Valid Person newPerson, Errors errors, Model model){
+        if(errors.hasErrors()){
+            model.addAttribute("title", "Add Person");
+            return "person/add";
+        }
         personRepository.save(newPerson);
         return "redirect:";
     }
@@ -42,14 +46,13 @@ public class PersonController {
     public String displayPerson(Model model, @PathVariable int personId) {
         Optional<Person> optPerson = personRepository.findById(personId);
         Person person = optPerson.get();
-//        if(optPerson.isPresent()){
-//            Person person = optPerson.get();
-//            model.addAttribute("person", person);
-//            return "person/index";
-//        } else {
-//            return "redirect:../";
-//        }
+        Optional<Person> optParent = personRepository.findById(person.getParentId());
+        Person parent = optParent.get();
+//        Optional<Person> optSpouse = personRepository.findById(person.getSpouseId());
+//        Person spouse = optSpouse.get();
         model.addAttribute("person", person);
+        model.addAttribute("parent", parent);
+//        model.addAttribute("spouse", spouse);
         return "person/view";
     }
 }
