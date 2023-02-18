@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -16,17 +17,18 @@ public class Person {
     @GeneratedValue
     private int id;
     @NotBlank
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 50, message = "First name must be between 3 and 50 characters.")
     private String firstName;
     private String middleName;
     @NotBlank
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 100, message = "Last name must be between 3 and 100 characters.")
     private String lastName;
-    @Size(max = 2000)
+    @NotBlank(message = "Biography is required. You may edit it later.")
     private String bio;
 //    private Image photo;
     private ArrayList<Person> familyMembers = new ArrayList<>();
 
+    @NotNull(message = "Birthday cannot be left blank.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
@@ -41,6 +43,7 @@ public class Person {
 
     private int parentId;
     private int spouseId;
+
 
     public Person(){}
 
