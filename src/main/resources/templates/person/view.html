@@ -44,8 +44,9 @@
                         Family Members
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item" th:text="'Parent: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>
-<!--                        <li class="list-group-item" th:if="${person.spouseId}" th:text="'Partner: ' + ${spouse.firstName}"></li>-->
+                        <li class="list-group-item" th:if="${person.parentId}" th:text="'Parent: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>
+                        <li class="list-group-item" th:if="${person.parentIdTwo}" th:text="'Parent: ' + ${parentTwo.firstName} + ' ' + ${parentTwo.middleName} + ' ' + ${parentTwo.lastName}"></li>
+                        <li class="list-group-item" th:if="${person.spouseId}" th:text="'Partner: ' + ${spouse.firstName} + ' ' + ${spouse.middleName} + ' ' + ${spouse.lastName}"></li>
                     </ul>
                 </div>
                 <div class="d-flex justify-content-start py-3 gap-3">
