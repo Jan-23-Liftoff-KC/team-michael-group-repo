@@ -138,78 +138,56 @@ function buildTree(data) {
     });
 
   // Rectangles will become Person cards (Name, age, picture, etc.)
-  //
 
   let rectangles = gContainer
     .append("g")
-    .selectAll("a, rect")
+    .selectAll("foreignObject, .personCard")
     .data(information.descendants());
 
-    rectangles
-      .enter()
-//      .append("a")
-//      .attr("href", function (d) {
-//          return "/person/view/" + d.data.id;
-//      })
-//      .append("rect")
-//      .classed("personCard", true)
+// rect person card
+  rectangles
+    .enter()
+    .append("a")
+    .attr("href", function (d) {
+        return "/person/view/" + d.data.id;
+    })
+    .append("rect")
+    .classed("personCard", true)
+    .attr("x", function (d) {
+      return d.x - 60 - personCardLocation;
+    })
+    .attr("y", function (d) {
+      return treeHeight - d.y - 20; //or y - x/3.236
+    });
+
+    // TODO d3 bootstrap card is here
+//    rectangles
+//      .enter()
+//      .append('foreignObject')
 //      .attr("x", function (d) {
 //        return d.x - 60 - personCardLocation;
 //      })
 //      .attr("y", function (d) {
 //        return treeHeight - d.y - 20; //or y - x/3.236
 //      })
-      .each(function(d) {
-        d3.select(this).html(
-        `<div class="card mb-3" style="max-width: 350px;">
-                 <div class="row align-items-center g-0">
-                   <div class="col-md-4">
-                     <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="img-fluid rounded-start img-thumbnail d-block" alt="..." style="width: 100px">
-                   </div>
-                   <div class="col-md-8">
-                     <div class="card-body">
-                       <h5 class="card-title">${d.data.child}<br>ALongerLastName</h5>
-                       <p class="card-text">A short bio?</p>
-                       <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
-                     </div>
-                   </div>
-                 </div>
-               </div>`)
-      });
-
-
-// TODO d3 bootstrap card is here
-//card = d3.select("#tree-Area")
-//      .append("div").attr("class", "card mb-3").attr("style", "max-width: 350px;")
-//        .append("div").attr("class", "row align-items-center g-0")
-//          .append("div").attr("class", "col-md-4")
-//            .append("img").attr("src", "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true").attr("class", "img-fluid rounded-start img-thumbnail d-block").attr("alt", "...").attr("style","width: 100px")
-//            .insert("div").attr("class", "col-md-8")
-//              .append("div").attr("class", "card-body")
-//                .append("h5").attr("class", "card-title").text("ALongFirstName")
-//                .insert("h5").attr("class", "card-title").text("ALongerLastName")
-//                .insert("p").attr("class", "card-text").text("A short bio?")
-//                .insert("p").attr("class", "card-text").text("Some more text");
-
-// Backup rect
-//  rectangles
-//    .enter()
-//    .append("a")
-//    .attr("href", function (d) {
-//        return "/person/view/" + d.data.id;
-//    })
-//    .append("rect")
-//    .classed("card", true)
-//    .attr("x", function (d) {
-//      return d.x - 60 - personCardLocation;
-//    })
-//    .attr("y", function (d) {
-//      return treeHeight - d.y - 20; //or y - x/3.236
-//    });
-
-    // TODO Figure out why width and height attrs don't work for card
-    //.attr("width", 120)
-    //.attr("height", 45);
+//      .attr("width", "400")
+//      .attr("height", "200")
+//      .each(function(d) {
+//        d3.select(this).html(
+//        `<div class="card mb-3" style="max-width: 350px;">
+//                 <div class="row align-items-center g-0">
+//                   <div class="col-md-4">
+//                     <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
+//                   </div>
+//                   <div class="col-md-8">
+//                     <div class="card-body">
+//                       <h5 class="card-title">ALongFirstName<br>ALongerLastName</h5>
+//                       <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>`)
+//      });
 
   // Spouses
   // let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
