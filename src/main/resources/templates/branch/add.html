@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container  body-content">
+<h1>Add Branch</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<form method="post" style="max-width:600px;">
+  <div class="form-group">
+    <label th:for="name">Branch Name</label>
+    <input class="form-control" th:field="${branch.name}" />
+    <span th:errors="${branch.name}" class="error"></span>
+  </div>
+
+  <div class="form-group">
+    <label th:for="location">Branch Location</label>
+    <input class="form-control" th:field="${branch.location}" />
+    <span th:errors="${branch.location}" class="error"></span>
+  </div>
+
+  <input type="submit" value="Add Branch" />
+</form>
+
+</body>
+</html>
