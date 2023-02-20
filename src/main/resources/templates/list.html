@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+  <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+  <h2 class = "centered">View Trees By Branches</h2>
+</div>
+
+<table class="centeredTable">
+  <tr>
+    <th>All</th>
+    <th>Branch</th>
+  </tr>
+
+  <tr>
+    <td>
+      <li>
+        <a th:href="@{/list/trees(column='All',value='View All')}">View All</a>
+      </li>
+    </td>
+    <td>
+      <li th:each="branch : ${branches}">
+        <a th:href="@{/list/trees(column=branch,value=${branch.name})}" th:text="${branch.name}"></a>
+      </li>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
