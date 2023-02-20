@@ -7,31 +7,42 @@
 <h3 class="pt-5">
     Add a Person to Your Family Tree
 </h3>
-<p class="mb-3">Fill out everything that applies to your person, and leave the rest blank.</p>
+<p class="mb-3">Fill out everything that applies to your person and leave the rest blank.</p>
 <form method="post" action="/person/add">
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">First Name
-            <input type="text" name="firstName" class="form-control">
+            <input th:field="${person.firstName}" class="form-control" required>
         </label>
+        <p class="fs-6 text-danger" th:errors="${person.firstName}"></p>
         <label class="form-label mx-2">Middle Name
-            <input type="text" name="middleName" class="form-control">
+            <input th:field="${person.middleName}" class="form-control">
         </label>
         <label class="form-label mx-2">Last Name
-            <input type="text" name="lastName" class="form-control">
+            <input th:field="${person.lastName}" class="form-control" required>
+        </label>
+        <p class="fs-6 text-danger" th:errors="${person.lastName}"></p>
+    </div>
+    <div class="form-group mb-3 px-5">
+        <label class="form-label mx-2">Select your Gender Identity
+            <select th:field="${person.gender}">
+                <option class="dropdown-item" th:each="gender : ${genders}" th:value="${gender}" th:text="${gender.displayName}">
+                </option>
+            </select>
         </label>
     </div>
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">Birthday
-            <input type="date" th:field="${person.birthday}" name="birthday" class="form-control">
+            <input type="date" th:field="${person.birthday}" class="form-control">
         </label>
+        <p class="fs-6 text-danger" th:errors="${person.birthday}"></p>
         <label class="form-label mx-2">Graduation
-            <input type="date" th:field="${person.graduation}" name="graduation" class="form-control">
+            <input type="date" th:field="${person.graduation}" class="form-control">
         </label>
         <label class="form-label mx-2">Union Date
-            <input type="date" th:field="${person.unionDate}" name="unionDate" class="form-control">
+            <input type="date" th:field="${person.unionDate}" class="form-control">
         </label>
         <label class="form-label mx-2">Death Date
-            <input type="date" th:field="${person.deathDate}" name="deathDate" class="form-control">
+            <input type="date" th:field="${person.deathDate}" class="form-control">
         </label>
     </div>
     <div class="form-group mb-3 px-5">
@@ -39,6 +50,12 @@
         <select th:field="${person.parentId}">
             <option class="dropdown-item" value="0">Please Select</option>
             <option class="dropdown-item" name="parentId" th:each="person : ${persons}" th:value="${person.id}" th:text="${person.firstName} + ' ' + ${person.lastName}"></option>
+        </select>
+        <p class="fs-6 text-danger" th:errors="${person.parentId}"></p>
+        <label class="form-label mx-2">Select a Second Parent</label>
+        <select th:field="${person.parentIdTwo}">
+            <option class="dropdown-item" value="0">Please Select</option>
+            <option class="dropdown-item" name="parentIdTwo" th:each="person : ${persons}" th:value="${person.id}" th:text="${person.firstName} + ' ' + ${person.lastName}"></option>
         </select>
         <label class="form-label mx-2">Select your Partner</label>
         <select th:field="${person.spouseId}">
@@ -48,15 +65,21 @@
     </div>
     <div class="form-group mb-3 px-5">
         <label class="form-label">Biography</label>
-        <textarea class="form-control" name="bio" rows="3"></textarea>
+        <textarea class="form-control" th:field="${person.bio}" name="bio" rows="3"></textarea>
+        <p class="fs-6 text-danger" th:errors="${person.bio}"></p>
+    </div>
+    <div class="form-group mb-3 px-5">
+        <label>Choose a profile picture
+            <input class="form-control"
+                   type="file"
+                   id="avatar" name="avatar"
+                   accept="image/png, image/jpeg">
+        </label>
     </div>
     <div class="form-group px-5">
         <input type="submit" value="Add Person" class="btn btn-primary">
     </div>
 </form>
-
-
-
-</body>
 <footer th:replace = "fragments :: footer"></footer>
+</body>
 </html>
