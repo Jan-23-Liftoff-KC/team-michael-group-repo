@@ -2,7 +2,7 @@ package org.launchcode.familytree.controllers;
 
 import org.launchcode.familytree.models.Tree;
 import org.launchcode.familytree.models.TreeData;
-import org.launchcode.familytree.models.data.TreeRepository;
+import org.launchcode.familytree.data.TreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class SearchController {
 
     @PostMapping("results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
-        Iterable<Tree> jobs;
+        Iterable<Tree> trees;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             trees = treeRepository.findAll();
         } else {

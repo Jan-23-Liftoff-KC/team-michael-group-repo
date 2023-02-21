@@ -29,7 +29,7 @@ public class TreeData {
     }
 
     public static String getFieldValue(Tree tree, String fieldName){
-        String theValue;
+        String theValue = "";
         if (fieldName.equals("name")){
             theValue = tree.getName();
         } else if (fieldName.equals("branch")){

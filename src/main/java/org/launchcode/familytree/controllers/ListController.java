@@ -2,8 +2,8 @@ package org.launchcode.familytree.controllers;
 
 import org.launchcode.familytree.models.Tree;
 import org.launchcode.familytree.models.TreeData;
-import org.launchcode.familytree.models.data.BranchRepository;
-import org.launchcode.familytree.models.data.TreeRepository;
+import org.launchcode.familytree.data.BranchRepository;
+import org.launchcode.familytree.data.TreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

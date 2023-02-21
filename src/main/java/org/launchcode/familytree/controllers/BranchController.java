@@ -1,7 +1,7 @@
 package org.launchcode.familytree.controllers;
 
 import org.launchcode.familytree.models.Branch;
-import org.launchcode.familytree.models.data.BranchRepository;
+import org.launchcode.familytree.data.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @Controller
-@RequestMapping("branches")
+@RequestMapping("branch")
 public class BranchController {
 
 
@@ -24,13 +24,13 @@ public class BranchController {
     public String index(Model model) {
 
         model.addAttribute("branches", branchRepository.findAll());
-        return "branches/index";
+        return "branch/index";
     }
 
     @GetMapping("add")
     public String displayAddBranchForm(Model model) {
         model.addAttribute(new Branch());
-        return "branches/add";
+        return "branch/add";
     }
 
     @PostMapping("add")
@@ -39,7 +39,7 @@ public class BranchController {
 
         if (errors.hasErrors()) {
             model.addAttribute(branchRepository.findAll());
-            return "branches/add";
+            return "branch/add";
         }
 // refer to Branch.java for Intellij addition
         branchRepository.save(newBranch);
@@ -53,7 +53,7 @@ public class BranchController {
         if (optBranch.isPresent()) {
             Branch branch = (Branch) optBranch.get();
             model.addAttribute("branch", branch);
-            return "branches/view";
+            return "branch/view";
         } else {
             return "redirect:../";
         }
