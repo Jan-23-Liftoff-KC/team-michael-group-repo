@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
   <head th:replace="fragments :: head"></head>
-  <link rel="stylesheet" type="text/css" href="/css/tree.css" />
+  <link rel="stylesheet" type="text/css" href="/css/tree.css" th:href="@{/css/tree.css}"/>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <body class="container">
     <nav th:replace="fragments :: navbar"></nav>
@@ -21,6 +21,7 @@
       <button onclick="center()">Center</button>
     </div>
 
+    <div th:replace="fragments :: footerfix"></div>
     <footer th:replace="fragments :: footer"></footer>
 
     <script src="/js/tree.js"></script>
