@@ -141,7 +141,7 @@ function buildTree(data) {
 
   let rectangles = gContainer
     .append("g")
-    .selectAll("foreignObject, .personCard")
+    .selectAll("a, rect")
     .data(information.descendants());
 
 // rect person card
@@ -299,7 +299,7 @@ function resetView() {
         .transition()
         .call(zoom.scaleTo, 1)
         .transition()
-        .call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
+        .call(zoom.translateTo, 0.5 * viewBoxWidth - 80, 0.5 * viewBoxHeight - 50);
 }
 
 function panLeft() {
