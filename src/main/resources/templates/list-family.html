@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
@@ -11,17 +10,17 @@
 
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <table class="tree-listing">
-    <tr th:each="tree : ${trees}">
+  <table class="family-listing">
+    <tr th:each="family : ${families}">
       <td>
         <p>
-          Tree Id:
-          <a th:href="@{'/view/' + ${tree.id}}" th:text="${tree.id}"></a>
+          Family Id:
+          <a th:href="@{'/view/' + ${family.id}}" th:text="${family.id}"></a>
         </p>
-        <p th:text="${'Name: ' + tree.name}"></p>
+        <p th:text="${'Name: ' + family.name}"></p>
         <p>
-          Branch:
-          <a th:href="@{'/branches/view/' + ${tree.branch.id}}" th:text="${tree.branch.name}"></a>
+          Person:
+          <a th:href="@{'/person/view/' + ${family.person.id}}" th:text="${family.person.name}"></a>
         </p>
       </td>
     </tr>

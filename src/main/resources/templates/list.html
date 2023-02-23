@@ -8,24 +8,24 @@
 
 <div class="container body-content">
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-  <h2 class = "centered">View Trees By Branches</h2>
+  <h2 class = "centered">View Families By Persons</h2>
 </div>
 
 <table class="centeredTable">
   <tr>
     <th>All</th>
-    <th>Branch</th>
+    <th>Person</th>
   </tr>
 
   <tr>
     <td>
       <li>
-        <a th:href="@{/list/trees(column='All',value='View All')}">View All</a>
+        <a th:href="@{/list/families(column='All',value='View All')}">View All</a>
       </li>
     </td>
     <td>
-      <li th:each="branch : ${branches}">
-        <a th:href="@{/list/trees(column=branch,value=${branch.name})}" th:text="${branch.name}"></a>
+      <li th:each="person : ${persons}">
+        <a th:href="@{/list/families(column=person,value=${person.name})}" th:text="${person.name}"></a>
       </li>
     </td>
   </tr>

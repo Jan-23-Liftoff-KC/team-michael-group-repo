@@ -1,8 +1,10 @@
 package org.launchcode.familytree.controllers;
 
-import org.launchcode.familytree.models.Tree;
-import org.launchcode.familytree.models.TreeData;
-import org.launchcode.familytree.data.TreeRepository;
+import org.launchcode.familytree.data.PersonRepository;
+import org.launchcode.familytree.models.Family;
+import org.launchcode.familytree.models.FamilyData;
+import org.launchcode.familytree.data.FamilyRepository;
+import org.launchcode.familytree.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,9 @@ import static org.launchcode.familytree.controllers.ListController.columnChoices
 public class SearchController {
 
     @Autowired
-    private TreeRepository treeRepository;
+    private PersonRepository personRepository;
+    @Autowired
+    private FamilyRepository familyRepository;
 
     @RequestMapping("")
     public String search(Model model) {
@@ -26,15 +30,15 @@ public class SearchController {
 
     @PostMapping("results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
-        Iterable<Tree> trees;
+        Iterable<Family> family;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
-            trees = treeRepository.findAll();
+            family = familyRepository.findAll();
         } else {
-            trees = TreeData.findByColumnAndValue(searchType, searchTerm, treeRepository.findAll());
+            family = FamilyData.findByColumnAndValue(searchType, searchTerm, familyRepository.findAll());
         }
         model.addAttribute("columns", columnChoices);
-        model.addAttribute("title", "Trees with " + columnChoices.get(searchType) + ": " + searchTerm);
-        model.addAttribute("trees", trees);
+        model.addAttribute("title", "Persons with " + columnChoices.get(searchType) + ": " + searchTerm);
+        model.addAttribute("families", family);
 
         return "search";
     }

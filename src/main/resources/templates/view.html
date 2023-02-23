@@ -4,15 +4,15 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container  body-content">
-<h1 th:text="${'Tree: ' + tree.name}">Default Title</h1>
+<h1 th:text="${'Family: ' + family.name}">Default Title</h1>
 
 <nav th:replace="fragments :: page-header"></nav>
 
-<div class="tree-listing">
-  <p th:text="${'ID: ' + tree.id}"></p>
-  <p th:text="${'Name: ' + tree.name}"></p>
+<div class="family-listing">
+  <p th:text="${'ID: ' + family.id}"></p>
+  <p th:text="${'Name: ' + family.name}"></p>
   <p>
-    Branch: <a th:href="@{'/branches/view/' + ${tree.branch.id}}" th:text="${tree.branch.name}"></a>
+    Person: <a th:href="@{'/person/view/' + ${family.person.id}}" th:text="${family.person.name}"></a>
   </p>
 </div>
 

@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body class="container  body-content">
-<h1>Add Branch</h1>
+<head th:replace = "fragments :: head"></head>
+<body>
 
-<nav th:replace="fragments :: page-header"></nav>
+<nav th:replace = "fragments :: navbar"></nav>
+
+<h1>Add Branch</h1>
 
 <form method="post" style="max-width:600px;">
   <div class="form-group">
@@ -22,6 +23,7 @@
 
   <input type="submit" value="Add Branch" />
 </form>
+<footer th:replace = "fragments :: footer"></footer>
 
 </body>
 </html>

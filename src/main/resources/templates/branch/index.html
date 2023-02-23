@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+<body>
+
+<nav th:replace = "fragments :: navbar"></nav>
+
+<p th:unless="${branch} and ${branch.size()}">no branches!</p>
+
+<div class="container body-content">
+  <h2>Branches</h2>
+  <ul>
+    <li th:each="branch : ${branches}">
+      <a th:href="@{'/branch/view/' + ${branch.id}}" th:text="${branch.name}"></a>
+    </li>
+  </ul>
+  <a th:href="@{'/branch/add'}">Add Branch</a>
+
+</div>
+
+</body>
+</html>
