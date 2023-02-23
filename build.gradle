@@ -27,6 +27,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
 }
 
 dependencyManagement {

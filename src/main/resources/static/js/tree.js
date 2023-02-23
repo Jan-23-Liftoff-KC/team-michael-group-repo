@@ -30,13 +30,6 @@ let svg = d3
 // TODO remove translate
 let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 
-// Load data, currently a json file from github
-
-// We need a PHP script to grab the correct data (treeId), rather than a JSON file
-// d3.json(get_tree.php).then( ... );
-// Another PHP script will grab individual Person information (id)
-// d3.json(get_person.php).then( ... );
-
 // Test data sets:
 // https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/
 // test-data-fifteen-person.json
@@ -44,16 +37,25 @@ let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 // test-data-eleven-person.json *
 // test-data-four-person.json
 
+//console.log(document.getElementById("treeData").innerHTML);
+//let treeData = JSON.parse(document.getElementById('treeData').innerHTML);
+//let treeData = document.getElementById('treeData').innerHTML;
+
+//d3.json(
+//  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-eleven-person.json"
+//)
 d3.json(
-  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-eleven-person.json"
+  "http://localhost:8080/tree/all"
 )
   .then(function (data) {
     // If data is fetched, draw the tree svg
+    console.log("Persons in js:")
+    console.log(data);
     buildTree(data);
   })
   .catch(function (error) {
     // Do some error handling
-    console.log("Error in data request.");
+    console.error("Error in data request.");
 
     var treeDataError = svg
       .append("text")
@@ -68,8 +70,8 @@ d3.json(
 
 // Build tree
 function buildTree(data) {
-  console.log("Data:");
-  console.log(data);
+//  console.log("Data:");
+//  console.log(data);
 
   // Stratify data
   let dataStructure = d3
@@ -97,12 +99,12 @@ function buildTree(data) {
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
 
-  console.log("information");
-  console.log(information);
-  console.log("information.descendants");
-  console.log(information.descendants());
-  console.log("links");
-  console.log(information.links());
+//  console.log("information");
+//  console.log(information);
+//  console.log("information.descendants");
+//  console.log(information.descendants());
+//  console.log("links");
+//  console.log(information.links());
 
   // For quickly adjusting person cards in the x
   // TODO Delete personCardLocation
