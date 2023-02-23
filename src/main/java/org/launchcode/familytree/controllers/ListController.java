@@ -1,9 +1,10 @@
 package org.launchcode.familytree.controllers;
 
-import org.launchcode.familytree.models.Tree;
-import org.launchcode.familytree.models.TreeData;
-import org.launchcode.familytree.data.BranchRepository;
-import org.launchcode.familytree.data.TreeRepository;
+import org.launchcode.familytree.data.PersonRepository;
+import org.launchcode.familytree.models.Family;
+import org.launchcode.familytree.models.FamilyData;
+import org.launchcode.familytree.data.FamilyRepository;
+import org.launchcode.familytree.models.FamilyData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,40 +21,41 @@ import java.util.HashMap;
 public class ListController {
 
     @Autowired
-    private TreeRepository treeRepository;
+    private FamilyRepository familyRepository;
 
     @Autowired
-    private BranchRepository branchRepository;
+    private PersonRepository personRepository;
     static HashMap<String, String> columnChoices = new HashMap<>();
 
     public ListController () {
 
         columnChoices.put("all", "All");
-        columnChoices.put("branch", "Branch");
+        columnChoices.put("person", "Person");
+
 
     }
 
     @RequestMapping("")
     public String list(Model model) {
-        model.addAttribute("branches", branchRepository.findAll());
+        model.addAttribute("person", personRepository.findAll());
 
         return "list";
     }
 
-    @RequestMapping(value = "trees")
-    public String listTreesByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
-        Iterable<Tree> trees;
+    @RequestMapping(value = "families")
+    public String listFamiliesByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
+        Iterable<Family> families;
         if (column.toLowerCase().equals("all")){
-            trees = treeRepository.findAll();
-            model.addAttribute("title", "All Trees");
+            families = familyRepository.findAll();
+            model.addAttribute("title", "All Families");
         } else {
-            trees = TreeData.findByColumnAndValue(column, value, treeRepository.findAll());
-            model.addAttribute("title", "Trees with " + columnChoices.get(column) + ": " + value);
+            families = FamilyData.findByColumnAndValue(column, value, familyRepository.findAll());
+            model.addAttribute("title", "Families with " + columnChoices.get(column) + ": " + value);
         }
-        model.addAttribute("trees", trees);
+        model.addAttribute("families", families);
 
 
-        return "list-trees";
+        return "list-families";
     }
 
 

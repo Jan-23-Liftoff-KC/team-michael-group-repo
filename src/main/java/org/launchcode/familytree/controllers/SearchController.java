@@ -5,6 +5,7 @@ import org.launchcode.familytree.models.Family;
 import org.launchcode.familytree.models.FamilyData;
 import org.launchcode.familytree.data.FamilyRepository;
 import org.launchcode.familytree.models.Person;
+import org.launchcode.familytree.models.PersonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,15 +31,15 @@ public class SearchController {
 
     @PostMapping("results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
-        Iterable<Family> family;
+        Iterable<Person> person;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
-            family = familyRepository.findAll();
+            person = personRepository.findAll();
         } else {
-            family = FamilyData.findByColumnAndValue(searchType, searchTerm, familyRepository.findAll());
+            person = PersonData.findByColumnAndValue(searchType, searchTerm, personRepository.findAll());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Persons with " + columnChoices.get(searchType) + ": " + searchTerm);
-        model.addAttribute("families", family);
+        model.addAttribute("persons", person);
 
         return "search";
     }

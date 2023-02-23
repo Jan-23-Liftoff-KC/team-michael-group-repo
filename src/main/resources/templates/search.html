@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-
+<nav th:replace = "fragments :: navbar"></nav>
 <div class="container body-content">
 
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
@@ -34,17 +34,17 @@
   <hr />
 
 
-  <table class="family-listing">
-    <tr th:each="family : ${families}">
+  <table class="person-listing">
+    <tr th:each="person : ${persons}">
       <td>
         <p>
-       Family Id:
-          <a th:href="@{'/view/' + ${family.id}}" th:text="${family.id}"></a>
+       Person Id:
+          <a th:href="@{'/view/' + ${person.id}}" th:text="${person.id}"></a>
         </p>
-        <p th:text="${'Name: ' + family.name}"></p>
+        <p th:text="${'Name: ' + person.lastName}"></p>
         <p>
           Person:
-          <a th:href="@{'/person/view/' + ${family.person.id}}" th:text="${family.person.name}"></a>
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}"></a>
         </p>
 
       </td>
@@ -55,3 +55,34 @@
 
 </body>
 </html>
+
+<!--<table class="job-listing">-->
+<!--    <tr th:each="job : ${jobs}">-->
+<!--        <td>-->
+<!--            <p>-->
+<!--                Job Id:-->
+<!--                <a th:href="@{'/view/' + ${job.id}}" th:text="${job.id}"></a>-->
+<!--            </p>-->
+<!--            <p th:text="${'Name: ' + job.name}"></p>-->
+<!--            <p>-->
+<!--                Employer:-->
+<!--                <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                Skills:-->
+<!--            <ul th:each="skill : ${job.skills}">-->
+<!--                <li>-->
+<!--                    <a th:href="@{'/skills/view/' + ${skill.id}}" th:text="${skill.name}"></a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            </p>-->
+
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
