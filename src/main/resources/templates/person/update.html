@@ -5,13 +5,14 @@
 <body class="container">
 <nav th:replace = "fragments :: navbar"></nav>
 <h3 class="pt-5">
-    Add a Person to Your Family Tree
+    Update Your Family Tree
 </h3>
 <p class="mb-3">Fill out everything that applies to your person and leave the rest blank.</p>
-<form method="post" action="/person/add">
+<form action="person/update" th:action="@{/person/update}" th:object="${person}" method="post">
+    <input type="hidden" name="personId" id="personId" th:value="${person.id}">
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">First Name
-            <input th:field="${person.firstName}" class="form-control" required>
+            <input th:field="${person.firstName}" class="form-control">
         </label>
         <p class="fs-6 text-danger" th:errors="${person.firstName}"></p>
         <label class="form-label mx-2">Middle Name
@@ -84,7 +85,7 @@
         </label>
     </div>
     <div class="form-group px-5">
-        <input type="submit" value="ADD PERSON" class="btn btn-secondary">
+        <input type="submit" value="UPDATE PERSON" class="btn btn-secondary">
     </div>
 </form>
 <footer th:replace = "fragments :: footer"></footer>

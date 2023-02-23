@@ -44,8 +44,38 @@ public class PersonController {
         return "redirect:";
     }
 
+    @GetMapping("update/{personId}")
+    public String renderUpdatePersonForm(Model model, @PathVariable int personId){
+        model.addAttribute("title", "Update Person");
+        model.addAttribute("persons", personRepository.findAll());
+        model.addAttribute("genders", Gender.values());
+        Optional<Person> currentPerson = personRepository.findById(personId);
+        if (currentPerson.isEmpty()) {
+            model.addAttribute("title", "Update Person");
+        } else {
+            Person person = currentPerson.get();
+            model.addAttribute("person", person);
+        }
+        return "person/update";
+    }
+
+    @PostMapping("update")
+    public String updatePerson(@ModelAttribute Person person, @RequestParam String personId) {
+        int id = Integer.parseInt(personId);
+        Optional<Person> optPerson = personRepository.findById(id);
+        Person aPerson;
+        if (optPerson.isEmpty()) {
+            return "person/update";
+        } else {
+            aPerson = optPerson.get();
+        }
+        personRepository.save(aPerson);
+//        personRepository.save(person);
+        return "redirect:/person";
+    }
+
     @GetMapping("view/{personId}")
-    public String displayPerson(Model model, @PathVariable int personId) {
+    public String displayPerson(Model model, @PathVariable Integer personId) {
         model.addAttribute("title", "View Person");
 
         Optional<Person> optPerson = personRepository.findById(personId);
