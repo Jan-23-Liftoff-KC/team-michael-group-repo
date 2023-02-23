@@ -37,10 +37,6 @@ let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 // test-data-eleven-person.json *
 // test-data-four-person.json
 
-//console.log(document.getElementById("treeData").innerHTML);
-//let treeData = JSON.parse(document.getElementById('treeData').innerHTML);
-//let treeData = document.getElementById('treeData').innerHTML;
-
 //d3.json(
 //  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-eleven-person.json"
 //)
