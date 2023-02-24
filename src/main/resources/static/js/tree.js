@@ -30,15 +30,19 @@ let svg = d3
 // TODO remove translate
 let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 
+// Container of Family Tree
+let viewBox = svg
+   .append("rect")
+   .attr("id", "toZoom")
+   .attr("width", viewBoxWidth)
+   .attr("height", viewBoxHeight);
+
 // Test data sets:
 // https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/
 // test-data-fifteen-person.json
 // test-data-thirteen-person.json
 // test-data-eleven-person.json *
 // test-data-four-person.json
-
-//let data = d3.json("http://localhost:8080/tree/data/").then(function(d) {
-//if d = '[]'} return )
 
 d3.json(
   "http://localhost:8080/tree/data/"
@@ -53,24 +57,46 @@ d3.json(
     buildTree(data);
   })
   .catch(function (error) {
-  let treeErrorMessage = "";
     // Do some error handling
+    let treeDataError = svg;
+    let treeErrorMessageString = "";
+    // If there is no root, the user is asked to add people to the tree
     if (error == 'Error: no root') {
-        treeErrorMessage = "Add people to your family tree!";
+        treeErrorMessageString = "Add people to your database so they show up here!";
+        treeDataError
+            .append("a")
+             .attr("href", function (d) {
+                return "/person/add/";
+             })
+             .attr("x", function (d) {
+                return "50%";
+             })
+             .attr("y", function (d) {
+                return "50%";
+             })
+             .append("text")
+             .text(treeErrorMessageString)
+             .attr("x", function (d) {
+                return "50%";
+             })
+             .attr("y", function (d) {
+                return "50%";
+             });
     } else {
-        treeErrorMessage = "Issue requesting tree information: " + error;
-    }
-    console.error(error);
+        treeErrorMessageString = "Issue requesting tree information (" + error + ")";
 
-    var treeDataError = svg
-      .append("text")
-      .text(treeErrorMessage)
-      .attr("x", function (d) {
-        return "50%";
-      })
-      .attr("y", function (d) {
-        return "50%";
-      });
+        treeDataError
+            .append("text")
+            .text(treeErrorMessageString)
+            .attr("x", function (d) {
+                return "50%";
+            })
+            .attr("y", function (d) {
+                return "50%";
+            });
+    }
+
+    console.error(error);
   });
 
 // Build tree
@@ -117,12 +143,7 @@ function buildTree(data) {
   // TODO Delete personCardLocation
   let personCardLocation = 0;
 
-  // Container of Family Tree
-  var viewBox = svg
-    .append("rect")
-    .attr("id", "toZoom")
-    .attr("width", viewBoxWidth)
-    .attr("height", viewBoxHeight);
+
 
   // Elbow Connectors
   // TODO Remove hardcoded paths from elbow connectors
