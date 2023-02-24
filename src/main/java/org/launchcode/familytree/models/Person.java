@@ -14,8 +14,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@DynamicInsert
-@DynamicUpdate
 @Entity
 public class Person {
     @Id

@@ -4,10 +4,13 @@ import org.launchcode.familytree.data.PersonRepository;
 import org.launchcode.familytree.models.Gender;
 import org.launchcode.familytree.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -59,20 +62,41 @@ public class PersonController {
         return "person/update";
     }
 
-    @PostMapping("update")
-    public String updatePerson(@ModelAttribute Person person, @RequestParam String personId) {
-        int id = Integer.parseInt(personId);
-        Optional<Person> optPerson = personRepository.findById(id);
-        Person aPerson;
-        if (optPerson.isEmpty()) {
-            return "person/update";
-        } else {
-            aPerson = optPerson.get();
+    @PostMapping("/update/{personId}")
+    public String updatePerson(@PathVariable("personId") int personId, @Valid Person person, BindingResult result, Model model){
+        if (result.hasErrors()){
+            return "person/add";
         }
-        personRepository.save(aPerson);
-//        personRepository.save(person);
-        return "redirect:/person";
+
+        Optional<Person> optPerson = personRepository.findById(personId);
+        Person currentPerson = optPerson.get();
+        model.addAttribute("person", currentPerson);
+        personRepository.save(currentPerson);
+        return "redirect:";
     }
+
+//    @GetMapping("/update")
+//    public ModelAndView updateProfileView(@RequestParam Integer personId){
+//        ModelAndView mav = new ModelAndView("update");
+//        if(personRepository.findById(personId).isPresent()){
+//            mav.addObject(personRepository.findById(personId).get());
+//        }
+//        return mav;
+//    }
+
+//    @PutMapping("/{personId}")
+//    public String updatePerson(@ModelAttribute Person person, @PathVariable("personId") int personId) {
+//        Optional<Person> optPerson = personRepository.findById(personId);
+//        Person aPerson;
+//        if (optPerson.isEmpty()) {
+//            return "person/update";
+//        } else {
+//            aPerson = optPerson.get();
+//            aPerson.setFirstName();
+//        }
+////        personRepository.save(person);
+//        return "redirect:";
+//    }
 
     @GetMapping("view/{personId}")
     public String displayPerson(Model model, @PathVariable Integer personId) {

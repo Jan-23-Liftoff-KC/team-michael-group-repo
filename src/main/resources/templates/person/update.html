@@ -8,8 +8,7 @@
     Update Your Family Tree
 </h3>
 <p class="mb-3">Fill out everything that applies to your person and leave the rest blank.</p>
-<form action="person/update" th:action="@{/person/update}" th:object="${person}" method="post">
-    <input type="hidden" name="personId" id="personId" th:value="${person.id}">
+<form action="#" th:action="@{/person/update/{personId}(personId=${person.id})}" th:object="${person}" method="post">
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">First Name
             <input th:field="${person.firstName}" class="form-control">
@@ -87,6 +86,7 @@
     <div class="form-group px-5">
         <input type="submit" value="UPDATE PERSON" class="btn btn-secondary">
     </div>
+    <input type="hidden" name="personId" id="personId" th:value="${person.id}">
 </form>
 <footer th:replace = "fragments :: footer"></footer>
 </body>
