@@ -49,11 +49,15 @@ public class PersonData {
             if (person.getLastName().toLowerCase().contains(lower_val)) {
                 results.add(person);
 
+            } else if (person.getFirstName().toString().toLowerCase().contains(lower_val)) {
+                results.add(person);
+
             } else if (person.getFamilyMembers().toString().toLowerCase().contains(lower_val)) {
                 results.add(person);
 
             } else if (person.toString().toLowerCase().contains(lower_val)) {
                 results.add(person);
+
             }
 
         }

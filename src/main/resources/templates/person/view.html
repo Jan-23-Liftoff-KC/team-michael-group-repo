@@ -27,16 +27,26 @@
                 <p class="lead my-4 text-start" th:text="${person.bio}">
                 </p>
             </div>
-            <div class="col-md">
-                <div class="card" style="width: 18rem;">
+            <div class="col-md py-3">
+                <div class="card mb-3" style="width: 18rem;">
                     <div class="card-header">
                         Important Dates
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item" th:text="'Birthday: ' + ${#dates.format(person.birthday, 'dd/MM/yyyy')}"></li>
-                        <li class="list-group-item" th:text="'Graduation: ' + ${#dates.format(person.graduation, 'dd/MM/yyyy')}"></li>
-                        <li class="list-group-item" th:text="'Union Date: ' + ${#dates.format(person.unionDate, 'dd/MM/yyyy')}"></li>
-                        <li class="list-group-item" th:text="'Birthdate: ' + ${#dates.format(person.deathDate, 'dd/MM/yyyy')}"></li>
+                        <li class="list-group-item" th:text="'Birthday: ' + ${#dates.format(person.birthday, 'MM/dd/yyyy')}"></li>
+                        <li class="list-group-item" th:if="${person.graduation}" th:text="'Graduation: ' + ${#dates.format(person.graduation, 'MM/dd/yyyy')}"></li>
+                        <li class="list-group-item" th:if="${person.unionDate}" th:text="'Union Date: ' + ${#dates.format(person.unionDate, 'MM/dd/yyyy')}"></li>
+                        <li class="list-group-item" th:if="${person.deathDate}" th:text="'Death Date: ' + ${#dates.format(person.deathDate, 'MM/dd/yyyy')}"></li>
+                    </ul>
+                </div>
+                <div class="card mt-3" style="width: 18rem;">
+                    <div class="card-header">
+                        Family Members
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:if="${person.parentId}" th:text="'Parent: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>
+                        <li class="list-group-item" th:if="${person.parentIdTwo}" th:text="'Parent: ' + ${parentTwo.firstName} + ' ' + ${parentTwo.middleName} + ' ' + ${parentTwo.lastName}"></li>
+                        <li class="list-group-item" th:if="${person.spouseId}" th:text="'Partner: ' + ${spouse.firstName} + ' ' + ${spouse.middleName} + ' ' + ${spouse.lastName}"></li>
                     </ul>
                 </div>
                 <div class="d-flex justify-content-start py-3 gap-3">
@@ -48,6 +58,7 @@
 
 </section>
 
+<div th:replace="fragments :: footerfix"></div>
 <footer th:replace = "fragments :: footer"></footer>
 
 </body>

@@ -5,6 +5,11 @@
 
 <nav th:replace = "fragments :: navbar"></nav>
 
+<section class="p-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="card bg-tertiary" style="margin-top:30px;">
+                <div class="card-body text-center">
 <form method="post">
     <div class="form-group">
         <label>Username
@@ -24,9 +29,15 @@
         </label>
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Register" />
+    <input type="submit" class="btn btn-secondary my-2" value="REGISTER" />
 </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<div th:replace="fragments :: footerfix"></div>
 <footer th:replace = "fragments :: footer"></footer>
 
 </body>

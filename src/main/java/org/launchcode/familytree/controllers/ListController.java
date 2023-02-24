@@ -1,8 +1,7 @@
 package org.launchcode.familytree.controllers;
 
 import org.launchcode.familytree.data.PersonRepository;
-import org.launchcode.familytree.models.Family;
-import org.launchcode.familytree.models.FamilyData;
+import org.launchcode.familytree.models.*;
 import org.launchcode.familytree.data.FamilyRepository;
 import org.launchcode.familytree.models.FamilyData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,8 @@ public class ListController {
 
     public ListController () {
 
-        columnChoices.put("all", "All");
-        columnChoices.put("person", "Person");
+        columnChoices.put("all", "First or Last Name");
+//        columnChoices.put("person", "Person");
 
 
     }
@@ -42,20 +41,20 @@ public class ListController {
         return "list";
     }
 
-    @RequestMapping(value = "families")
-    public String listFamiliesByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
-        Iterable<Family> families;
+    @RequestMapping(value = "person")
+    public String listPersonByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
+        Iterable<Person> person;
         if (column.toLowerCase().equals("all")){
-            families = familyRepository.findAll();
-            model.addAttribute("title", "All Families");
+            person = personRepository.findAll();
+            model.addAttribute("title", "All Persons");
         } else {
-            families = FamilyData.findByColumnAndValue(column, value, familyRepository.findAll());
-            model.addAttribute("title", "Families with " + columnChoices.get(column) + ": " + value);
+            person = PersonData.findByColumnAndValue(column, value, personRepository.findAll());
+            model.addAttribute("title", "Persons with " + columnChoices.get(column) + ": " + value);
         }
-        model.addAttribute("families", families);
+        model.addAttribute("persons", person);
 
 
-        return "list-families";
+        return "list-person";
     }
 
 

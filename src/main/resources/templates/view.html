@@ -3,10 +3,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
+<nav th:replace="fragments :: page-header"></nav>
+
 <body class="container  body-content">
 <h1 th:text="${'Family: ' + family.name}">Default Title</h1>
 
-<nav th:replace="fragments :: page-header"></nav>
+
 
 <div class="family-listing">
   <p th:text="${'ID: ' + family.id}"></p>

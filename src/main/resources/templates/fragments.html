@@ -6,7 +6,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 
     <script type = "text/javascript" th:src="@{js/script.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -20,7 +20,7 @@
             <img id="top" style="width: auto; height: 80px;" class="float-start" src="https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg" th:src="@{https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg}"/>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav ms-auto">
+                <ul th:unless="${session.isEmpty()}" class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a href = "/" class="nav-link">HOME</a>
                     </li>
@@ -31,19 +31,28 @@
                         <a href = "/search" class="nav-link">SEARCH</a>
                     </li>
                     <li class="nav-item">
+                        <a href = "/person" class="nav-link">ABOUT ME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href = "/person/add" class="nav-link">ADD PERSON</a>
+                    </li>
+                    <!-- FUTURE FEATURES
+                    <li class="nav-item">
                         <a href = "/forum" class="nav-link">FORUM</a>
                     </li>
                     <li class="nav-item">
                         <a href = "/notifications" class="nav-link">NOTIFICATIONS</a>
-                    </li>
+                    </li> -->
                 </ul>
-                <ul th:if="${session.isEmpty()}" class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
+                <!-- REDUNDANT BECAUSE OF LOGIN PAGE?
+                <ul th:if="${session.isEmpty()}" class="nav navbar-nav ms-auto">
+                    <li class="nav-item px-2">
                         <a href="/login" class="btn btn-secondary">LOG IN</a>
                     </li>
                 </ul>
-                <ul th:unless="${session.isEmpty()}" class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
+                -->
+                <ul th:unless="${session.isEmpty()}" class="nav navbar-nav">
+                    <li class="nav-item px-2">
                         <a href="/logout" class="btn btn-secondary">LOG OUT</a>
                     </li>
                 </ul>
@@ -51,8 +60,8 @@
         </div>
     </nav>
 
-
-<!-- FOOTER FRAGMENT -->
+<!-- FOOTER/FOOTER FIX FRAGMENTS -->
+    <div th:fragment = "footerfix" class="footerfix"></div>
     <footer th:fragment = "footer" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <div>
