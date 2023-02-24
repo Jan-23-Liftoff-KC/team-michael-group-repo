@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
   <head th:replace="fragments :: head"></head>
-  <link rel="stylesheet" type="text/css" href="/css/tree.css" />
+  <link rel="stylesheet" type="text/css" href="/css/tree.css" th:href="@{/css/tree.css}"/>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <body class="container">
     <nav th:replace="fragments :: navbar"></nav>
 
-    <br />
-
-    <br />
+    <br>
+    <br>
     <div id="treeArea"></div>
-    <br />
+    <br>
 
     <div id="treeControlsArea">
-      <button onclick="zoomIn()">Zoom in</button>
-      <button onclick="zoomOut()">Zoom out</button>
-      <button onclick="resetZoom()">Reset zoom</button>
-      <button onclick="panLeft()">Pan left</button>
-      <button onclick="panRight()">Pan right</button>
-      <button onclick="center()">Center</button>
+      <button onclick="zoomIn()">Zoom In ➕</button>
+      <button onclick="zoomOut()">Zoom Out ➖</button>
+      <button onclick="resetView()">Reset View ✴️️</button>
+      <button onclick="panUp()">Pan Up ⬆️</button>
+      <button onclick="panDown()">Pan Down ⬇️</button>
+      <button onclick="panLeft()">Pan Left ⬅️</button>
+      <button onclick="panRight()">Pan Right ➡️</button>
     </div>
 
+    <div th:replace="fragments :: footerfix"></div>
     <footer th:replace="fragments :: footer"></footer>
 
     <script src="/js/tree.js"></script>

@@ -11,7 +11,8 @@
   display: flex;
   justify-content: center;
 }
-.shape {
+
+.personCard {
   fill: white;
   stroke: brown;
   width: 120px;
@@ -28,9 +29,8 @@ text {
   /* dominant-baseline: middle; */
   text-anchor: middle;
 }
-image {
-  width: 60px;
-  height: 40px;
+.personIcon {
+
 }
 .hide {
   visibility: hidden;
