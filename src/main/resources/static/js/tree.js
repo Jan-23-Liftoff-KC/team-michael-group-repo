@@ -38,10 +38,10 @@ let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 // test-data-four-person.json
 
 //d3.json(
-//  "https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-eleven-person.json"
+//  "http://localhost:8080/tree/data/"
 //)
 d3.json(
-  "http://localhost:8080/tree/all"
+"https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-four-person.json"
 )
   .then(function (data) {
     // If data is fetched, draw the tree svg
@@ -73,10 +73,12 @@ function buildTree(data) {
   let dataStructure = d3
     .stratify()
     .id(function (d) {
-      return d.child;
+      return d.id;
+//      return d.child;
     })
     .parentId(function (d) {
-      return d.parent;
+      return d.parentId;
+      //return d.parent;
     })(data);
 
   // Define the tree structure
@@ -253,7 +255,7 @@ function buildTree(data) {
     .enter()
     .append("text")
     .text(function (d) {
-      return d.data.child;
+      return d.data.firstName + ' ' + d.data.lastName;
     })
     .attr("x", function (d) {
       return d.x + 20 - personCardLocation;
