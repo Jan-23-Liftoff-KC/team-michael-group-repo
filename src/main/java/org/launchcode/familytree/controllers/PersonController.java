@@ -118,7 +118,7 @@ public class PersonController {
         if (optParentTwo.isEmpty()) {
             model.addAttribute("title", "View Person");
         } else {
-            Person parentTwo = optParent.get();
+            Person parentTwo = optParentTwo.get();
             model.addAttribute("parentTwo", parentTwo);
         }
 
@@ -126,7 +126,7 @@ public class PersonController {
         if (optSpouse.isEmpty()) {
             model.addAttribute("title", "View Person");
         } else {
-            Person spouse = optParent.get();
+            Person spouse = optSpouse.get();
             model.addAttribute("spouse", spouse);
         }
         return "person/view";
