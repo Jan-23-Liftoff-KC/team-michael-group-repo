@@ -37,12 +37,15 @@ let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 // test-data-eleven-person.json *
 // test-data-four-person.json
 
-//d3.json(
-//  "http://localhost:8080/tree/data/"
-//)
+//let data = d3.json("http://localhost:8080/tree/data/").then(function(d) {
+//if d = '[]'} return )
+
 d3.json(
-"https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-four-person.json"
+  "http://localhost:8080/tree/data/"
 )
+//d3.json(
+//"https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-four-person.json"
+//)
   .then(function (data) {
     // If data is fetched, draw the tree svg
     console.log("Persons in js:")
@@ -50,12 +53,18 @@ d3.json(
     buildTree(data);
   })
   .catch(function (error) {
+  let treeErrorMessage = "";
     // Do some error handling
-    console.error("Error in data request.");
+    if (error == 'Error: no root') {
+        treeErrorMessage = "Add people to your family tree!";
+    } else {
+        treeErrorMessage = "Issue requesting tree information: " + error;
+    }
+    console.error(error);
 
     var treeDataError = svg
       .append("text")
-      .text("Error requesting tree information :(")
+      .text(treeErrorMessage)
       .attr("x", function (d) {
         return "50%";
       })
