@@ -11,8 +11,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -47,14 +51,15 @@ public class PersonController {
         return "redirect:";
     }
 
-    @GetMapping("update/{personId}")
-    public String renderUpdatePersonForm(Model model, @PathVariable int personId){
+    @GetMapping("update/{id}")
+    public String renderUpdatePersonForm(Model model, @PathVariable int id, HttpServletRequest request){
         model.addAttribute("title", "Update Person");
+        model.addAttribute("actionUrl", request.getRequestURI());
         model.addAttribute("persons", personRepository.findAll());
         model.addAttribute("genders", Gender.values());
-        Optional<Person> currentPerson = personRepository.findById(personId);
+        Optional<Person> currentPerson = personRepository.findById(id);
         if (currentPerson.isEmpty()) {
-            model.addAttribute("title", "Update Person");
+            model.addAttribute("title", "Invalid Person");
         } else {
             Person person = currentPerson.get();
             model.addAttribute("person", person);
@@ -62,17 +67,39 @@ public class PersonController {
         return "person/update";
     }
 
-    @PostMapping("/update/{personId}")
-    public String updatePerson(@PathVariable("personId") int personId, @Valid Person person, BindingResult result, Model model){
-        if (result.hasErrors()){
-            return "person/add";
+    @PostMapping(value = "update/{id}")
+    public String processUpdatePersonForm(@Valid @ModelAttribute Person person, RedirectAttributes model, Errors errors,
+                                          @RequestParam(name = "id") String id, @RequestParam(name = "firstName", required = false) String firstName,
+                                          @RequestParam(name = "middleName", required = false) String middleName, @RequestParam(name = "lastName", required = false) String lastName,
+                                          @RequestParam(name = "gender", required = false) Gender gender, @RequestParam(name = "bio", required = false) String bio,
+                                          @RequestParam(name = "graduation", required = false) String graduation, @RequestParam(name = "unionDate", required = false) String unionDate,
+                                          @RequestParam(name = "deathDate", required = false) String deathDate, @RequestParam(name = "parentId", required = false) String parentId,
+                                          @RequestParam(name = "parentIdTwo", required = false) String parentIdTwo, @RequestParam(name = "spouseId", required = false) String spouseId){
+        if (errors.hasErrors()) {
+            return "person/update";
         }
 
-        Optional<Person> optPerson = personRepository.findById(personId);
+        int i = Integer.parseInt(id);
+        int parId = Integer.parseInt(parentId);
+        int parIdTwo = Integer.parseInt(parentIdTwo);
+        int spId = Integer.parseInt(spouseId);
+//        Date grad = new SimpleDateFormat("MM/dd/yyyy").parse(graduation);
+        Optional<Person> optPerson = personRepository.findById(i);
         Person currentPerson = optPerson.get();
-        model.addAttribute("person", currentPerson);
+        model.addAttribute(currentPerson);
+        currentPerson.setFirstName(firstName);
+        currentPerson.setMiddleName(middleName);
+        currentPerson.setLastName(lastName);
+        currentPerson.setGender(gender);
+        currentPerson.setParentId(parId);
+        currentPerson.setParentIdTwo(parIdTwo);
+        currentPerson.setSpouseId(spId);
+//        currentPerson.setGraduation(graduation);
+//        currentPerson.setUnionDate(unionDate);
+//        currentPerson.setDeathDate(deathDate);
+        currentPerson.setBio(bio);
         personRepository.save(currentPerson);
-        return "redirect:";
+        return "redirect:/person/view/" + currentPerson.getId();
     }
 
 //    @GetMapping("/update")

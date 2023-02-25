@@ -8,7 +8,8 @@
     Update Your Family Tree
 </h3>
 <p class="mb-3">Fill out everything that applies to your person and leave the rest blank.</p>
-<form action="#" th:action="@{/person/update/{personId}(personId=${person.id})}" th:object="${person}" method="post">
+<form method="post" th:action="${actionUrl}" th:object="${person}">
+    <input type="hidden" th:field="*{id}" />
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">First Name
             <input th:field="${person.firstName}" class="form-control">
@@ -53,7 +54,7 @@
     <div>
         <div class="form-group mb-3 px-5">
             <p class="mb-3">Select your family members</p>
-            <label class="form-label mx-2">Parent </label>
+            <label class="form-label mx-2">Child </label>
             <select th:field="${person.parentId}">
                 <option class="dropdown-item" value="0">Please Select</option>
                 <option class="dropdown-item" name="parentId" th:each="person : ${persons}" th:value="${person.id}" th:text="${person.firstName} + ' ' + ${person.lastName}"></option>
@@ -61,7 +62,7 @@
             <p class="fs-6 text-danger" th:errors="${person.parentId}"></p>
         </div>
         <div class="form-group mb-3 px-5">
-            <label class="form-label mx-2">Parent </label>
+            <label class="form-label mx-2">Child </label>
             <select th:field="${person.parentIdTwo}">
                 <option class="dropdown-item" value="0">Please Select</option>
                 <option class="dropdown-item" name="parentIdTwo" th:each="person : ${persons}" th:value="${person.id}" th:text="${person.firstName} + ' ' + ${person.lastName}"></option>
@@ -86,7 +87,7 @@
     <div class="form-group px-5">
         <input type="submit" value="UPDATE PERSON" class="btn btn-secondary">
     </div>
-    <input type="hidden" name="personId" id="personId" th:value="${person.id}">
+<!--    <input type="hidden" name="personId" id="personId" th:value="${person.id}">-->
 </form>
 <footer th:replace = "fragments :: footer"></footer>
 </body>
