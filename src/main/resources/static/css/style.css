@@ -3,6 +3,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: #00aa60;
 }
 footer{
     margin-top: auto;
@@ -10,3 +11,22 @@ footer{
 .footerfix {
     height:4rem;
 }
+.nav-link:hover {
+  color: #f68b1f;
+}
+.container {
+max-width: 100%;
+padding: 0;
+}
+.myphotodiv {
+width: 100%;
+max-width: 100%;
+
+}
+.myphotoimg {
+width: 100%;
+}
+
+
+
+
