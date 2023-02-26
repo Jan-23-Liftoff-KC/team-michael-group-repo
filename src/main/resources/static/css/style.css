@@ -26,7 +26,19 @@ max-width: 100%;
 .myphotoimg {
 width: 100%;
 }
+.btn {
+	padding: 12px 28px 11px 28px;
+	background-color: #074560;
+	font-size: 18px;
+	font-weight: 600;
+	border-radius: 15px;
+    display: inline-block;
 
+}
+.btn:hover{
+	background: #f68b1f;
+
+}
 
 
 
