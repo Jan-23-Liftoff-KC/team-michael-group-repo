@@ -3,7 +3,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: #00aa60;
+
 }
 footer{
     margin-top: auto;
