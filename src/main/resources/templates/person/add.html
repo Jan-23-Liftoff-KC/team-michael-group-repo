@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace = "fragments :: head"></head>
 
-<body class="container">
+<body>
 <nav th:replace = "fragments :: navbar"></nav>
-<h3 class="pt-5">
-    Add a Person to Your Family Tree
-</h3>
-<p class="mb-3">Fill out everything that applies to your person and leave the rest blank.</p>
+
+<div class="container body-content">
+    <h3 class="pt-5">
+        Add a Person to Your Family Tree
+    </h3>
+    <p class="mb-3">Fill out everything that applies to your person and leave the rest blank.</p>
 <form method="post" action="/person/add">
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">First Name
@@ -87,6 +89,7 @@
         <input type="submit" value="ADD PERSON" class="btn btn-secondary">
     </div>
 </form>
+</div>
 <div th:replace="fragments :: footerfix"></div>
 <footer th:replace = "fragments :: footer"></footer>
 </body>
