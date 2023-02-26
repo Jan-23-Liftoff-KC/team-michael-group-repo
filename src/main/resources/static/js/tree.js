@@ -101,19 +101,15 @@ d3.json(
 
 // Build tree
 function buildTree(data) {
-//  console.log("Data:");
-//  console.log(data);
 
   // Stratify data
   let dataStructure = d3
     .stratify()
     .id(function (d) {
       return d.id;
-//      return d.child;
     })
     .parentId(function (d) {
       return d.parentId;
-      //return d.parent;
     })(data);
 
   // Define the tree structure
@@ -132,25 +128,18 @@ function buildTree(data) {
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
 
-//  console.log("information");
-//  console.log(information);
-//  console.log("information.descendants");
-//  console.log(information.descendants());
-//  console.log("links");
-//  console.log(information.links());
-
   // For quickly adjusting person cards in the x
   // TODO Delete personCardLocation
   let personCardLocation = 0;
-
-
 
   // Elbow Connectors
   // TODO Remove hardcoded paths from elbow connectors
   let connections = gContainer
     .append("g")
+    .classed("pathGroup", true)
     .selectAll("path")
     .data(information.links());
+
   connections
     .enter()
     .append("path")
@@ -168,13 +157,13 @@ function buildTree(data) {
     });
 
   // Rectangles will become Person cards (Name, age, picture, etc.)
-
   let rectangles = gContainer
     .append("g")
+    .classed("rectangleGroup", true)
     .selectAll("a, rect")
     .data(information.descendants());
 
-// rect person card
+// Rect person card
   rectangles
     .enter()
     .append("a")
@@ -191,50 +180,41 @@ function buildTree(data) {
     });
 
     // TODO d3 bootstrap card is here
-//    rectangles
-//      .enter()
-//      .append('foreignObject')
-//      .attr("x", function (d) {
-//        return d.x - 60 - personCardLocation;
-//      })
-//      .attr("y", function (d) {
-//        return treeHeight - d.y - 20; //or y - x/3.236
-//      })
-//      .attr("width", "400")
-//      .attr("height", "200")
-//      .each(function(d) {
-//        d3.select(this).html(
-//        `<div class="card mb-3" style="max-width: 350px;">
-//                 <div class="row align-items-center g-0">
-//                   <div class="col-md-4">
-//                     <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
-//                   </div>
-//                   <div class="col-md-8">
-//                     <div class="card-body">
-//                       <h5 class="card-title">ALongFirstName<br>ALongerLastName</h5>
-//                       <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>`)
-//      });
+    rectangles
+      .enter()
+      .append('foreignObject')
+      .attr("x", function (d) {
+        return d.x - 60 - personCardLocation;
+      })
+      .attr("y", function (d) {
+        return treeHeight - d.y - 20; //or y - x/3.236
+      })
+      .attr("width", "400")
+      .attr("height", "200")
+      .each(function(d) {
+        d3.select(this).html(
+        `<p>this is a test</p>`)
+      });
 
-  // Spouses
-  // let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
-  // spouseRectangles.enter().append("rect")
-  //   .attr("x", function(d){return d.x + 60 - personCardLocation})
-  //   .attr("y", function(d){return d.y - 20}) //or y - x/3.236
-  //   .classed("hide", function (d) {
-  //     if(d.data.spouse == undefined)
-  //       return true;
-  //     else
-  //       return false;
-  //   });
+//      <div class="card mb-3" style="max-width: 350px;">
+//                       <div class="row align-items-center g-0">
+//                         <div class="col-md-4">
+//                           <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
+//                         </div>
+//                         <div class="col-md-8">
+//                           <div class="card-body">
+//                             <h5 class="card-title">ALongFirstName<br>ALongerLastName</h5>
+//                             <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
+//                           </div>
+//                         </div>
+//                       </div>
+//                     </div>
 
   // Pictures
   // TODO change "image" tag to "img"
   let personIcons = gContainer
     .append("g")
+    .classed("personIconGroup", true)
     .selectAll("image")
     .data(information.descendants());
 
@@ -257,27 +237,10 @@ function buildTree(data) {
     .attr("width", personIconWidth)
     .attr("height", personIconHeight);
 
-//  // Name link text, with link to Person page
-//    let names = gContainer
-//      .append("g")
-//      .selectAll("text")
-//      .data(information.descendants());
-//    names
-//      .enter()
-//      .append("text")
-//      .text(function (d) {
-//        return d.data.child;
-//      })
-//      .attr("x", function (d) {
-//        return d.x + 20 - personCardLocation;
-//      })
-//      .attr("y", function (d) {
-//        return treeHeight - d.y + 5;
-//      });
-
   // Name text
   let names = gContainer
     .append("g")
+    .classed("textGroup", true)
     .selectAll("text")
     .data(information.descendants());
 
@@ -295,6 +258,18 @@ function buildTree(data) {
     });
 }
 
+// Spouses
+// let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
+// spouseRectangles.enter().append("rect")
+//   .attr("x", function(d){return d.x + 60 - personCardLocation})
+//   .attr("y", function(d){return d.y - 20}) //or y - x/3.236
+//   .classed("hide", function (d) {
+//     if(d.data.spouse == undefined)
+//       return true;
+//     else
+//       return false;
+//   });
+
 // Zoom
 let zoom = d3.zoom().scaleExtent([0.25, 5]).on("zoom", handleZoom);
 
@@ -303,7 +278,7 @@ function initZoom() {
 }
 
 function handleZoom(e) {
-  d3.select("svg g").attr("transform", e.transform);
+  d3.select("g").attr("transform", e.transform);
 }
 
 function zoomIn() {
