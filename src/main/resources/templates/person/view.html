@@ -18,7 +18,6 @@
                         <h2 class="card-title mb-3" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}">
                             Default Title
                         </h2>
-                        <a href="#" class="btn btn-primary">Uploads</a>
                     </div>
                 </div>
             </div>
@@ -44,13 +43,13 @@
                         Family Members
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item" th:if="${person.parentId}" th:text="'Parent: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>
-                        <li class="list-group-item" th:if="${person.parentIdTwo}" th:text="'Parent: ' + ${parentTwo.firstName} + ' ' + ${parentTwo.middleName} + ' ' + ${parentTwo.lastName}"></li>
+                        <li class="list-group-item" th:if="${person.parentId}" th:text="'Child: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>
+                        <li class="list-group-item" th:if="${person.parentIdTwo}" th:text="'Child: ' + ${parentTwo.firstName} + ' ' + ${parentTwo.middleName} + ' ' + ${parentTwo.lastName}"></li>
                         <li class="list-group-item" th:if="${person.spouseId}" th:text="'Partner: ' + ${spouse.firstName} + ' ' + ${spouse.middleName} + ' ' + ${spouse.lastName}"></li>
                     </ul>
                 </div>
                 <div class="d-flex justify-content-start py-3 gap-3">
-                    <button class="btn btn-primary btn">Update</button>
+                    <a th:href="@{'/person/update/' + ${person.id}}" role="button" class="btn btn-secondary btn">UPDATE</a>
                 </div>
             </div>
         </div>
