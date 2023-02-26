@@ -16,12 +16,12 @@
 <body>
 
 <!-- NAVBAR FRAGMENT -->
-    <nav th:fragment = "navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <img id="top" style="width: auto; height: 80px;" class="float-start" src="https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg" th:src="@{https://bmsholdingsgroup.com/wp-content/uploads/2023/01/Famliy-Tree-Logo-V1.jpg}"/>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navmenu">
-                <ul th:unless="${session.isEmpty()}" class="navbar-nav ms-auto">
+            <button th:unless="${session.isEmpty()}" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
+            <div  th:unless="${session.isEmpty()}" class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a href = "/" class="nav-link">HOME</a>
                     </li>
