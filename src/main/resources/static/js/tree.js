@@ -193,7 +193,19 @@ function buildTree(data) {
       .attr("height", "200")
       .each(function(d) {
         d3.select(this).html(
-        `<p>this is a test</p>`)
+      `
+                       <div class="row align-items-center g-0">
+                         <div class="col-md-4">
+                           <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
+                         </div>
+                         <div class="col-md-8">
+                           <div class="card-body">
+                             <h5 class="card-title">` + d.data.firstName + `<br>` + d.data.lastName + `</h5>
+                             <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
+                           </div>
+                         </div>
+                       </div>
+                     `)
       });
 
 //      <div class="card mb-3" style="max-width: 350px;">
