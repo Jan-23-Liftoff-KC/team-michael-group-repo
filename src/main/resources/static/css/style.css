@@ -73,6 +73,16 @@ max-width: 25%;
     font-size: 20pt;
 }
 
+.wrapper-login {
+    width: 100%;
+    padding: 10px 40px 10px 20px;
+    margin: 10px;
+    border: 5px dark blue solid;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 15pt;
+}
+
 .centeredTable {
     margin-left: auto;
     margin-right: auto;

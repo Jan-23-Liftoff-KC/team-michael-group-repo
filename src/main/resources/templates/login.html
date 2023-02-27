@@ -15,14 +15,15 @@
                 <div class="card-body text-center">
                     <form method="post">
                         <div class="form-group">
-                            <label th:for="username">Username
-                                <input class="form-control" th:field="${loginFormDTO.username}">
+<!--                            <label th:for="username">Username-->
+                                <input class="wrapper-login" placeholder="Username" th:field="${loginFormDTO.username}">
                             </label>
                             <p class="error" th:errors="${loginFormDTO.username}"></p>
                         </div>
                         <div class="form-group">
-                            <label>Password
-                                <input class="form-control" th:field="${loginFormDTO.password}" type="password">
+<!--                            <label>Password-->
+<!--                                <input class="form-control" th:field="${loginFormDTO.password}" type="password">-->
+                                <input class="wrapper-login" placeholder="Password" th:field="${loginFormDTO.password}" type="password">
                             </label>
                             <p class="error" th:errors="${loginFormDTO.password}"></p>
                         </div>
