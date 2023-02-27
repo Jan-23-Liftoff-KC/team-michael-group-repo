@@ -173,10 +173,12 @@ function buildTree(data) {
     .append("rect")
     .classed("personCard", true)
     .attr("x", function (d) {
-      return d.x - 60 - personCardLocation;
+      return d.x;
+//      return d.x - 60 - personCardLocation;
     })
     .attr("y", function (d) {
-      return treeHeight - d.y - 20; //or y - x/3.236
+      return d.y; //or y - x/3.236
+//      return treeHeight - d.y - 20; //or y - x/3.236
     });
 
     // TODO d3 bootstrap card is here
@@ -184,10 +186,12 @@ function buildTree(data) {
       .enter()
       .append('foreignObject')
       .attr("x", function (d) {
-        return d.x - 60 - personCardLocation;
+        return d.x;
+//        return d.x - 60 - personCardLocation;
       })
       .attr("y", function (d) {
-        return treeHeight - d.y - 20; //or y - x/3.236
+        return d.y; //or y - x/3.236
+//        return treeHeight - d.y - 20; //or y - x/3.236
       })
       .attr("width", "400")
       .attr("height", "200")
