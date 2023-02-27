@@ -23,6 +23,18 @@ footer{
    padding: 0;
    margin:auto;
 }
+
+.container3 {
+   max-width: 50%;
+   padding: 0;
+   margin:auto;
+}
+
+.container4 {
+   max-width: 60%;
+   padding: 0;
+   margin:auto;
+}
 .myphotodiv {
 width: 100%;
 max-width: 100%;
@@ -52,9 +64,25 @@ width: 100%;
 max-width: 25%;
 }
 
+.wrapper {
+    width: 85%;
+    padding: 15px 20px;
+    border: 5px dark blue solid;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 20pt;
+}
+
 .centeredTable {
     margin-left: auto;
     margin-right: auto;
+}
+
+.container body-content {
+   max-width: 30%;
+   padding: 0;
+   margin:auto;
+
 }
 
 .body-content {

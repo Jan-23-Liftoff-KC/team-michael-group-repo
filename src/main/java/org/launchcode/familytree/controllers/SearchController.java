@@ -33,7 +33,7 @@ public class SearchController {
             person = PersonData.findByColumnAndValue(searchType, searchTerm, personRepository.findAll());
         }
         model.addAttribute("columns", columnChoices);
-        model.addAttribute("title", "Persons with " + columnChoices.get(searchType) + ": " + searchTerm);
+        model.addAttribute("title", "Search Results " + columnChoices.get(searchType) + ": " + searchTerm);
         model.addAttribute("persons", person);
 
         return "search";
