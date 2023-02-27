@@ -17,8 +17,8 @@ const personCard = {
     marginWidth: 50
 };
 
-const personCardWidth = 120;
-const personCardHeight = 45;
+const personCardWidth = 300;
+const personCardHeight = 100;
 
 let svg = d3
   .select("#treeArea")
@@ -179,7 +179,10 @@ function buildTree(data) {
     .attr("y", function (d) {
       return d.y; //or y - x/3.236
 //      return treeHeight - d.y - 20; //or y - x/3.236
-    });
+    })
+    .attr("rx","10px")
+    .attr("ry","10px")
+    .attr("stroke-linejoin","round");
 
     // TODO d3 bootstrap card is here
     rectangles
@@ -190,15 +193,14 @@ function buildTree(data) {
 //        return d.x - 60 - personCardLocation;
       })
       .attr("y", function (d) {
-        return d.y; //or y - x/3.236
+        return d.y + 5; // 5 centers on the
 //        return treeHeight - d.y - 20; //or y - x/3.236
       })
       .attr("width", "400")
-      .attr("height", "200")
+      .attr("height", "100")
       .each(function(d) {
         d3.select(this).html(
-      `
-                       <div class="row align-items-center g-0">
+                    `<div class="row align-items-center g-0">
                          <div class="col-md-4">
                            <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
                          </div>
@@ -209,8 +211,8 @@ function buildTree(data) {
                            </div>
                          </div>
                        </div>
-                     `)
-      });
+                    `)
+       });
 
 //      <div class="card mb-3" style="max-width: 350px;">
 //                       <div class="row align-items-center g-0">
@@ -227,52 +229,51 @@ function buildTree(data) {
 //                     </div>
 
   // Pictures
-  // TODO change "image" tag to "img"
-  let personIcons = gContainer
-    .append("g")
-    .classed("personIconGroup", true)
-    .selectAll("image")
-    .data(information.descendants());
-
-  personIcons
-    .enter()
-    .append("image")
-    .classed("personIcon", true)
-    .attr("alt", function (d) {
-      return d.data.child + " icon"
-    })
-    .attr("href", function (d) {
-      return d.data.icon;
-    })
-    .attr("x", function (d) {
-      return d.x - 65 - personCardLocation;
-    })
-    .attr("y", function (d) {
-      return treeHeight - d.y - 17;
-    })
-    .attr("width", personIconWidth)
-    .attr("height", personIconHeight);
-
-  // Name text
-  let names = gContainer
-    .append("g")
-    .classed("textGroup", true)
-    .selectAll("text")
-    .data(information.descendants());
-
-  names
-    .enter()
-    .append("text")
-    .text(function (d) {
-      return d.data.firstName + ' ' + d.data.lastName;
-    })
-    .attr("x", function (d) {
-      return d.x + 20 - personCardLocation;
-    })
-    .attr("y", function (d) {
-      return treeHeight - d.y + 5;
-    });
-}
+//  let personIcons = gContainer
+//    .append("g")
+//    .classed("personIconGroup", true)
+//    .selectAll("image")
+//    .data(information.descendants());
+//
+//  personIcons
+//    .enter()
+//    .append("image")
+//    .classed("personIcon", true)
+//    .attr("alt", function (d) {
+//      return d.data.child + " icon"
+//    })
+//    .attr("href", function (d) {
+//      return d.data.icon;
+//    })
+//    .attr("x", function (d) {
+//      return d.x - 65 - personCardLocation;
+//    })
+//    .attr("y", function (d) {
+//      return treeHeight - d.y - 17;
+//    })
+//    .attr("width", personIconWidth)
+//    .attr("height", personIconHeight);
+//
+//  // Name text
+//  let names = gContainer
+//    .append("g")
+//    .classed("textGroup", true)
+//    .selectAll("text")
+//    .data(information.descendants());
+//
+//  names
+//    .enter()
+//    .append("text")
+//    .text(function (d) {
+//      return d.data.firstName + ' ' + d.data.lastName;
+//    })
+//    .attr("x", function (d) {
+//      return d.x + 20 - personCardLocation;
+//    })
+//    .attr("y", function (d) {
+//      return treeHeight - d.y + 5;
+//    });
+  }
 
 // Spouses
 // let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
