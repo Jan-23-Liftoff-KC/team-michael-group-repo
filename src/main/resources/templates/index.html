@@ -3,45 +3,45 @@
 <head th:replace = "fragments :: head"></head>
 <body class="container">
 
-    <nav th:replace = "fragments :: navbar"></nav>
+<nav th:replace = "fragments :: navbar"></nav>
+<div class="myphotodiv">
+    <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Family-Tree-Banner-V2.jpg" class="myphotoimg">
+</div>
+<!-- Boxes -->
 
-    <!-- Boxes -->
-
-    <section class="p-5">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md">
-                    <div class="card bg-tertiary" style="margin-top:30px;">
-                        <div class="card-body text-center">
-                            <h3 class="card-title mb-3">
-                                Why start a tree?
-                            </h3>
-                            <p class="card-text">
-                                Curious about where to start, or WHY even? Call up your eldest relatives to get some stories
-                                about your folks. Then get some details about siblings, cousins, second-cousins and whomever
-                                else comes up in their stories. Then let's map it out! Doesn't that sound fun?
-                            </p>
-                            <a href="/person" class="btn btn-secondary">START A TREE</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="card bg-tertiary" style="margin-top:30px;">
-                        <div class="card-body text-center">
-                            <h3 class="card-title mb-3">
-                                Let's find someone.
-                            </h3>
-                            <p class="card-text">
-                                Looking for someone in particular? Enter their details and let's see what we come up with!
-                            </p>
-                            <a href="/search" class="btn btn-secondary">SEARCH</a>
-                        </div>
+<section class="p-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md">
+                <div class="card bg-tertiary" style="margin-top:30px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">
+                            Why start a tree?
+                        </h3>
+                        <p class="card-text">
+                            It can be hard organize your family history. We can help you manage your memories.
+                        </p>
+                        <a href="/person" class="btn btn-secondary">START A TREE</a>
                     </div>
                 </div>
             </div>
+            <div class="col-md">
+                <div class="card bg-tertiary" style="margin-top:30px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">
+                            Let's find someone.
+                        </h3>
+                        <p class="card-text">
+                            Looking for someone in particular? Enter their name and let's see what we come up with!
+                        </p>
+                        <a href="/search" class="btn btn-secondary">SEARCH</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <div class="row text-center">
-                <div class="col-md">
+        <div class="row text-center">
+            <div class="col-md">
                 <div class="card bg-tertiary" style="margin-top:30px;">
                     <div class="card-body text-center">
                         <h3 class="card-title mb-3">
@@ -59,14 +59,14 @@
                         <a href="/tree" class="btn btn-secondary">VIEW MY TREE</a>
                     </div>
                 </div>
-                </div>
             </div>
-
         </div>
-    </section>
 
-    <div th:replace="fragments :: footerfix"></div>
-    <footer th:replace = "fragments :: footer"></footer>
+    </div>
+</section>
+
+<div th:replace="fragments :: footerfix"></div>
+<footer th:replace = "fragments :: footer"></footer>
 
 </body>
 </html>
