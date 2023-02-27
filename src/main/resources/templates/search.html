@@ -3,17 +3,21 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <nav th:replace = "fragments :: navbar"></nav>
+<div class="myphotodiv">
+  <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Search-Page.jpg" class="myphotoimg">
+</div>
 <div class="container body-content">
 
-  <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+  <h1 class="container3" th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <form th:action="@{/search/results}" method = "post">
-    <h2>Search by:</h2>
+  <form class="container4"th:action="@{/search/results}" method = "post">
+
 
     <p>
+<!--    <h2 >Search by First or Last Name:</h2>-->
             <span th:each="column : ${columns}">
                 <input
-                        type="radio"
+                        type="hidden"
                         name="searchType"
                         th:id="${column.key}"
                         th:value="${column.key}"
@@ -24,11 +28,12 @@
     </p>
 
     <p>
-      <label for="searchTerm">Keyword:</label>
-      <input type="text" name="searchTerm" id="searchTerm" />
+<!--      <label for="searchTerm">Search by First or Last Name:</label>-->
+      <input type="text" class="wrapper" placeholder="Please type First or Last Name" name="searchTerm" id="searchTerm" />
+      <input type="submit" class="btn btn-secondary my-2" value="Search" />
     </p>
 
-    <input type="submit" value="Search" />
+
   </form>
 
   <hr />
@@ -38,13 +43,16 @@
     <tr th:each="person : ${persons}">
       <td>
         <p>
-          Person Id:
-          <a th:href="@{'/view/' + ${person.id}}" th:text="${person.id}"></a>
-        </p>
-        <p th:text="${'Name: ' + person.lastName}"></p>
-        <p>
           Person:
           <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}"></a>
+        </p>
+        <p>
+          Birth Date:
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.birthday}"></a>
+        </p>
+        <p>
+          Death Date:
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.deathDate}"></a>
         </p>
 
 
