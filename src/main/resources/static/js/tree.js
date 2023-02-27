@@ -10,12 +10,7 @@ const dy = viewBoxWidth / 6;
 
 const margin = ({top: 10, right: 120, bottom: 10, left: 40});
 
-const personCard = {
-    width: 120,
-    height: 45,
-    marginHeight: 180,
-    marginWidth: 50
-};
+
 
 const personCardWidth = 300;
 const personCardHeight = 100;
@@ -97,6 +92,19 @@ d3.json(
 // Build tree
 function buildTree(data) {
 
+    // Define the tree structure
+    // TODO Make tree structure dynamic
+    let treeWidth = 650;
+
+    //let treeHeight = treeHeight = d.height * (personCardDimensions.height + personCardDimensions.marginHeight);
+
+    const personCardDimensions = {
+        width: 279, // 275 + 4
+        height: 114, // 110 + 4
+        marginHeight: 279 * .5, // 279 * .5
+        marginWidth: 50, //
+    };
+
   // Stratify data
   let dataStructure = d3
     .stratify()
@@ -107,49 +115,48 @@ function buildTree(data) {
       return d.parentId;
     })(data);
 
-  // Define the tree structure
-  // TODO Make tree structure dynamic
-  let treeWidth = 650;
-  let treeHeight = 300;
-
   // TODO Add node sizes and node margins
   let treeStructure = d3
     .tree()
+    .nodeSize([personCardDimensions.width, personCardDimensions.height + personCardDimensions.marginHeight])
     .separation(function (a, b) {
-      return a.parent === b.parent ? 2 : 2;
-    })
-    .size([treeWidth, treeHeight]);
+      return a.parent === b.parent ? 2 : 1;
+    });
+//    .separation(function (a, b) {
+//      return a.parent === b.parent ? 2 : 2;
+//    });
+    //.size([treeWidth, treeHeight]);
 
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
+  let treeHeight  = dataStructure.height * (personCardDimensions.height + personCardDimensions.marginHeight);
+  console.log(treeHeight);
 
-  // For quickly adjusting person cards in the x
-  // TODO Delete personCardLocation
-  let personCardLocation = 0;
+      // Elbow Connectors
+      // TODO Remove hardcoded paths from elbow connectors (treeheight)
 
-  // Elbow Connectors
-  // TODO Remove hardcoded paths from elbow connectors
-  let connections = gContainer
-    .append("g")
-    .classed("pathGroup", true)
-    .selectAll("path")
-    .data(information.links());
+    let treePaths = gContainer
+        .append("g")
+        .classed("pathGroup", true)
+        .selectAll("path")
+        .data(information.links());
 
-  connections
-    .enter()
-    .append("path")
-    .attr("d", function (d) {
-      return (
-        "M" +
-        (d.source.x - personCardLocation) +
-        "," +
-        (treeHeight - d.source.y) +
-        " v -50 H" +
-        d.target.x +
-        " V" +
-        (treeHeight - d.target.y)
-      );
-    });
+      treePaths
+        .enter()
+        .append("path")
+        .attr("d", function (d) {
+          return (
+            "M" +
+            (d.source.x) +
+            "," +
+            (treeHeight - d.source.y) +
+            " v -50 H" +
+            d.target.x +
+            " V" +
+            (treeHeight - d.target.y)
+          );
+        });
+
 
   // Person cards
   let personCards = gContainer
@@ -168,12 +175,10 @@ function buildTree(data) {
     .append("rect")
     .classed("personCard", true)
     .attr("x", function (d) {
-      return d.x;
-//      return d.x - 60 - personCardLocation;
+      return d.x - (personCardDimensions.width/2);
     })
     .attr("y", function (d) {
-      return d.y; //or y - x/3.236
-//      return treeHeight - d.y - 20; //or y - x/3.236
+      return treeHeight - d.y; //or y - x/3.236
     })
     .attr("rx","10px")
     .attr("ry","10px")
@@ -185,12 +190,10 @@ function buildTree(data) {
       .enter()
       .append('foreignObject')
       .attr("x", function (d) {
-        return d.x;
-//        return d.x - 60 - personCardLocation;
+        return d.x - (personCardDimensions.width/2);
       })
       .attr("y", function (d) {
-        return d.y + 5; // 5 centers on the
-//        return treeHeight - d.y - 20; //or y - x/3.236
+        return treeHeight - d.y + 5; // 5 centers content bootstrap inside personCards
       })
       .attr("width", "400")
       .attr("height", "100")
@@ -214,7 +217,7 @@ function buildTree(data) {
 // Spouses
 // let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
 // spouseRectangles.enter().append("rect")
-//   .attr("x", function(d){return d.x + 60 - personCardLocation})
+//   .attr("x", function(d){return d.x + 60})
 //   .attr("y", function(d){return d.y - 20}) //or y - x/3.236
 //   .classed("hide", function (d) {
 //     if(d.data.spouse == undefined)
