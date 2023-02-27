@@ -14,10 +14,10 @@
 
 .personCard {
   fill: white;
-  stroke: brown;
-  width: 120px;
-  height: 45px;
-  stroke-width: 2;
+  stroke: black;
+  width: 275px;
+  height: 110px;
+  stroke-width: 3;
 }
 path {
   fill: none;
@@ -28,9 +28,6 @@ text {
   fill: green;
   /* dominant-baseline: middle; */
   text-anchor: middle;
-}
-.personIcon {
-
 }
 .hide {
   visibility: hidden;
