@@ -47,13 +47,8 @@ let viewBox = svg
 d3.json(
   "http://localhost:8080/tree/data/"
 )
-//d3.json(
-//"https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-four-person.json"
-//)
   .then(function (data) {
     // If data is fetched, draw the tree svg
-    console.log("Persons in js:")
-    console.log(data);
     buildTree(data);
   })
   .catch(function (error) {
@@ -156,15 +151,15 @@ function buildTree(data) {
       );
     });
 
-  // Rectangles will become Person cards (Name, age, picture, etc.)
-  let rectangles = gContainer
+  // Person cards
+  let personCards = gContainer
     .append("g")
     .classed("rectangleGroup", true)
     .selectAll("a, rect")
     .data(information.descendants());
 
-// Rect person card
-  rectangles
+  // Outer border and link of person cards
+  personCards
     .enter()
     .append("a")
     .attr("href", function (d) {
@@ -184,8 +179,9 @@ function buildTree(data) {
     .attr("ry","10px")
     .attr("stroke-linejoin","round");
 
-    // TODO d3 bootstrap card is here
-    rectangles
+    // TODO d3 add links to cards
+    // Bootstrap elements
+    personCards
       .enter()
       .append('foreignObject')
       .attr("x", function (d) {
@@ -213,66 +209,6 @@ function buildTree(data) {
                        </div>
                     `)
        });
-
-//      <div class="card mb-3" style="max-width: 350px;">
-//                       <div class="row align-items-center g-0">
-//                         <div class="col-md-4">
-//                           <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
-//                         </div>
-//                         <div class="col-md-8">
-//                           <div class="card-body">
-//                             <h5 class="card-title">ALongFirstName<br>ALongerLastName</h5>
-//                             <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
-//                           </div>
-//                         </div>
-//                       </div>
-//                     </div>
-
-  // Pictures
-//  let personIcons = gContainer
-//    .append("g")
-//    .classed("personIconGroup", true)
-//    .selectAll("image")
-//    .data(information.descendants());
-//
-//  personIcons
-//    .enter()
-//    .append("image")
-//    .classed("personIcon", true)
-//    .attr("alt", function (d) {
-//      return d.data.child + " icon"
-//    })
-//    .attr("href", function (d) {
-//      return d.data.icon;
-//    })
-//    .attr("x", function (d) {
-//      return d.x - 65 - personCardLocation;
-//    })
-//    .attr("y", function (d) {
-//      return treeHeight - d.y - 17;
-//    })
-//    .attr("width", personIconWidth)
-//    .attr("height", personIconHeight);
-//
-//  // Name text
-//  let names = gContainer
-//    .append("g")
-//    .classed("textGroup", true)
-//    .selectAll("text")
-//    .data(information.descendants());
-//
-//  names
-//    .enter()
-//    .append("text")
-//    .text(function (d) {
-//      return d.data.firstName + ' ' + d.data.lastName;
-//    })
-//    .attr("x", function (d) {
-//      return d.x + 20 - personCardLocation;
-//    })
-//    .attr("y", function (d) {
-//      return treeHeight - d.y + 5;
-//    });
   }
 
 // Spouses
