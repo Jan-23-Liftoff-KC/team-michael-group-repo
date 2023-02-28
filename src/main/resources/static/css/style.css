@@ -4,9 +4,119 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 footer{
     margin-top: auto;
 }
 .footerfix {
     height:4rem;
 }
+.nav-link:hover {
+  color: #f68b1f;
+}
+.container {
+   max-width: 100%;
+   padding: 0;
+}
+.container2 {
+   max-width: 30%;
+   padding: 0;
+   margin:auto;
+}
+.myphotodiv {
+width: 100%;
+max-width: 100%;
+
+}
+.myphotoimg {
+width: 100%;
+
+}
+
+.btn {
+	padding: 10px 20px 8px 20px;
+	background-color: #074560;
+	font-size: 16px;
+	font-weight: 600;
+	border-radius: 30px;
+    display: inline-block;
+
+}
+.btn:hover{
+	background: #f68b1f;
+
+}
+
+.myphotodiv-secondary {
+width: 100%;
+max-width: 25%;
+}
+
+.centeredTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.body-content {
+    margin-top: 72px;
+}
+
+td, th {
+    padding: 10px;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    vertical-align: top;
+}
+
+tr:nth-child(odd) {
+    background-color: #e4e4e4;
+}
+
+.centeredTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.person-listing {
+    margin: 30px auto;
+    border: 1px solid #e4e4e4;
+    width: 80%;
+}
+
+table.person-listing td:first-child {
+    font-weight: bold;
+}
+
+table.person-listing td:last-child {
+    width: 80%;
+}
+
+label {
+    margin-right: 15px;
+}
+
+.centered {
+    text-align: center;
+}
+
+p {
+    vertical-align: top;
+    margin-left: 30px;
+}
+
+.centeredTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.person-listing {
+    border: 1px solid #e4e4e4;
+    width: 80%;
+    background-color: #e4e4e4;
+}
+
