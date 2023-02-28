@@ -46,6 +46,7 @@
           Person:
           <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}"></a>
         </p>
+
         <p>
           Birth Date:
           <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.birthday}"></a>
