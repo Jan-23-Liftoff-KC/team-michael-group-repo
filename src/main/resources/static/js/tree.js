@@ -168,10 +168,6 @@ function buildTree(data) {
   // Outer border and link of person cards
   personCards
     .enter()
-    .append("a")
-    .attr("href", function (d) {
-        return "/person/view/" + d.data.id;
-    })
     .append("rect")
     .classed("personCard", true)
     .attr("x", function (d) {
@@ -185,7 +181,7 @@ function buildTree(data) {
     .attr("stroke-linejoin","round");
 
     // TODO d3 add links to cards
-    // Bootstrap elements
+    // Bootstrap person cards, with links
     personCards
       .enter()
       .append('foreignObject')
@@ -199,7 +195,8 @@ function buildTree(data) {
       .attr("height", "100")
       .each(function(d) {
         d3.select(this).html(
-                    `<div class="row align-items-center g-0">
+                    `<a class="personTreeCardLink" href="/person/view/` + d.data.id + `">
+                    <div class="row align-items-center g-0">
                          <div class="col-md-4">
                            <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
                          </div>
@@ -209,9 +206,17 @@ function buildTree(data) {
                              <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
                            </div>
                          </div>
-                       </div>
+                    </div>
+                    </a>
                     `)
        });
+
+//       personCards
+//           .enter()
+//           .append("a")
+//           .attr("href", function (d) {
+//               return "/person/view/" + d.data.id;
+//           });
   }
 
 // Spouses

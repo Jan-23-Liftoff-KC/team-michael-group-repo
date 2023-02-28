@@ -19,6 +19,13 @@
   height: 110px;
   stroke-width: 3;
 }
+
+.personTreeCardLink {
+  color: inherit;
+  text-decoration: inherit;
+  font-weight: inherit;
+}
+
 path {
   fill: none;
   stroke: brown;
