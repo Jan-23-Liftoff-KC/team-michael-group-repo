@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace = "fragments :: navbar"></nav>
+<div class="myphotodiv">
+  <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Search-2-scaled.jpg" class="myphotoimg">
+</div>
+<div class="container body-content">
+
+  <h1 class="container3" th:text="${#strings.capitalizeWords(title)}"></h1>
+
+  <form class="container4"th:action="@{/search/results}" method = "post">
+
+
+    <p>
+<!--    <h2 >Search by First or Last Name:</h2>-->
+            <span th:each="column : ${columns}">
+                <input
+                        type="hidden"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+    </p>
+
+    <p>
+<!--      <label for="searchTerm">Search by First or Last Name:</label>-->
+      <input type="text" class="wrapper" placeholder="Please type First or Last Name" name="searchTerm" id="searchTerm" />
+      <input type="submit" class="btn btn-secondary my-2" value="Search" />
+    </p>
+
+
+  </form>
+
+  <hr />
+
+
+  <table class="person-listing">
+    <tr th:each="person : ${persons}">
+      <td>
+        <p>
+          Person:
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}"></a>
+        </p>
+        <p>
+          Birth Date:
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.birthday}"></a>
+        </p>
+        <p>
+          Death Date:
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.deathDate}"></a>
+        </p>
+
+
+
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+</body>
+</html>
+
+<!--<table class="job-listing">-->
+<!--    <tr th:each="job : ${jobs}">-->
+<!--        <td>-->
+<!--            <p>-->
+<!--                Job Id:-->
+<!--                <a th:href="@{'/view/' + ${job.id}}" th:text="${job.id}"></a>-->
+<!--            </p>-->
+<!--            <p th:text="${'Name: ' + job.name}"></p>-->
+<!--            <p>-->
+<!--                Employer:-->
+<!--                <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                Skills:-->
+<!--            <ul th:each="skill : ${job.skills}">-->
+<!--                <li>-->
+<!--                    <a th:href="@{'/skills/view/' + ${skill.id}}" th:text="${skill.name}"></a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            </p>-->
+
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->

@@ -4,42 +4,47 @@
 <body class="container">
 
 <nav th:replace = "fragments :: navbar"></nav>
+<div class="myphotodiv">
+    <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Register-Page.jpg" class="myphotoimg">
+</div>
 
 <section class="p-5">
-    <div class="container">
+    <div class="container2">
         <div class="row text-center">
             <div class="card bg-tertiary" style="margin-top:30px;">
                 <div class="card-body text-center">
-<form method="post">
-    <div class="form-group">
-        <label>Username
-            <input class="form-control" th:field="${registerFormDTO.username}" />
-        </label>
-        <p class="error" th:errors="${registerFormDTO.username}"></p>
-    </div>
-    <div class="form-group">
-        <label>Password
-            <input class="form-control" th:field="${registerFormDTO.password}" type="password" />
-        </label>
-        <p class="error" th:errors="${registerFormDTO.password}"></p>
-    </div>
-    <div class="form-group">
-        <label>Verify Password
-            <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
-        </label>
-    </div>
+                    <form method="post">
+                        <div class="form-group">
+<!--                            <label>Username-->
+                                <input class="wrapper-login" placeholder="Username"  th:field="${registerFormDTO.username}" />
+                            </label>
+                            <p class="error" th:errors="${registerFormDTO.username}"></p>
+                        </div>
+                        <div class="form-group">
+<!--                            <label>Password-->
+                                <input class="wrapper-login" placeholder="Password"  th:field="${registerFormDTO.password}" type="password" />
+                            </label>
+                            <p class="error" th:errors="${registerFormDTO.password}"></p>
+                        </div>
+                        <div class="form-group">
+<!--                            <label>Verify Password-->
+                                <input class="wrapper-login" placeholder="Verify Password" th:field="${registerFormDTO.verifyPassword}" type="password" />
+                            </label>
+                        </div>
 
-    <input type="submit" class="btn btn-secondary my-2" value="REGISTER" />
-</form>
+                        <input type="submit" class="btn btn-secondary my-2" value="REGISTER" />
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div class="myphotodiv-secondary">
+    <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Main-Logo-02.26.23.png" class="myphotoimg">
+</div>
 
 <div th:replace="fragments :: footerfix"></div>
 <footer th:replace = "fragments :: footer"></footer>
 
 </body>
 </html>
-
