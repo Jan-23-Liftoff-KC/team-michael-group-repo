@@ -1,19 +1,6 @@
-// TODO Add appropriate constants here
-const viewBoxWidth = 800;
-const viewBoxHeight = 400;
-
-const personIconWidth = 60;
-const personIconHeight = 40;
-
-const dx = 600;
-const dy = viewBoxWidth / 6;
-
-const margin = ({top: 10, right: 120, bottom: 10, left: 40});
-
-
-
-const personCardWidth = 300;
-const personCardHeight = 100;
+// Container for tree
+const viewBoxWidth = 1000;
+const viewBoxHeight = 500;
 
 let svg = d3
   .select("#treeArea")
@@ -21,9 +8,11 @@ let svg = d3
   .attr("width", viewBoxWidth)
   .attr("height", viewBoxHeight);
 
+// TODO Translate tree
+// <g transform="translate(514.3902561248746,-147.2309784005078) scale(0.7219645977612514)">
 // gContainer contains all the elements that make up the tree
-// TODO remove translate
-let gContainer = svg.append("g").attr("transform", "translate(80,50)");
+let gContainer = svg.append("g").attr("transform", "translate(515,-150) scale(.75)");
+//let gContainer = svg.append("g").attr("transform", "translate(80,50)").attr("transform", "translate(80,50)");
 
 // Container of Family Tree
 let viewBox = svg
@@ -91,13 +80,7 @@ d3.json(
 
 // Build tree
 function buildTree(data) {
-
     // Define the tree structure
-    // TODO Make tree structure dynamic
-    let treeWidth = 650;
-
-    //let treeHeight = treeHeight = d.height * (personCardDimensions.height + personCardDimensions.marginHeight);
-
     const personCardDimensions = {
         width: 279, // 275 + 4
         height: 114, // 110 + 4
@@ -115,26 +98,20 @@ function buildTree(data) {
       return d.parentId;
     })(data);
 
-  // TODO Add node sizes and node margins
   let treeStructure = d3
     .tree()
     .nodeSize([personCardDimensions.width, personCardDimensions.height + personCardDimensions.marginHeight])
     .separation(function (a, b) {
-      return a.parent === b.parent ? 2 : 1;
+      return a.parent === b.parent ? 1.5 : 1.5;
     });
-//    .separation(function (a, b) {
-//      return a.parent === b.parent ? 2 : 2;
-//    });
-    //.size([treeWidth, treeHeight]);
 
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
   let treeHeight  = dataStructure.height * (personCardDimensions.height + personCardDimensions.marginHeight);
   console.log(treeHeight);
 
-      // Elbow Connectors
-      // TODO Remove hardcoded paths from elbow connectors (treeheight)
-
+    // Elbow Connectors
+    // TODO Remove hardcoded paths from elbow connectors (treeheight)
     let treePaths = gContainer
         .append("g")
         .classed("pathGroup", true)
@@ -180,7 +157,6 @@ function buildTree(data) {
     .attr("ry","10px")
     .attr("stroke-linejoin","round");
 
-    // TODO d3 add links to cards
     // Bootstrap person cards, with links
     personCards
       .enter()
@@ -195,7 +171,7 @@ function buildTree(data) {
       .attr("height", "100")
       .each(function(d) {
         d3.select(this).html(
-                    `<a class="personTreeCardLink" href="/person/view/` + d.data.id + `">
+                 `<a class="personTreeCardLink" href="/person/view/` + d.data.id + `">
                     <div class="row align-items-center g-0">
                          <div class="col-md-4">
                            <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
@@ -207,16 +183,9 @@ function buildTree(data) {
                            </div>
                          </div>
                     </div>
-                    </a>
-                    `)
+                  </a>
+                  `)
        });
-
-//       personCards
-//           .enter()
-//           .append("a")
-//           .attr("href", function (d) {
-//               return "/person/view/" + d.data.id;
-//           });
   }
 
 // Spouses
@@ -287,6 +256,7 @@ function panDown() {
 // Places the tree without a transition
 // Note the manual width and height adjustment of 80, 50
 function centerStart() {
+  //d3.select("svg").call(zoom.translateTo, 515,-150);
   d3.select("svg").call(zoom.translateTo, 0.5 * viewBoxWidth - 80, 0.5 * viewBoxHeight - 50);
 }
 
