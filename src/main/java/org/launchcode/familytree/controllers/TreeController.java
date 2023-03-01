@@ -35,7 +35,7 @@ public class TreeController {
             // Only one root can exist in the tree (parentId = "")
             // After one root is found, all other potential root Persons are ignored in the tree
             if (person.getParentId() == 0) {
-                if(!isRootFound) {
+                if (!isRootFound) {
                     // Root found
                     treePerson.put("parentId", "");
                     isRootFound = true;
@@ -47,34 +47,11 @@ public class TreeController {
                 treePerson.put("parentId", person.getParentId());
             }
 
-            // Format birthday
-            Date date = person.getBirthday();
-            Calendar calendar = new GregorianCalendar();
-            calendar.setTime(date);
-            int year = calendar.get(Calendar.YEAR);
-            //Add one to month {0 - 11}
-            int month = calendar.get(Calendar.MONTH) + 1;
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            String birthday = month + "/" + day + "/" + year;
-            System.out.println(birthday);
-
-            // Format deathday
-            // not working when getDeathDate returns null
-            Date date1 = person.getDeathDate();
-            Calendar calendar1 = new GregorianCalendar();
-            calendar.setTime(date1);
-            int year1 = calendar1.get(Calendar.YEAR);
-            //Add one to month {0 - 11}
-            int month1 = calendar1.get(Calendar.MONTH) + 1;
-            int day1 = calendar1.get(Calendar.DAY_OF_MONTH);
-            String deathday = month1 + "/" + day1 + "/" + year1;
-            System.out.println(birthday);
-
             treePerson.put("id", person.getId());
             treePerson.put("firstName", person.getFirstName());
             treePerson.put("lastName", person.getLastName());
-            treePerson.put("birthday", birthday);
-            treePerson.put("deathday", deathday);
+            treePerson.put("birthday", formatDate(person.getBirthday()));
+            treePerson.put("deathday", formatDate(person.getDeathDate()));
             treePerson.put("icon", "https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true"); //person.getIcon());
             treePerson.put("spouse", person.getSpouseId());
 
@@ -82,6 +59,23 @@ public class TreeController {
 
         }
         return (Iterable<Person>) treeJSON;
+    }
+
+    public String formatDate(Date date) {
+        // Catch null dates
+        if (date == null) {
+            return "N/A";
+        }
+
+        // Format date
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        // Add one to month (0 - 11)
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        return month + "/" + day + "/" + year;
     }
 }
 
