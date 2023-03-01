@@ -5,8 +5,8 @@ const viewBoxHeight = 500;
 const treeStartLocation = {
 //    x: 0.5 * viewBoxWidth - 80,
 //    y: 0.5 * viewBoxHeight - 50,
-    x: 500,
-    y: 50,
+    x: 0,
+    y: 400,
     scale: .5,
 }
 
@@ -16,11 +16,8 @@ let svg = d3
   .attr("width", viewBoxWidth)
   .attr("height", viewBoxHeight);
 
-// TODO Translate tree
-// <g transform="translate(514.3902561248746,-147.2309784005078) scale(0.7219645977612514)">
 // gContainer contains all the elements that make up the tree
-//let gContainer = svg.append("g").attr("transform", "translate(515,-150) scale(.75)");
-let gContainer = svg.append("g").attr("transform", "translate(80,50)");
+let gContainer = svg.append("g"); //.attr("transform", "translate(500,50)");
 
 // Container of Family Tree
 let viewBox = svg
@@ -224,7 +221,6 @@ function handleZoom(e) {
 // Places the tree without a transition
 // Note the manual width and height adjustment of 80, 50
 function centerStart() {
-  //d3.select("svg").call(zoom.translateTo, 515,-150);
   d3.select("svg").call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
 }
 
@@ -249,9 +245,10 @@ function center() {
 function resetView() {
     d3.select("svg")
         .transition()
-        .call(zoom.scaleTo, treeStartLocation.scale)
+        .call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y)
         .transition()
-        .call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
+        .call(zoom.scaleTo, treeStartLocation.scale);
+
 }
 
 function panLeft() {
@@ -272,3 +269,4 @@ function panDown() {
 
 initZoom();
 centerStart();
+
