@@ -2,6 +2,14 @@
 const viewBoxWidth = 1000;
 const viewBoxHeight = 500;
 
+const treeStartLocation = {
+//    x: 0.5 * viewBoxWidth - 80,
+//    y: 0.5 * viewBoxHeight - 50,
+    x: 500,
+    y: 50,
+    scale: .5,
+}
+
 let svg = d3
   .select("#treeArea")
   .append("svg")
@@ -11,8 +19,8 @@ let svg = d3
 // TODO Translate tree
 // <g transform="translate(514.3902561248746,-147.2309784005078) scale(0.7219645977612514)">
 // gContainer contains all the elements that make up the tree
-let gContainer = svg.append("g").attr("transform", "translate(515,-150) scale(.75)");
-//let gContainer = svg.append("g").attr("transform", "translate(80,50)").attr("transform", "translate(80,50)");
+//let gContainer = svg.append("g").attr("transform", "translate(515,-150) scale(.75)");
+let gContainer = svg.append("g").attr("transform", "translate(80,50)");
 
 // Container of Family Tree
 let viewBox = svg
@@ -108,7 +116,6 @@ function buildTree(data) {
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
   let treeHeight  = dataStructure.height * (personCardDimensions.height + personCardDimensions.marginHeight);
-  console.log(treeHeight);
 
     // Elbow Connectors
     // TODO Remove hardcoded paths from elbow connectors (treeheight)
@@ -200,15 +207,25 @@ function buildTree(data) {
 //       return false;
 //   });
 
+
+
 // Zoom
 let zoom = d3.zoom().scaleExtent([0.25, 5]).on("zoom", handleZoom);
 
+// Called on page load
 function initZoom() {
-  d3.select("svg").call(zoom);
+  d3.select("svg").call(zoom).call(zoom.scaleTo, treeStartLocation.scale);
 }
 
 function handleZoom(e) {
   d3.select("g").attr("transform", e.transform);
+}
+
+// Places the tree without a transition
+// Note the manual width and height adjustment of 80, 50
+function centerStart() {
+  //d3.select("svg").call(zoom.translateTo, 515,-150);
+  d3.select("svg").call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
 }
 
 function zoomIn() {
@@ -220,21 +237,21 @@ function zoomOut() {
 }
 
 function resetZoom() {
-  d3.select("svg").transition().call(zoom.scaleTo, 1);
+  d3.select("svg").transition().call(zoom.scaleTo, treeStartLocation.scale);
 }
 
 function center() {
   d3.select("svg")
     .transition()
-    .call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
+    .call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
 }
 
 function resetView() {
     d3.select("svg")
         .transition()
-        .call(zoom.scaleTo, 1)
+        .call(zoom.scaleTo, treeStartLocation.scale)
         .transition()
-        .call(zoom.translateTo, 0.5 * viewBoxWidth - 80, 0.5 * viewBoxHeight - 50);
+        .call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
 }
 
 function panLeft() {
@@ -251,13 +268,6 @@ function panUp() {
 
 function panDown() {
   d3.select("svg").transition().call(zoom.translateBy, 0, 50);
-}
-
-// Places the tree without a transition
-// Note the manual width and height adjustment of 80, 50
-function centerStart() {
-  //d3.select("svg").call(zoom.translateTo, 515,-150);
-  d3.select("svg").call(zoom.translateTo, 0.5 * viewBoxWidth - 80, 0.5 * viewBoxHeight - 50);
 }
 
 initZoom();
