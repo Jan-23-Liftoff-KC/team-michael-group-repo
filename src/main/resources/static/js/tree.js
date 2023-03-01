@@ -6,8 +6,8 @@ const treeStartLocation = {
 //    x: 0.5 * viewBoxWidth - 80,
 //    y: 0.5 * viewBoxHeight - 50,
     x: 0,
-    y: 400,
-    scale: .5,
+    y: 435,
+    scale: .55,
 }
 
 let svg = d3
