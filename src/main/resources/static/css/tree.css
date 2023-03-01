@@ -13,20 +13,20 @@
 }
 .personCard {
   fill: white;
-  stroke: black;
+  stroke: rgb(9,68,96);
   width: 275px;
   height: 110px;
   stroke-width: 3;
 }
 .personTreeCardLink {
-  color: inherit;
+  color: rgb(9,68,96);
   text-decoration: inherit;
   font-weight: inherit;
 }
 path {
   fill: none;
-  stroke: brown;
-  stroke-width: 2;
+  stroke: rgb(37,170,126);
+  stroke-width: 3;
 }
 text {
   fill: green;
