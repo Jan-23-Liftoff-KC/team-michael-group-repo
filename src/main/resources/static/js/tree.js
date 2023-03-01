@@ -115,7 +115,6 @@ function buildTree(data) {
   let treeHeight  = dataStructure.height * (personCardDimensions.height + personCardDimensions.marginHeight);
 
     // Elbow Connectors
-    // TODO Remove hardcoded paths from elbow connectors (treeheight)
     let treePaths = gContainer
         .append("g")
         .classed("pathGroup", true)
@@ -166,6 +165,7 @@ function buildTree(data) {
       .enter()
       .append('foreignObject')
       .attr("x", function (d) {
+      //console.log(d.data.birthday);
         return d.x - (personCardDimensions.width/2);
       })
       .attr("y", function (d) {
@@ -183,7 +183,7 @@ function buildTree(data) {
                          <div class="col-md-8">
                            <div class="card-body">
                              <h5 class="card-title">` + d.data.firstName + `<br>` + d.data.lastName + `</h5>
-                             <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
+                             <p class="card-text"><small class="text-muted">Born: ` + d.data.birthday + `<br>Died: ` + d.data.deathday + `</small></p>
                            </div>
                          </div>
                     </div>
@@ -207,7 +207,7 @@ function buildTree(data) {
 
 
 // Zoom
-let zoom = d3.zoom().scaleExtent([0.25, 5]).on("zoom", handleZoom);
+let zoom = d3.zoom().scaleExtent([0.25, 1]).on("zoom", handleZoom);
 
 // Called on page load
 function initZoom() {
@@ -218,8 +218,7 @@ function handleZoom(e) {
   d3.select("g").attr("transform", e.transform);
 }
 
-// Places the tree without a transition
-// Note the manual width and height adjustment of 80, 50
+// Places the tree without transition
 function centerStart() {
   d3.select("svg").call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
 }
