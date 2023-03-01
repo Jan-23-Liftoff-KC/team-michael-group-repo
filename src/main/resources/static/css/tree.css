@@ -23,6 +23,9 @@
   text-decoration: inherit;
   font-weight: inherit;
 }
+.card-text{
+    margin-left: 0px;
+}
 path {
   fill: none;
   stroke: rgb(37,170,126);
