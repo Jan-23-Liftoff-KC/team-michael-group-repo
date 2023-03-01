@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -74,7 +75,7 @@ public class PersonController {
                                           @RequestParam(name = "gender", required = false) Gender gender, @RequestParam(name = "bio", required = false) String bio,
                                           @RequestParam(name = "graduation", required = false) String graduation, @RequestParam(name = "unionDate", required = false) String unionDate,
                                           @RequestParam(name = "deathDate", required = false) String deathDate, @RequestParam(name = "parentId", required = false) String parentId,
-                                          @RequestParam(name = "parentIdTwo", required = false) String parentIdTwo, @RequestParam(name = "spouseId", required = false) String spouseId){
+                                          @RequestParam(name = "parentIdTwo", required = false) String parentIdTwo, @RequestParam(name = "spouseId", required = false) String spouseId) throws ParseException {
         if (errors.hasErrors()) {
             return "person/update";
         }
@@ -83,7 +84,10 @@ public class PersonController {
         int parId = Integer.parseInt(parentId);
         int parIdTwo = Integer.parseInt(parentIdTwo);
         int spId = Integer.parseInt(spouseId);
-//        Date grad = new SimpleDateFormat("MM/dd/yyyy").parse(graduation);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date grad = formatter.parse(graduation);
+        Date union = formatter.parse(unionDate);
+        Date death = formatter.parse(deathDate);
         Optional<Person> optPerson = personRepository.findById(i);
         Person currentPerson = optPerson.get();
         model.addAttribute(currentPerson);
@@ -94,9 +98,9 @@ public class PersonController {
         currentPerson.setParentId(parId);
         currentPerson.setParentIdTwo(parIdTwo);
         currentPerson.setSpouseId(spId);
-//        currentPerson.setGraduation(graduation);
-//        currentPerson.setUnionDate(unionDate);
-//        currentPerson.setDeathDate(deathDate);
+        currentPerson.setGraduation(grad);
+        currentPerson.setUnionDate(union);
+        currentPerson.setDeathDate(death);
         currentPerson.setBio(bio);
         personRepository.save(currentPerson);
         return "redirect:/person/view/" + currentPerson.getId();
