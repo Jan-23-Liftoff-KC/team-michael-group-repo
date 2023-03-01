@@ -207,7 +207,7 @@ function buildTree(data) {
 
 
 // Zoom
-let zoom = d3.zoom().scaleExtent([0.25, 1]).on("zoom", handleZoom);
+let zoom = d3.zoom().scaleExtent([0.25, 2]).on("zoom", handleZoom);
 
 // Called on page load
 function initZoom() {
