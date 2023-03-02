@@ -4,7 +4,7 @@
 <nav th:replace = "fragments :: navbar"></nav>
 
 <div class="myphotodiv">
-    <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Add-Person-scaled.jpg" class="myphotoimg">
+    <img src="https://www.digitalfxshop.com/wp-content/uploads/2023/03/Add-Person-scaled.jpg" class="myphotoimg">
 </div>
 
 <body class="container">
@@ -59,8 +59,8 @@
     </div>
     <div class="form-group mb-3 px-5">
         <label class="form-label">Memories</label>
-        <textarea class="form-control" th:field="${person.bio}" name="bio" rows="3"></textarea>
-        <p class="fs-6 text-danger" th:errors="${person.bio}"></p>
+        <textarea class="form-control" th:field="${person.memories}" name="memories" rows="3"></textarea>
+        <p class="fs-6 text-danger" th:errors="${person.memories}"></p>
     </div>
     <p class="divbox">Add Profile Picture</p>
     <div class="form-group mb-3 px-5">

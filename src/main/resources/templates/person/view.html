@@ -5,7 +5,7 @@
 
 <nav th:replace = "fragments :: navbar"></nav>
 <div class="myphotodiv">
-    <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Person-View-My-Family-Member-scaled.jpg" class="myphotoimg">
+    <img src="https://www.digitalfxshop.com/wp-content/uploads/2023/03/Person-View-My-Family-Member-scaled.jpg" class="myphotoimg">
 </div>
 
 
@@ -29,6 +29,7 @@
 <!--                                Default Title-->
 <!--                            </h2>-->
                             <div class="card-body text-center">
+
                                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="370" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -54,94 +55,64 @@
                             </div>
                             <div class="row mb-4">
                                 <h3 class="centeredbox">Memories</h3>
-                                <p class="lead my-4 text-start" th:text="${person.bio}">
+                                <p class="lead my-4 text-start" th:text="${person.memories}">
                                 </p>
                             </div>
                         </div>
 <!--                    </div>-->
                     <hr class="my-4" />
                     <div class="form-row">
-                        <div class="card mb-3" style="width: 18rem;">
-                            <div class="card-header">
-                                Important Dates
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" th:text="'Birthday: ' + ${#dates.format(person.birthday, 'MM/dd/yyyy')}"></li>
-                                <li class="list-group-item" th:if="${person.graduation}" th:text="'Graduation: ' + ${#dates.format(person.graduation, 'MM/dd/yyyy')}"></li>
-                                <li class="list-group-item" th:if="${person.unionDate}" th:text="'Union Date: ' + ${#dates.format(person.unionDate, 'MM/dd/yyyy')}"></li>
-                                <li class="list-group-item" th:if="${person.deathDate}" th:text="'Death Date: ' + ${#dates.format(person.deathDate, 'MM/dd/yyyy')}"></li>
-                            </ul>
-                        </div>
-                        <div class="card mt-3" style="width: 18rem;">
-                            <div class="card-header">
-                                Family Members
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" th:if="${person.parentId}" th:text="'Child: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>
-                                <li class="list-group-item" th:if="${person.parentIdTwo}" th:text="'Child: ' + ${parentTwo.firstName} + ' ' + ${parentTwo.middleName} + ' ' + ${parentTwo.lastName}"></li>
-                                <li class="list-group-item" th:if="${person.spouseId}" th:text="'Partner: ' + ${spouse.firstName} + ' ' + ${spouse.middleName} + ' ' + ${spouse.lastName}"></li>
-                            </ul>
-                        </div>
-<!--                        <div class="form-group col-md-6">-->
-<!--                            <label for="firstname">Firstname</label>-->
-<!--                            <input type="text" id="firstname" class="form-controlbs" placeholder="Brown" />-->
-<!--                        </div>-->
-<!--                        <div class="form-group col-md-6">-->
-<!--                            <label for="lastname">Lastname</label>-->
-<!--                            <input type="text" id="lastname" class="form-controlbs" placeholder="Asher" />-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="inputEmail4">Email</label>-->
-<!--                        <input type="email" class="form-controlbs" id="inputEmail4" placeholder="brown@asher.me" />-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="inputAddress5">Address</label>-->
-<!--                        <input type="text" class="form-controlbs" id="inputAddress5" placeholder="P.O. Box 464, 5975 Eget Avenue" />-->
-<!--                    </div>-->
-<!--                    <div class="form-row">-->
-<!--                        <div class="form-group col-md-6">-->
-<!--                            <label for="inputCompany5">Company</label>-->
-<!--                            <input type="text" class="form-controlbs" id="inputCompany5" placeholder="Nec Urna Suscipit Ltd" />-->
-<!--                        </div>-->
-<!--                        <div class="form-group col-md-4">-->
-<!--                            <label for="inputState5">State</label>-->
-<!--                            <select id="inputState5" class="form-controlbs">-->
-<!--                                <option selected="">Choose...</option>-->
-<!--                                <option>...</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                        <div class="form-group col-md-2">-->
-<!--                            <label for="inputZip5">Zip</label>-->
-<!--                            <input type="text" class="form-controlbs" id="inputZip5" placeholder="98232" />-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <hr class="my-4" />-->
-<!--                    <div class="row mb-4">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <div class="form-group">-->
-<!--&lt;!&ndash;                                <label for="inputPassword4">Old Password</label>&ndash;&gt;-->
-<!--                                <input type="password" class="form-control" id="inputPassword5" />-->
+<!--                        <div class="card mb-3" style="width: 18rem;">-->
+<!--                            <div class="card-header">-->
+<!--                                Important Dates-->
 <!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="inputPassword5">New Password</label>-->
-<!--                                <input type="password" class="form-control" id="inputPassword5" />-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="inputPassword6">Confirm Password</label>-->
-<!--                                <input type="password" class="form-control" id="inputPassword6" />-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <p class="mb-2">Password requirements</p>-->
-<!--                            <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>-->
-<!--                            <ul class="small text-muted pl-4 mb-0">-->
-<!--                                <li>Minimum 8 character</li>-->
-<!--                                <li>At least one special character</li>-->
-<!--                                <li>At least one number</li>-->
-<!--                                <li>Can’t be the same as a previous password</li>-->
+<!--                            <ul class="list-group list-group-flush">-->
+<!--                                <li class="list-group-item" th:text="'Birthday: ' + ${#dates.format(person.birthday, 'MM/dd/yyyy')}"></li>-->
+<!--                                <li class="list-group-item" th:if="${person.graduation}" th:text="'Graduation: ' + ${#dates.format(person.graduation, 'MM/dd/yyyy')}"></li>-->
+<!--                                <li class="list-group-item" th:if="${person.unionDate}" th:text="'Union Date: ' + ${#dates.format(person.unionDate, 'MM/dd/yyyy')}"></li>-->
+<!--                                <li class="list-group-item" th:if="${person.deathDate}" th:text="'Death Date: ' + ${#dates.format(person.deathDate, 'MM/dd/yyyy')}"></li>-->
 <!--                            </ul>-->
 <!--                        </div>-->
+<!--                        <div class="card mt-3" style="width: 18rem;">-->
+<!--                            <div class="card-header">-->
+<!--                                Family Members-->
+<!--                            </div>-->
+<!--                            <ul class="list-group list-group-flush">-->
+<!--                                <li class="list-group-item" th:if="${person.parentId}" th:text="'Child: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>-->
+<!--                                <li class="list-group-item" th:if="${person.parentIdTwo}" th:text="'Child: ' + ${parentTwo.firstName} + ' ' + ${parentTwo.middleName} + ' ' + ${parentTwo.lastName}"></li>-->
+<!--                                <li class="list-group-item" th:if="${person.spouseId}" th:text="'Partner: ' + ${spouse.firstName} + ' ' + ${spouse.middleName} + ' ' + ${spouse.lastName}"></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+                        <section class="p-5">
+                            <div class="container">
+                                <div class="row text-center">
+                                    <div class="col-md">
+                                        <div class="card bg-tertiary" style="margin-top:30px;">
+                                            <h3 class="centeredbox">Important Dates</h3>
+                                            <div class="card-body text-center">
+                                                <li class="list-group-item" th:text="'Birthday: ' + ${#dates.format(person.birthday, 'MM/dd/yyyy')}"></li>
+                                                <li class="list-group-item" th:if="${person.graduation}" th:text="'Graduation: ' + ${#dates.format(person.graduation, 'MM/dd/yyyy')}"></li>
+                                                <li class="list-group-item" th:if="${person.unionDate}" th:text="'Union Date: ' + ${#dates.format(person.unionDate, 'MM/dd/yyyy')}"></li>
+                                                <li class="list-group-item" th:if="${person.deathDate}" th:text="'Death Date: ' + ${#dates.format(person.deathDate, 'MM/dd/yyyy')}"></li>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md">
+                                        <div class="card bg-tertiary" style="margin-top:30px;">
+                                            <h3 class="centeredbox">Family Members</h3>
+                                            <div class="card-body text-center">
+                                                <li class="list-group-item" th:if="${person.parentId}" th:text="'Child: ' + ${parent.firstName} + ' ' + ${parent.middleName} + ' ' + ${parent.lastName}"></li>
+                                                <li class="list-group-item" th:if="${person.parentIdTwo}" th:text="'Child: ' + ${parentTwo.firstName} + ' ' + ${parentTwo.middleName} + ' ' + ${parentTwo.lastName}"></li>
+                                                <li class="list-group-item" th:if="${person.spouseId}" th:text="'Partner: ' + ${spouse.firstName} + ' ' + ${spouse.middleName} + ' ' + ${spouse.lastName}"></li>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                     <div class="mybuttondiv3">
                       <a th:href="@{'/person/update/' + ${person.id}}" role="button" class="btn btn-secondary btn">UPDATE</a>
