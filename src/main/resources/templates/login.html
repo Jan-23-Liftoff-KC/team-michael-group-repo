@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body>
 
 <nav th:replace = "fragments :: navbar"></nav>
 <div class="myphotodiv">
@@ -27,7 +27,6 @@
                             </label>
                             <p class="error" th:errors="${loginFormDTO.password}"></p>
                         </div>
-
                         <input type="submit" class="btn btn-secondary my-2" value="LOG IN" />
                     </form>
                     <span>Don't have an account?<a href = "/register"  style="color:blue" class="nav-link">REGISTER</a></span>

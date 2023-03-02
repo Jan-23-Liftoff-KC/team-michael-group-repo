@@ -1,24 +1,14 @@
-// TODO Add appropriate constants here
-const viewBoxWidth = 800;
-const viewBoxHeight = 400;
+// Container for tree
+const viewBoxWidth = 1000;
+const viewBoxHeight = 500;
 
-const personIconWidth = 60;
-const personIconHeight = 40;
-
-const dx = 600;
-const dy = viewBoxWidth / 6;
-
-const margin = ({top: 10, right: 120, bottom: 10, left: 40});
-
-const personCard = {
-    width: 120,
-    height: 45,
-    marginHeight: 180,
-    marginWidth: 50
-};
-
-const personCardWidth = 120;
-const personCardHeight = 45;
+const treeStartLocation = {
+//    x: 0.5 * viewBoxWidth - 80,
+//    y: 0.5 * viewBoxHeight - 50,
+    x: 0,
+    y: 435,
+    scale: .55,
+}
 
 let svg = d3
   .select("#treeArea")
@@ -27,8 +17,7 @@ let svg = d3
   .attr("height", viewBoxHeight);
 
 // gContainer contains all the elements that make up the tree
-// TODO remove translate
-let gContainer = svg.append("g").attr("transform", "translate(80,50)");
+let gContainer = svg.append("g"); //.attr("transform", "translate(500,50)");
 
 // Container of Family Tree
 let viewBox = svg
@@ -47,13 +36,8 @@ let viewBox = svg
 d3.json(
   "http://localhost:8080/tree/data/"
 )
-//d3.json(
-//"https://raw.githubusercontent.com/gvalencia4/D3/main/Family%20Tree/test-data-four-person.json"
-//)
   .then(function (data) {
     // If data is fetched, draw the tree svg
-    console.log("Persons in js:")
-    console.log(data);
     buildTree(data);
   })
   .catch(function (error) {
@@ -101,209 +85,142 @@ d3.json(
 
 // Build tree
 function buildTree(data) {
-//  console.log("Data:");
-//  console.log(data);
+    // Define the tree structure
+    const personCardDimensions = {
+        width: 279, // 275 + 4
+        height: 114, // 110 + 4
+        marginHeight: 279 * .5, // 279 * .5
+        marginWidth: 50, //
+    };
 
   // Stratify data
   let dataStructure = d3
     .stratify()
     .id(function (d) {
       return d.id;
-//      return d.child;
     })
     .parentId(function (d) {
       return d.parentId;
-      //return d.parent;
     })(data);
 
-  // Define the tree structure
-  // TODO Make tree structure dynamic
-  let treeWidth = 650;
-  let treeHeight = 300;
-
-  // TODO Add node sizes and node margins
   let treeStructure = d3
     .tree()
+    .nodeSize([personCardDimensions.width, personCardDimensions.height + personCardDimensions.marginHeight])
     .separation(function (a, b) {
-      return a.parent === b.parent ? 2 : 2;
-    })
-    .size([treeWidth, treeHeight]);
+      return a.parent === b.parent ? 1.5 : 1.5;
+    });
 
   // Create the x,y tree structure (links and descendants)
   let information = treeStructure(dataStructure);
+  let treeHeight  = dataStructure.height * (personCardDimensions.height + personCardDimensions.marginHeight);
 
-//  console.log("information");
-//  console.log(information);
-//  console.log("information.descendants");
-//  console.log(information.descendants());
-//  console.log("links");
-//  console.log(information.links());
+    // Elbow Connectors
+    let treePaths = gContainer
+        .append("g")
+        .classed("pathGroup", true)
+        .selectAll("path")
+        .data(information.links());
 
-  // For quickly adjusting person cards in the x
-  // TODO Delete personCardLocation
-  let personCardLocation = 0;
+      treePaths
+        .enter()
+        .append("path")
+        .attr("d", function (d) {
+          return (
+            "M" +
+            (d.source.x) +
+            "," +
+            (treeHeight - d.source.y) +
+            " v -50 H" +
+            d.target.x +
+            " V" +
+            (treeHeight - d.target.y)
+          );
+        });
 
 
-
-  // Elbow Connectors
-  // TODO Remove hardcoded paths from elbow connectors
-  let connections = gContainer
+  // Person cards
+  let personCards = gContainer
     .append("g")
-    .selectAll("path")
-    .data(information.links());
-  connections
-    .enter()
-    .append("path")
-    .attr("d", function (d) {
-      return (
-        "M" +
-        (d.source.x - personCardLocation) +
-        "," +
-        (treeHeight - d.source.y) +
-        " v -50 H" +
-        d.target.x +
-        " V" +
-        (treeHeight - d.target.y)
-      );
-    });
-
-  // Rectangles will become Person cards (Name, age, picture, etc.)
-
-  let rectangles = gContainer
-    .append("g")
+    .classed("rectangleGroup", true)
     .selectAll("a, rect")
     .data(information.descendants());
 
-// rect person card
-  rectangles
+  // Outer border and link of person cards
+  personCards
     .enter()
-    .append("a")
-    .attr("href", function (d) {
-        return "/person/view/" + d.data.id;
-    })
     .append("rect")
     .classed("personCard", true)
     .attr("x", function (d) {
-      return d.x - 60 - personCardLocation;
+      return d.x - (personCardDimensions.width/2);
     })
     .attr("y", function (d) {
-      return treeHeight - d.y - 20; //or y - x/3.236
-    });
-
-    // TODO d3 bootstrap card is here
-//    rectangles
-//      .enter()
-//      .append('foreignObject')
-//      .attr("x", function (d) {
-//        return d.x - 60 - personCardLocation;
-//      })
-//      .attr("y", function (d) {
-//        return treeHeight - d.y - 20; //or y - x/3.236
-//      })
-//      .attr("width", "400")
-//      .attr("height", "200")
-//      .each(function(d) {
-//        d3.select(this).html(
-//        `<div class="card mb-3" style="max-width: 350px;">
-//                 <div class="row align-items-center g-0">
-//                   <div class="col-md-4">
-//                     <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
-//                   </div>
-//                   <div class="col-md-8">
-//                     <div class="card-body">
-//                       <h5 class="card-title">ALongFirstName<br>ALongerLastName</h5>
-//                       <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>`)
-//      });
-
-  // Spouses
-  // let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
-  // spouseRectangles.enter().append("rect")
-  //   .attr("x", function(d){return d.x + 60 - personCardLocation})
-  //   .attr("y", function(d){return d.y - 20}) //or y - x/3.236
-  //   .classed("hide", function (d) {
-  //     if(d.data.spouse == undefined)
-  //       return true;
-  //     else
-  //       return false;
-  //   });
-
-  // Pictures
-  // TODO change "image" tag to "img"
-  let personIcons = gContainer
-    .append("g")
-    .selectAll("image")
-    .data(information.descendants());
-
-  personIcons
-    .enter()
-    .append("image")
-    .classed("personIcon", true)
-    .attr("alt", function (d) {
-      return d.data.child + " icon"
+      return treeHeight - d.y; //or y - x/3.236
     })
-    .attr("href", function (d) {
-      return d.data.icon;
-    })
-    .attr("x", function (d) {
-      return d.x - 65 - personCardLocation;
-    })
-    .attr("y", function (d) {
-      return treeHeight - d.y - 17;
-    })
-    .attr("width", personIconWidth)
-    .attr("height", personIconHeight);
+    .attr("rx","10px")
+    .attr("ry","10px")
+    .attr("stroke-linejoin","round");
 
-//  // Name link text, with link to Person page
-//    let names = gContainer
-//      .append("g")
-//      .selectAll("text")
-//      .data(information.descendants());
-//    names
-//      .enter()
-//      .append("text")
-//      .text(function (d) {
-//        return d.data.child;
-//      })
-//      .attr("x", function (d) {
-//        return d.x + 20 - personCardLocation;
-//      })
-//      .attr("y", function (d) {
-//        return treeHeight - d.y + 5;
-//      });
+    // Bootstrap person cards, with links
+    personCards
+      .enter()
+      .append('foreignObject')
+      .attr("x", function (d) {
+      //console.log(d.data.birthday);
+        return d.x - (personCardDimensions.width/2);
+      })
+      .attr("y", function (d) {
+        return treeHeight - d.y + 5; // 5 centers content bootstrap inside personCards
+      })
+      .attr("width", "400")
+      .attr("height", "100")
+      .each(function(d) {
+        d3.select(this).html(
+                 `<a class="personTreeCardLink" href="/person/view/` + d.data.id + `">
+                    <div class="row align-items-center g-0">
+                         <div class="col-md-4">
+                           <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">
+                         </div>
+                         <div class="col-md-8">
+                           <div class="card-body">
+                             <h5 class="card-title">` + d.data.firstName + `<br>` + d.data.lastName + `</h5>
+                             <p class="card-text"><small class="text-muted">Born: ` + d.data.birthday + `<br>Died: ` + d.data.deathday + `</small></p>
+                           </div>
+                         </div>
+                    </div>
+                  </a>
+                  `)
+       });
+  }
 
-  // Name text
-  let names = gContainer
-    .append("g")
-    .selectAll("text")
-    .data(information.descendants());
+// Spouses
+// let spouseRectangles = gContainer.append("g").selectAll("rect").data(information.descendants());
+// spouseRectangles.enter().append("rect")
+//   .attr("x", function(d){return d.x + 60})
+//   .attr("y", function(d){return d.y - 20}) //or y - x/3.236
+//   .classed("hide", function (d) {
+//     if(d.data.spouse == undefined)
+//       return true;
+//     else
+//       return false;
+//   });
 
-  names
-    .enter()
-    .append("text")
-    .text(function (d) {
-      return d.data.firstName + ' ' + d.data.lastName;
-    })
-    .attr("x", function (d) {
-      return d.x + 20 - personCardLocation;
-    })
-    .attr("y", function (d) {
-      return treeHeight - d.y + 5;
-    });
-}
+
 
 // Zoom
-let zoom = d3.zoom().scaleExtent([0.25, 5]).on("zoom", handleZoom);
+let zoom = d3.zoom().scaleExtent([0.25, 2]).on("zoom", handleZoom);
 
+// Called on page load
 function initZoom() {
-  d3.select("svg").call(zoom);
+  d3.select("svg").call(zoom).call(zoom.scaleTo, treeStartLocation.scale);
 }
 
 function handleZoom(e) {
-  d3.select("svg g").attr("transform", e.transform);
+  d3.select("g").attr("transform", e.transform);
+}
+
+// Places the tree without transition
+function centerStart() {
+  d3.select("svg").call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
 }
 
 function zoomIn() {
@@ -315,21 +232,22 @@ function zoomOut() {
 }
 
 function resetZoom() {
-  d3.select("svg").transition().call(zoom.scaleTo, 1);
+  d3.select("svg").transition().call(zoom.scaleTo, treeStartLocation.scale);
 }
 
 function center() {
   d3.select("svg")
     .transition()
-    .call(zoom.translateTo, 0.5 * width - 80, 0.5 * height - 50);
+    .call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y);
 }
 
 function resetView() {
     d3.select("svg")
         .transition()
-        .call(zoom.scaleTo, 1)
+        .call(zoom.translateTo, treeStartLocation.x, treeStartLocation.y)
         .transition()
-        .call(zoom.translateTo, 0.5 * viewBoxWidth - 80, 0.5 * viewBoxHeight - 50);
+        .call(zoom.scaleTo, treeStartLocation.scale);
+
 }
 
 function panLeft() {
@@ -348,11 +266,6 @@ function panDown() {
   d3.select("svg").transition().call(zoom.translateBy, 0, 50);
 }
 
-// Places the tree without a transition
-// Note the manual width and height adjustment of 80, 50
-function centerStart() {
-  d3.select("svg").call(zoom.translateTo, 0.5 * viewBoxWidth - 80, 0.5 * viewBoxHeight - 50);
-}
-
 initZoom();
 centerStart();
+

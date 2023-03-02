@@ -11,26 +11,30 @@
   display: flex;
   justify-content: center;
 }
-
 .personCard {
   fill: white;
-  stroke: brown;
-  width: 120px;
-  height: 45px;
-  stroke-width: 2;
+  stroke: rgb(9,68,96);
+  width: 275px;
+  height: 110px;
+  stroke-width: 3;
+}
+.personTreeCardLink {
+  color: rgb(9,68,96);
+  text-decoration: inherit;
+  font-weight: inherit;
+}
+.card-text{
+    margin-left: 0px;
 }
 path {
   fill: none;
-  stroke: brown;
-  stroke-width: 2;
+  stroke: rgb(37,170,126);
+  stroke-width: 3;
 }
 text {
   fill: green;
   /* dominant-baseline: middle; */
   text-anchor: middle;
-}
-.personIcon {
-
 }
 .hide {
   visibility: hidden;
