@@ -38,7 +38,7 @@
     </div>
     <div class="form-group mb-3 px-5">
         <label class="form-label mx-2">Birthday
-            <input type="date" th:field="${person.birthday}" class="form-control">
+            <input type="date" th:field="${person.birthday}" class="form-control" disabled>
         </label>
         <p class="fs-6 text-danger" th:errors="${person.birthday}"></p>
         <label class="form-label mx-2">Graduation
