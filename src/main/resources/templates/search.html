@@ -4,7 +4,7 @@
 <body>
 <nav th:replace = "fragments :: navbar"></nav>
 <div class="myphotodiv">
-  <img src="https://thebmsproject.org/wp-content/uploads/2023/02/Search-2-scaled.jpg" class="myphotoimg">
+  <img src="https://www.digitalfxshop.com/wp-content/uploads/2023/03/Search-2-scaled.jpg" class="myphotoimg">
 </div>
 <div class="container body-content">
 
@@ -46,13 +46,14 @@
           Person:
           <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}"></a>
         </p>
+
         <p>
           Birth Date:
-          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.birthday}"></a>
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text= "${#dates.format(person.birthday,'MM/dd/yyyy')}"></a>
         </p>
         <p>
           Death Date:
-          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.deathDate}"></a>
+          <a th:href="@{'/person/view/' + ${person.id}}" th:text="${#dates.format(person.deathDate,'MM/dd/yyyy')}"></a>
         </p>
 
 
@@ -63,8 +64,13 @@
 
 </div>
 
+
+<div th:replace="fragments :: footerfix"></div>
+<footer th:replace = "fragments :: footer"></footer>
+
 </body>
 </html>
+
 
 <!--<table class="job-listing">-->
 <!--    <tr th:each="job : ${jobs}">-->

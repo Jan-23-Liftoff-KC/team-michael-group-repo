@@ -4,10 +4,11 @@
 <body>
 <nav th:replace = "fragments :: navbar"></nav>
 <div class="myphotodiv">
-    <img src="https://thebmsproject.org/wp-content/uploads/2023/02/About-Me-scaled.jpg" class="myphotoimg">
+    <img src="https://www.digitalfxshop.com/wp-content/uploads/2023/03/My-Family-1-scaled.jpg" class="myphotoimg">
 </div>
 
-<div class="container body-content">
+<div class="container">
+    <h3 class="centeredbox">My Family</h3>
 <!--    <h2>People in My Family Tree</h2>-->
 <!--    <ul>-->
 <!--        <li th:each="person : ${persons}">-->
@@ -16,31 +17,53 @@
 <!--    </ul>-->
 <!--    <a th:href="@{'/person/add'}">Add Person</a>-->
 </div>
-<table class="personsTable">
-    <tr>
-<!--        <th>All</th>-->
-        <th>Person</th>
-    </tr>
+<!--<table class="personsTable">-->
+<!--    <tr>-->
+<!--&lt;!&ndash;        <th>All</th>&ndash;&gt;-->
+<!--        <th>Person</th>-->
+<!--    </tr>-->
 
-    <tr>
+<!--    <tr>-->
+<!--&lt;!&ndash;        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a th:href="@{/list/person(column='All',value='View All')}">View All</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </td>&ndash;&gt;-->
 <!--        <td>-->
-<!--            <li>-->
-<!--                <a th:href="@{/list/person(column='All',value='View All')}">View All</a>-->
-<!--            </li>-->
+<!--            <ul>-->
+<!--                <li th:each="person : ${persons}">-->
+<!--                  <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.lastName}"></a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--&lt;!&ndash;            <a th:href="@{'/person/add'}">Add Person</a>&ndash;&gt;-->
+
+
 <!--        </td>-->
+
+<!--    </tr>-->
+
+<!--</table>-->
+<table class="person-listing">
+    <tr th:each="person : ${persons}">
         <td>
-            <ul>
-                <li th:each="person : ${persons}">
-                  <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.lastName}"></a>
-                </li>
-            </ul>
-<!--            <a th:href="@{'/person/add'}">Add Person</a>-->
+            <p>
+<!--                Person:-->
+                <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.firstName} + ' ' + ${person.middleName} + ' ' +  ${person.lastName}"></a>
+            </p>
+
+<!--            <p>-->
+<!--                Birth Date:-->
+<!--                <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.birthday}"></a>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                Death Date:-->
+<!--                <a th:href="@{'/person/view/' + ${person.id}}" th:text="${person.deathDate}"></a>-->
+<!--            </p>-->
+
 
 
         </td>
-
     </tr>
-
 </table>
 <div class="mybuttondiv">
    <a href="/person/add" class="btn btn-secondary">Add Person</a>

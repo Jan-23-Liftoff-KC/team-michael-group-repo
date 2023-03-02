@@ -5,34 +5,29 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <body>
     <nav th:replace="fragments :: navbar"></nav>
-
-
-    <div id="treeArea" class="mb-3 mt-5"></div>
-
-    <div id="treeControlsArea">
-      <button onclick="zoomIn()">Zoom In ➕</button>
-      <button onclick="zoomOut()">Zoom Out ➖</button>
-      <button onclick="resetView()">Reset View ✴️️</button>
-      <button onclick="panUp()">Pan Up ⬆️</button>
-      <button onclick="panDown()">Pan Down ⬇️</button>
-      <button onclick="panLeft()">Pan Left ⬅️</button>
-      <button onclick="panRight()">Pan Right ➡️</button>
+    <div class="myphotodiv">
+      <img src="https://www.digitalfxshop.com/wp-content/uploads/2023/03/My-Tree-View-scaled.jpg" class="myphotoimg">
     </div>
 
-<!--    <div class="card mb-3" style="max-width: 350px;">-->
-<!--      <div class="row align-items-center g-0">-->
-<!--        <div class="col-md-4">-->
-<!--          <img src="https://github.com/Jan-23-Liftoff-KC/team-michael-group-repo/blob/main/src/main/resources/test-tree-data/person-icon.png?raw=true" class="rounded-start d-block ps-2 m" alt="..." style="width: 120px">-->
-<!--        </div>-->
-<!--        <div class="col-md-8">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">ALongFirstName<br>ALongerLastName</h5>-->
-<!--            <p class="card-text"><small class="text-muted">Born: 12/05/1994<br>Died: 12/05/3000</small></p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div id="treeArea" class="mb-3 mt-1"></div>
 
+    <div id="treeControlsArea">
+      <button class="btn tree-btn btn-secondary" onclick="zoomIn()">Zoom In ＋</button>
+      <button class="btn tree-btn btn-secondary" onclick="zoomOut()">Zoom Out －</button>
+      <button class="btn tree-btn btn-secondary" onclick="resetView()">Reset View ✴️️</button>
+      <button class="btn tree-btn btn-secondary" onclick="panUp()">Pan Up ⬆️</button>
+      <button class="btn tree-btn btn-secondary" onclick="panDown()">Pan Down ⬇️</button>
+      <button class="btn tree-btn btn-secondary" onclick="panLeft()">Pan Left ⬅️</button>
+      <button class="btn tree-btn btn-secondary" onclick="panRight()">Pan Right ➡️</button>
+    </div>
+    </br>
+    <div class="mybuttondiv">
+      <a href="/person/add" class="btn btn-secondary">Add Person</a>
+    </div>
+
+    <div class="myphotodivpad">
+      <img src="https://www.digitalfxshop.com/wp-content/uploads/2023/03/My-Tree-Instructions-scaled.jpg" class="myphotoimg">
+    </div>
     <div th:replace="fragments :: footerfix"></div>
     <footer th:replace="fragments :: footer"></footer>
 

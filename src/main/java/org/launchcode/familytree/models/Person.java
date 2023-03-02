@@ -29,6 +29,7 @@ public class Person {
     @NotBlank(message = "Biography is required. You may edit it later.")
     private String bio;
 //    private Image photo;
+    private String memories;
     private ArrayList<Person> familyMembers = new ArrayList<>();
 
     @NotNull(message = "Birthday cannot be left blank.")
@@ -53,11 +54,12 @@ public class Person {
 
     public Person(){}
 
-    public Person(String firstName, String middleName, String lastName, String bio, ArrayList<Person> familyMembers, Date birthday, Date unionDate, Date graduation, Date deathDate, int parentId, int parentIdTwo, int spouseId, Gender gender) {
+    public Person(String firstName, String middleName, String lastName, String bio, String memories, ArrayList<Person> familyMembers, Date birthday, Date unionDate, Date graduation, Date deathDate, int parentId, int parentIdTwo, int spouseId, Gender gender) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.bio = bio;
+        this.memories = memories;
         this.familyMembers = familyMembers;
         this.birthday = birthday;
         this.unionDate = unionDate;
@@ -110,6 +112,14 @@ public class Person {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getMemories() {
+        return memories;
+    }
+
+    public void setMemories(String memories) {
+        this.memories = memories;
     }
 
 //    public Image getPhoto() {

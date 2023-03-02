@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace = "fragments :: head"></head>
-
-<body>
 <nav th:replace = "fragments :: navbar"></nav>
 
-<div class="container body-content">
-    <h3 class="pt-5">
-        Add a Person to Your Family Tree
-    </h3>
-    <p class="mb-3">Fill out everything that applies to your person and leave the rest blank.</p>
-<form method="post" action="/person/add">
+<div class="myphotodiv">
+    <img src="https://www.digitalfxshop.com/wp-content/uploads/2023/03/Add-Person-scaled.jpg" class="myphotoimg">
+</div>
+
+<body class="container">
+
+<!--<h3 class="pt-5">-->
+<!--    Add a Person to Your Family Tree-->
+<!--</h3>-->
+<!--<div class="form-group px-5">-->
+
+<form class="container4" method="post" action="/person/add">
+    <p class="divbox">About Your Person</p>
     <div class="form-group mb-3 px-5">
-        <label class="form-label mx-2">First Name
-            <input th:field="${person.firstName}" class="form-control" required>
+        <label class="form-label mx-2">
+            <input placeholder="First Name" th:field="${person.firstName}" class="form-control" required>
         </label>
         <p class="fs-6 text-danger" th:errors="${person.firstName}"></p>
-        <label class="form-label mx-2">Middle Name
-            <input th:field="${person.middleName}" class="form-control">
+        <label class="form-label mx-2">
+            <input placeholder="Middle Name" th:field="${person.middleName}" class="form-control">
         </label>
-        <label class="form-label mx-2">Last Name
-            <input th:field="${person.lastName}" class="form-control" required>
+        <label class="form-label mx-2">
+            <input placeholder="Last Name" th:field="${person.lastName}" class="form-control" required>
         </label>
         <p class="fs-6 text-danger" th:errors="${person.lastName}"></p>
     </div>
@@ -52,9 +57,24 @@
         <textarea class="form-control" th:field="${person.bio}" name="bio" rows="3"></textarea>
         <p class="fs-6 text-danger" th:errors="${person.bio}"></p>
     </div>
+    <div class="form-group mb-3 px-5">
+        <label class="form-label">Memories</label>
+        <textarea class="form-control" th:field="${person.memories}" name="memories" rows="3"></textarea>
+        <p class="fs-6 text-danger" th:errors="${person.memories}"></p>
+    </div>
+    <p class="divbox">Add Profile Picture</p>
+    <div class="form-group mb-3 px-5">
+<!--        <p class="divbox">Add Profile Picture</p>-->
+        <label>
+            <input class="form-control"
+                   type="file"
+                   id="avatar" name="avatar"
+                   accept="image/png, image/jpeg">
+        </label>
+    </div>
     <div>
+        <p class="divbox">Relationships: Add Family Members</p>
         <div class="form-group mb-3 px-5">
-            <p class="mb-3">Select your family members</p>
             <label class="form-label mx-2">Child </label>
             <select th:field="${person.parentId}">
                 <option class="dropdown-item" value="0">Please Select</option>
@@ -77,17 +97,21 @@
             </select>
         </div>
     </div>
-    <div class="form-group mb-3 px-5">
-        <label>Choose a profile picture
-            <input class="form-control"
-                   type="file"
-                   id="avatar" name="avatar"
-                   accept="image/png, image/jpeg">
-        </label>
+<!--    <div class="form-group mb-3 px-5">-->
+<!--        <p class="wrapper2">Add Profile Picture</p>-->
+<!--        <label>-->
+<!--            <input class="form-control"-->
+<!--                   type="file"-->
+<!--                   id="avatar" name="avatar"-->
+<!--                   accept="image/png, image/jpeg">-->
+<!--        </label>-->
+<!--    </div>-->
+    <div class="mybuttondiv3">
+        <input type="submit" value="SUBMIT" class="btn btn-secondary">
     </div>
-    <div class="form-group px-5">
-        <input type="submit" value="ADD PERSON" class="btn btn-secondary">
-    </div>
+<!--    <div class="form-group px-5">-->
+<!--        <input type="submit" value="SUBMIT" class="btn btn-secondary">-->
+<!--    </div>-->
 </form>
 </div>
 <div th:replace="fragments :: footerfix"></div>

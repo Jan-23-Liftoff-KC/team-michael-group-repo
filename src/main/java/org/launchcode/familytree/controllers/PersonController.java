@@ -72,6 +72,7 @@ public class PersonController {
                                           @RequestParam(name = "id") String id, @RequestParam(name = "firstName", required = false) String firstName,
                                           @RequestParam(name = "middleName", required = false) String middleName, @RequestParam(name = "lastName", required = false) String lastName,
                                           @RequestParam(name = "gender", required = false) Gender gender, @RequestParam(name = "bio", required = false) String bio,
+                                          @RequestParam(name = "memories", required = false) String memories,
                                           @RequestParam(name = "graduation", required = false) String graduation, @RequestParam(name = "unionDate", required = false) String unionDate,
                                           @RequestParam(name = "deathDate", required = false) String deathDate, @RequestParam(name = "parentId", required = false) String parentId,
                                           @RequestParam(name = "parentIdTwo", required = false) String parentIdTwo, @RequestParam(name = "spouseId", required = false) String spouseId){
@@ -98,6 +99,7 @@ public class PersonController {
 //        currentPerson.setUnionDate(unionDate);
 //        currentPerson.setDeathDate(deathDate);
         currentPerson.setBio(bio);
+        currentPerson.setMemories(memories);
         personRepository.save(currentPerson);
         return "redirect:/person/view/" + currentPerson.getId();
     }
