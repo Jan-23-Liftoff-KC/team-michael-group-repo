@@ -7,12 +7,16 @@ We seek to help users document their family trees and store cherished memories o
 
 ### Completed Features Demonstration
 - **Login**: The site features an authentication controller for locking access to personal data behind a salted and hashed password.
+  
 ![Animation of logging into the website](FamilyTree_presentation_login-high.gif)
 - **Adding A Person**: Adding a person will insert them into your "About Me" page, which lists all family members.
+  
 ![Animation of adding a person to the family tree](FamilyTree_presentation_add-person-2-high.gif)
 - **Tree View**: Persons added to your family tree can be displayed in a graph showing relationships.
+  
 ![Animation of viewing family tree](FamilyTree_presentation_about-and-tree-high.gif)
 - **Modals**: We've got pop-up windows to satisfy your curiosity about the team and legal indemnification.
+  
 ![Animation of logging into the website](FamilyTree_presentation_modals-high.gif)
 
 ### Technologies
