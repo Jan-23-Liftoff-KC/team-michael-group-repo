@@ -5,10 +5,16 @@ Understanding family heritage is important, but often family history is saved be
 
 We seek to help users document their family trees and store cherished memories of loved ones. Users are able to add family members, details about those family members (including a biography, important dates, and photos), and see how their familly is connected through a family tree interface. The app will soon have a forum to comment on aspects of the family tree.
 
-### Features
+### Planned Features
 - **Family Tree Database and UI**: The site includes an interactive family tree UI connecting all members of the family together.
 - **Role Access Management**: Each user of the site will be given a level of access, which will allow them to modify the family tree to different levels.
 - **Website Forum**: Users will have a place to discuss recent edits to the family tree.
+
+### Completed Features Demonstration
+- **Login**: The site features an authentication controller for locking access to personal data behind a salted and hashed password.
+![Animation of logging into the website](FamilyTree_presentation_login-high.gif)
+- **Adding A Person**: Each user of the site will be given a level of access, which will allow them to modify the family tree to different levels.
+- **Tree View**: Users will have a place to discuss recent edits to the family tree.
 
 ### Technologies
 - Java
